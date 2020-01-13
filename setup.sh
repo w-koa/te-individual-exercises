@@ -1,20 +1,17 @@
 #!/bin/bash
 
-# Change this to match your repository root
-readonly TEAM_REPO="https://bitbucket.org/te-det-cohort-2"
+# This script assumes the student's repo has been cloned manually. The student 
+# should have logged onto BitBucket.org, found their repo and cloned it. During that process,
+# any issues with credentials (such as logging on with a Google-Id) would have been resolved.
+
+# The script will then prompt the user for name, email, cohort and bitbucket team before configuring
+# their diff tool settings and setting the upstream repository.
 
 echo
-read -r -p "Enter your name (First Last)? " name
-read -r -p "Enter your email? " email
-read -r -p "Are you in Java or C#? " cohort
-
-reponame=${name//[[:blank:]]/}
-
-if [ "$cohort" == "java" ] || [ "$cohort" == "Java" ]; then
-	cohort="java"
-else
-	cohort="c"
-fi	
+read -r -p "Enter your name (First Last): " name
+read -r -p "Enter your email: " email
+read -r -p "Enter your cohort (c or java): " cohort
+read -r -p "Enter your bitbucket team (e.g. te-cin-cohort-4): " team
 
 echo
 echo "Setting Up Global Configuration Settings"
@@ -29,16 +26,9 @@ git config --global diff.tool code
 git config --global difftool.code.cmd "code -w -d \$LOCAL \$REMOTE"
 
 echo
-echo "Cloning Repositories..."
-
-git clone "${TEAM_REPO}/${cohort}-lectures" lectures
-git clone "${TEAM_REPO}/${cohort}-solutions" solutions
-git clone "${TEAM_REPO}/${reponame}-${cohort}-exercises" exercises
-
-echo
 echo "Configuring Upstream..."
 
-cd exercises
-git remote add upstream "${TEAM_REPO}/${cohort}-exercises"
+git remote add upstream "https://bitbucket.org/${team}/${cohort}-main"
+git config branch.master.mergeOptions "--no-edit"
 
 echo "Done."
