@@ -123,7 +123,8 @@ public class Exercises {
 		int riceKrispies = 5;
 		int largeMarshmallows = 8;
 		int miniMarshmallows = 10;
-		int totalMarshmallows = largeMarshmallows + miniMarshmallows;
+		int marshmallowPerRiceKrispie = largeMarshmallows + miniMarshmallows;
+		int totalMarshmallows = riceKrispies * marshmallowPerRiceKrispie;
 		System.out.println(totalMarshmallows);
         /*
         14. At Mrs. Hilt's house, there was 29 inches of snow, and Brecknock
