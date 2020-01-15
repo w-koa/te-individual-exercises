@@ -110,7 +110,7 @@ public class Examples {
 
 		int x = 3;
 		int y = 0;
-		// result = (y > 0) && (x / y) > 2;  // causes a divide by zero exception to be thrown
+		//result = (x / y) > 2 && (y > 0);  // causes a divide by zero exception to be thrown
 		result = (y > 0) && (x / y) > 2;
 		System.out.println(result);
 
@@ -180,7 +180,8 @@ public class Examples {
 		//int firstVariable = 3;  // this is a compiler error because we already have a variable named firstVariable in this scope
 		int secondVariable = 7; // this is allowed because there is no variable named secondVariable in this scope
 
-		boolean burnItDown = shouldBurnDownTheBuilding(14, 20);
+		boolean burnItDown = shouldBurnDownTheBuilding(14, 20); // method call
+		System.out.println(burnItDown);
 	}
 
 	static boolean shouldBurnDownTheBuilding(int numberOfEmployees, int piecesOfCake) {
