@@ -154,4 +154,33 @@ public class Lecture {
 
         return sum == 12;
     }
+    
+    public void practice(int[] nums) {
+		for (int i = 10; i <= 100; i += 5) {
+			
+			System.out.println(nums[i] + " ");
+		}
+	}
+	
+	public void practice2(int[] nums) {
+		int sum = 0;
+		double average = 0;
+		
+		int largest = nums[0];
+		int smallest = nums[0];
+		for (int i = 0; i < nums.length; i++) {
+			sum = sum + nums[i];
+			
+			if (nums[i] > nums[i + 1]) {
+				largest = nums[i];
+			} 
+			if (nums[i] < nums[i + 1]) {
+				smallest = nums[i];
+			} 
+		}
+		average = (double) sum / nums.length;
+		System.out.println("smallest" + smallest);
+		System.out.println("largest " + largest);
+		System.out.println("avg " + average);
+	}
 }
