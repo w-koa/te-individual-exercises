@@ -12,14 +12,34 @@ public class Lecture {
 
 		/* create an new instance of String using a literal */
 
+		String greeting = "Hello, World";
+		String greetingPart2 = " Hello world";
+		String longerGreeting = greeting + greetingPart2;
+		System.out.println(longerGreeting);
 		
 		System.out.println();
 		System.out.println("******************************");
 		System.out.println("****** MEMBER METHODS ******");
 		System.out.println("******************************");
 		System.out.println();
-
-
+		
+		String name = "Robert Norman Ross";
+		//Gets length of name string.
+		int nameLength = name.length();
+		System.out.println(nameLength);
+		
+		//Gets character at index[3]
+		char testLetter = name.charAt(3);
+		System.out.println(testLetter);
+		
+		//Prints starting index of string "or"
+		int position = name.indexOf("or");
+		System.out.println(position);
+		
+		//Prints position of first "r"
+		int position2 = name.indexOf("r");
+		System.out.println(position2);
+		
 		/* Other commonly used methods:
 		 *
 		 * endsWith
