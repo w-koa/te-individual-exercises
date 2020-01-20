@@ -40,6 +40,32 @@ public class Lecture {
 		int position2 = name.indexOf("r");
 		System.out.println(position2);
 		
+		String middleName = name.substring(7, 13);
+		System.out.println(middleName);
+		
+		String lastName = name.substring(14);
+		System.out.println(lastName);
+		
+		String carelessString = "Drinking Tea ";
+		String carefulString = carelessString.trim();
+		System.out.println(carefulString + carefulString.length());
+		System.out.println(carelessString + carelessString.length());
+		
+		String shoutingString = "BLAHAWEOIJFOIBOBBLAIB!!!!";
+		String quietString = shoutingString.toLowerCase();
+		System.out.println(shoutingString);
+		System.out.println(quietString);
+		
+		//Can chain methods. Here we change the rest to lower case and use substrings to combine.
+		String lowerCasePart = shoutingString.substring(1).toLowerCase();
+		String upperCasePart = shoutingString.substring(0, 1);
+		System.out.println(upperCasePart + lowerCasePart);
+		
+		// Replace method example
+		String tiredString = "I am tired.";
+		String energeticString = tiredString.replace("tired", "super");
+		System.out.println(tiredString);
+		System.out.println(energeticString);
 		/* Other commonly used methods:
 		 *
 		 * endsWith

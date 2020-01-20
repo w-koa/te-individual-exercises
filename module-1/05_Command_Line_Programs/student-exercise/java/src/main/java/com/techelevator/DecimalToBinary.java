@@ -25,10 +25,14 @@ public class DecimalToBinary {
 		int originalNum = Integer.parseInt(intStr);
 		
 		int[] binaryArray = new int[99];
-		
+		int index = 0;
 		for (int i = 0; integer > 0; i++) {
 			binaryArray[i] = integer % 2;
 			integer = integer / 2;
+			index++;
+			
+		}
+		for (int i = index - 1; i >= 0; i--) {
 			System.out.print(binaryArray[i]);
 		}
 		System.out.println(" is binary for: " + originalNum);
