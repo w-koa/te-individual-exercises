@@ -66,6 +66,11 @@ public class Lecture {
 		String energeticString = tiredString.replace("tired", "super");
 		System.out.println(tiredString);
 		System.out.println(energeticString);
+		// tiredString.replace("tired", "super");
+		// Still prints "I am tired."
+		// If you don't save the new string to a variable, method does not do anything. Strings are immutable!
+		
+		
 		/* Other commonly used methods:
 		 *
 		 * endsWith
@@ -84,7 +89,33 @@ public class Lecture {
 		System.out.println("****** EQUALITY ******");
 		System.out.println("**********************");
 		System.out.println();
-
+		
+		// Takes an array of characters and converts to a string.
+		char [] helloArray = new char[] {'H', 'e', 'l', 'l', 'o'};
+		String hello1 = new String(helloArray);
+		System.out.println(hello1);
+		
+		String hello2 = new String("Hello");
+		System.out.println(hello2);
+		
+		if (hello1 == hello2) {
+			System.out.println("equal");
+		} else {
+			System.out.println("not equal");
+		}
+		
+		if (hello1.equals(hello2)) {
+			System.out.println("equal");
+		} else {
+			System.out.println("not equal");
+		}
+		
+		String hello3 = hello1;
+		if (hello1 == hello3) {
+			System.out.println("equal");
+		} else {
+			System.out.println("not equal");
+		}
 		/* Double equals will compare to see if the two variables, hello1 and
 		 * hello2 point to the same object in memory. Are they the same object? */
 	
