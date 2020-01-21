@@ -1,6 +1,7 @@
 package com.techelevator;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -22,7 +23,11 @@ public class Exercises {
 	 array2List( {"Left", "Right", "Forward", "Back"} )  ->  ["Left", "Right", "Forward", "Back"]
 	 */
 	public List<String> array2List(String[] stringArray) {
-		return null;
+		List<String> stringList = new ArrayList<>();
+		for (String string : stringArray) {
+			stringList.add(string);
+		}
+		return stringList;
 	}
 
 	/*
@@ -32,7 +37,11 @@ public class Exercises {
 	 list2Array( ["Left", "Right", "Forward", "Back"] )  ->  {"Left", "Right", "Forward", "Back"}
 	 */
 	public String[] list2Array(List<String> stringList) {
-		return null;
+		String[] stringArray = new String[stringList.size()];
+		for (int i = 0; i < stringList.size(); i++) {
+			stringArray[i] = stringList.get(i);
+		}
+		return stringArray;
 	}
 
 	/*
@@ -43,7 +52,15 @@ public class Exercises {
 	 no4LetterWords( {"Jack", "Jill", "Jane", "John", "Jim"} )  ->  ["Jim"]
 	 */
 	public List<String> no4LetterWords(String[] stringArray) {
-		return null;
+		List<String> no4LetterWords = new ArrayList<>();
+		for (String string : stringArray) {
+			no4LetterWords.add(string);
+			if (string.length() == 4) {
+				no4LetterWords.remove(string);
+			}
+		}
+		
+		return no4LetterWords;
 	}
 
 	/*
@@ -55,7 +72,16 @@ public class Exercises {
 		-> ["way", "the", "all", "jingle", "bells", "jingle", "bells", "jingle"]
 	 */
 	public List<String> reverseList(List<String> stringList) {
-		return null;
+		Stack<String> reverseStack = new Stack<>();
+		List<String> reverseList = new ArrayList<>();
+		for (String item : stringList) {
+			reverseStack.push(item);
+		}
+		while (reverseStack.size() > 0) {
+			reverseList.add(reverseStack.pop());
+		}
+		
+		return reverseList;
 	}
 
 	/*
@@ -65,7 +91,11 @@ public class Exercises {
 	 arrayInt2ListDouble( {84, 99, 3285, 13, 877} ) -> [42, 49.5, 1642.5, 6.5, 438.5]
 	 */
 	public List<Double> arrayInt2ListDouble(int[] intArray) {
-		return null;
+		List<Double> doublesList = new ArrayList<>();
+		for (int i = 0; i < intArray.length; i++) {
+			doublesList.add((double) (intArray[i] / 2));
+		}
+		return doublesList;
 	}
 
 	/*
@@ -75,7 +105,13 @@ public class Exercises {
 	 findLargest( [34070, 1380, 81238, 7782, 234, 64362, 627] ) -> 64362
 	 */
 	public Integer findLargest(List<Integer> integerList) {
-		return null;
+		int largestNum = 0;
+		for (int i = 0; i < integerList.size(); i++) {
+			if (integerList.get(i) > largestNum) {
+				largestNum = integerList.get(i);
+			}
+		}
+		return largestNum;
 	}
 
 	/*
@@ -85,7 +121,14 @@ public class Exercises {
 	 oddOnly( {734, 233, 782, 811, 3, 9999} ) -> [233, 811, 3, 9999]
 	 */
 	public List<Integer> oddOnly(Integer[] integerArray) {
-		return null;
+		List<Integer> oddOnly = new ArrayList<>();
+		for (Integer num : integerArray) {
+			if (num % 2 != 0) {
+				oddOnly.add(num);
+			}
+		}
+		
+		return oddOnly;
 	}
 
 	/*
@@ -96,7 +139,19 @@ public class Exercises {
 	 foundIntTwice( [9, 23, 44, 2, 88, 44], 44) -> true
 	 */
 	public boolean foundIntTwice(List<Integer> integerList, int intToFind) {
-		return false;
+//		int counter = 0;
+//		for (int i = 0; i < integerList.size(); i++) {
+//			
+//		}
+//		return counter > 0;
+
+	    int numCount = 0;
+
+	    for (int thisNum : integerList) {
+	        if (thisNum == intToFind) numCount++;
+	    }
+
+	    return numCount > 1;
 	}
 
 	/*
@@ -113,7 +168,34 @@ public class Exercises {
 	 equals "1")
 	 */
 	public List<String> fizzBuzzList(Integer[] integerArray) {
-		return null;
+		
+		List<Integer> numbers = new ArrayList<>();
+		List<String> fizzString = new ArrayList<>();
+		for (Integer num : integerArray) {
+			numbers.add(num);
+		}
+		for (Integer num : numbers) {
+			fizzString.add(String.valueOf(num));
+			if (num % 3 == 0 && num % 5 == 0) {
+				fizzString.remove(String.valueOf(num));
+				fizzString.add("FizzBuzz");
+			}
+			if (num % 3 == 0) {
+				fizzString.remove(String.valueOf(num));
+				fizzString.add("Fizz");
+			}
+			if (num % 5 == 0) {
+				fizzString.remove(String.valueOf(num));
+				fizzString.add("Buzz");
+			}
+			if (num % 15 == 0) {
+				fizzString.remove(fizzString.size() -2 );
+				fizzString.remove(fizzString.size() - 1);
+			}
+		}
+		//System.out.println(fizzString);
+		return fizzString;
+		
 	}
 
 	/*
@@ -124,7 +206,22 @@ public class Exercises {
 	 interleaveLists( [1, 2, 3], [4, 5, 6] )  ->  [1, 4, 2, 5, 3, 6]
 	 */
 	public List<Integer> interleaveLists(List<Integer> listOne, List<Integer> listTwo) {
-		return null;
+		List<Integer> interleave = new ArrayList<>();
+		
+		// Loop adds alternating values to interleave List. If one is bigger, then it continues to add values
+		// until it reaches the end of the given List.
+		for (int i = 0, j = 0; i < listOne.size() || j < listTwo.size(); i++, j++) {
+			if (i < listOne.size()) {
+				interleave.add(listOne.get(i));
+			}
+			if (j < listTwo.size()) {
+				interleave.add(listTwo.get(j));
+			}
+			
+		}
+
+		System.out.println(interleave);
+		return interleave;
 	}
 
 	/*
@@ -137,7 +234,25 @@ public class Exercises {
 	 boardingGate( [0, -1, 44, 31, 17, 7, 27, 16, 26, 6] ) -> [7, 6, 17, 16, 27, 26]
 	 */
 	public List<Integer> boardingGate(List<Integer> seatNumberList) {
-		return null;
+		List<Integer> boarding = new ArrayList<>();
+		List<Integer> groupOne = new ArrayList<>();
+		List<Integer> groupTwo = new ArrayList<>();
+		List<Integer> groupThree = new ArrayList<>();
+		
+		for (int i = 0; i < seatNumberList.size(); i++) {
+			if (seatNumberList.get(i) >= 1 && seatNumberList.get(i) <= 10) {
+				groupOne.add(seatNumberList.get(i));
+			} else if (seatNumberList.get(i) >= 11 && seatNumberList.get(i) <= 20) {
+				groupTwo.add(seatNumberList.get(i));
+			} else if (seatNumberList.get(i) >= 21 && seatNumberList.get(i) <= 30) {
+				groupThree.add(seatNumberList.get(i));
+			}
+		}
+		boarding.addAll(groupOne);
+		boarding.addAll(groupTwo);
+		boarding.addAll(groupThree);
+		System.out.println(boarding);
+		return boarding;
 	}
 
 }

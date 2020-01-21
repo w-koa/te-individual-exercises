@@ -110,6 +110,7 @@ public class Lecture {
 			System.out.println("not equal");
 		}
 		
+		// same reference point
 		String hello3 = hello1;
 		if (hello1 == hello3) {
 			System.out.println("equal");
