@@ -1,10 +1,9 @@
 package com.techelevator;
 
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class Lecture {
 
@@ -17,6 +16,40 @@ public class Lecture {
 
 		/* Map is an interface and HashMap is a class that implements Map */
 
+		Map <String, Integer> myMap = new HashMap<>();
+		
+		myMap.put("Andorra", 42);
+		myMap.put("James", 24);
+		myMap.put("Seth", 7);
+		myMap.put("Norm", 23);
+		myMap.put("Kevin", 11);
+		myMap.put("Margaret", 42);
+		
+		System.out.println("Seth's favorite number is " + myMap.get("Seth"));
+		
+		double favNumber = myMap.get("Norm");
+		System.out.println("Norm's favorite number is " + favNumber);
+		
+		Set<String> keys = myMap.keySet();
+		for (String name : keys) {
+			System.out.println(name + "'s favorite number is " + myMap.get(name));
+		}
+		
+		
+		Set<String> names = new TreeSet<>();
+		names.add("Scott");
+		names.add("Greg");
+		names.add("Casey");
+		names.add("Mike");
+		names.add("Son");
+		names.add("Tim");
+		
+		names.add("Scott"); // this addition is ignored since it already exists.
+		for (String name : names) {
+			System.out.println(name + " Hash = " + name.hashCode());
+		}
+		
+		
 		/* The "put" method is used to add elements to a Map */
 
 		/* The "get" method is used to retrieve elements from a Map */
