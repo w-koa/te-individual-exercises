@@ -15,12 +15,13 @@ public class PlayingCard {
 		this.value = 14;
 		this.faceUp = false;
 	}
-	
+	 // Overloaded -- accepts two parameters
 	public PlayingCard(String suit, char rank) {
 		this.suit = suit;
 		this.rank = rank;
 	}
 	
+	 // Overloaded -- accepts all the parameters
 	public PlayingCard(String suit, char rank, int value, boolean faceUp) {
 		super(); // SANTA CLAUS!!!!!
 		this.suit = suit;
@@ -34,7 +35,13 @@ public class PlayingCard {
 	}
 
 	public void setSuit(String suit) {
-		this.suit = suit;
+		if (suit.equals("Spades") || suit.equals("Clubs") ||
+				suit.equals("Hearts") || suit.equals("Diamonds")) {
+					this.suit = suit;
+		}  else {
+			this.suit = "unknown";
+		}
+		
 	}
 
 	public char getRank() {
@@ -60,7 +67,7 @@ public class PlayingCard {
 	public void setFaceUp(boolean faceUp) {
 		this.faceUp = faceUp;
 	}
-	
+	@Override
 	public String toString() {
 		return "[" + suit + ", " +
 	     rank + ", " + value + ", " + faceUp + "]";
