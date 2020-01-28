@@ -36,4 +36,11 @@ public class Auction {
 	public String getItemForSale() {
 		return itemForSale;
 	}
+	
+	@Override
+	public String toString() {
+		return "Item for sale: " + itemForSale + 
+				"\nCurrent high bid: " + currentHighBid + 
+				"\nallBids: " + allBids;
+	}
 }
