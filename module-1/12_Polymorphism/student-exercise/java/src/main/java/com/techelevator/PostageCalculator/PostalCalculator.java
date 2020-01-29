@@ -53,7 +53,7 @@ public class PostalCalculator {
 		
 		// Prints out info for each service added to list.
 		System.out.println("Delivery Method \t\t\tCost");
-		System.out.println("============================================");
+		System.out.println("================================================");
 		for (DeliveryDriver service : serviceList) {
 			System.out.printf(service.getServiceType() + " \t\t" + 
 					String.format("$%,.2f", service.calculateRate(distanceInt, weightInt)) + "\n");
