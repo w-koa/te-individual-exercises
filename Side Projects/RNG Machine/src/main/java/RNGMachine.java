@@ -19,7 +19,7 @@ public class RNGMachine {
 		System.out.println("\t\t\tThe RNG Machine Demo");
 		while (!choice.equals(coin) || !choice.equals(dice) || !choice.equals(rng) || !choice.equals(exit)) {
 			
-			System.out.println("------------------------------------------------------------------");
+			System.out.println("-------------------------------------------------------------------");
 			System.out.print("Flip [C]oin or Roll [D]ice or Create [R]NG (Press enter to exit): ");
 			choice = input.nextLine();
 			
@@ -36,17 +36,17 @@ public class RNGMachine {
 			}
 			
 			if (choice.equals(rng)) {
-				System.out.println("Set a minimum number: ");
+				System.out.print("Set a minimum number: ");
 				String minNumberString = input.nextLine();
 				int minNumberInt = Integer.parseInt(minNumberString);
 				
-				System.out.println("Set a maximum number: ");
+				System.out.print("Set a maximum number: ");
 				String maxNumberString = input.nextLine();
 				int maxNumberInt = Integer.parseInt(maxNumberString);
 				
 				int rngRange = maxNumberInt - minNumberInt + 1;
 				
-				System.out.println("Your range: " + minNumberInt + " - " + maxNumberInt);
+				System.out.println("\nYour range: " + minNumberInt + " - " + maxNumberInt);
 				System.out.println("RNG Result: " + ((int) (Math.random() * rngRange) + minNumberInt));
 			}
 			if (choice.equals(exit)) {
