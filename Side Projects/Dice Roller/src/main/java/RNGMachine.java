@@ -1,0 +1,71 @@
+import java.util.Scanner;
+
+public class RNGMachine {
+
+	public static void main(String[] args) {
+		
+		//Get User Input, sets strings to be used in RNG demo.
+		Scanner input = new Scanner(System.in);
+		
+		String choice = "";
+		String coin = "C";
+		String dice = "D";
+		String rngGen = "R";
+		String exit = "";
+		
+		System.out.println("\t\t\tThe RNG Machine Demo");
+		while (!choice.equals(coin) || !choice.equals(dice) || !choice.equals(rngGen) || !choice.equals(exit)) {
+			
+			System.out.println("------------------------------------------------------------------");
+			System.out.print("Flip [C]oin or Roll [D]ice or Create [R]NG (Press enter to exit): ");
+			choice = input.nextLine();
+			
+			if (choice.equals(coin)) {
+				int flipResult = (int) (Math.random() * 2) + 1;
+				if (flipResult == 1) {
+					System.out.println("\nCoin landed: Heads\n");			
+				} else System.out.println("\nCoin landed: Tails\n");
+			}
+			
+			if (choice.equals(dice)) {
+				int rollResult = (int) (Math.random() * 6) + 1;
+				System.out.println("\nDice Rolled: " + rollResult + "\n");
+			}
+			
+			if (choice.equals(rngGen)) {
+				System.out.println("Set a minimum number: ");
+				String minNumberString = input.nextLine();
+				int minNumberInt = Integer.parseInt(minNumberString);
+				
+				System.out.println("Set a maximum number: ");
+				String maxNumberString = input.nextLine();
+				int maxNumberInt = Integer.parseInt(maxNumberString);
+				
+				int rngRange = maxNumberInt - minNumberInt + 1;
+				
+				System.out.println("Your range: " + minNumberInt + " - " + maxNumberInt);
+				System.out.println("RNG Result: " + ((int) (Math.random() * rngRange) + minNumberInt));
+			}
+			if (choice.equals(exit)) {
+				System.out.println("\nThank you for using the RNG machine!");
+				System.out.println("Successfully exited program");
+				break;
+			}
+
+		}
+		input.close();
+//		if (choice.equals(flip)) {
+//			int flipResult = (int) (Math.random() * 2) + 1;
+//			if (flipResult == 1) {
+//				System.out.println("Coin landed: Heads");			
+//			} System.out.println("Coin landed: Tails");
+//		}
+//		
+//		if (choice.equals(roll)) {
+//			int rollResult = (int) (Math.random() * 6) + 1;
+//			System.out.println("Dice Rolled: " + rollResult);
+//		}
+
+	}
+
+}
