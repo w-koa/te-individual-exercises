@@ -21,7 +21,7 @@ public class FedEx implements DeliveryDriver {
 	// FedEx does not need service type.... Just Kidding it does.
 	@Override
 	public String getServiceType() {
-		return "FedEx\t";
+		return "FedEx\t\t\t";
 	}
 
 }

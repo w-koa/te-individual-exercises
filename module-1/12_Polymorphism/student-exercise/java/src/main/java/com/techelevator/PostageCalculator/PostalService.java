@@ -2,6 +2,7 @@ package com.techelevator.PostageCalculator;
 
 public class PostalService implements DeliveryDriver {
 
+	//THIS CLASS IS NOW OBSOLETE
 	private String serviceType;
 	
 	

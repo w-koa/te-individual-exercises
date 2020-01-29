@@ -30,6 +30,9 @@ public class ServiceTestingGround {
 		System.out.println(spu.calculateRate(50, 50));
 		spu.setServiceType("4-Day Ground");
 		System.out.println(spu.calculateRate(50, 50));
+		
+		PostalService1stClass newFirstClass = new PostalService1stClass();
+		System.out.println(newFirstClass.calculateRate(100, 10));
 
 	}
 

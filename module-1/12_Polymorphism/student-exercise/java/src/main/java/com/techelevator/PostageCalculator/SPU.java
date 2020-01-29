@@ -5,6 +5,7 @@ package com.techelevator.PostageCalculator;
 
 public class SPU implements DeliveryDriver {
 
+	// THIS CLASS IS NOW OBSOLETE
 	private String serviceType;
 	
 	@Override
