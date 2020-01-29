@@ -10,11 +10,14 @@ public class RNGMachine {
 		String choice = "";
 		String coin = "C";
 		String dice = "D";
-		String rngGen = "R";
+		String rng = "R";
 		String exit = "";
 		
+		// Print RNG Machine title. Start infinite loop for RNG choice input.
+		// Re-prompts user if input is invalid or until the program is exited.
+		// User can create a RNG by setting min and max range (only outputs integers).
 		System.out.println("\t\t\tThe RNG Machine Demo");
-		while (!choice.equals(coin) || !choice.equals(dice) || !choice.equals(rngGen) || !choice.equals(exit)) {
+		while (!choice.equals(coin) || !choice.equals(dice) || !choice.equals(rng) || !choice.equals(exit)) {
 			
 			System.out.println("------------------------------------------------------------------");
 			System.out.print("Flip [C]oin or Roll [D]ice or Create [R]NG (Press enter to exit): ");
@@ -32,7 +35,7 @@ public class RNGMachine {
 				System.out.println("\nDice Rolled: " + rollResult + "\n");
 			}
 			
-			if (choice.equals(rngGen)) {
+			if (choice.equals(rng)) {
 				System.out.println("Set a minimum number: ");
 				String minNumberString = input.nextLine();
 				int minNumberInt = Integer.parseInt(minNumberString);
