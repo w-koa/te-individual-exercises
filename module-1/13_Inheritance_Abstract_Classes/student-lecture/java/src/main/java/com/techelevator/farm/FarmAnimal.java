@@ -1,22 +1,34 @@
 package com.techelevator.farm;
 
 public class FarmAnimal implements Farm{
-	public String name;
-	public String sound;
+	private String name;
+	protected String sound;
+	private boolean isAwake;
 
 	
 	public FarmAnimal(String name, String sound) {
 		this.name = name;
 		this.sound = sound;
+		this.isAwake = true;
 	}
 	
 	public String getName() {
 		return name;
 	}
 	
-	public String getSound() {
-		return sound;
+	public final String getSound() {
+		if (isAwake) {
+			return sound;
+		} else
+		return "zzzz...";
 	
 	}
 
+	public boolean isAwake() {
+		return isAwake;
+	}
+
+	public void sleep() {
+		isAwake = false;
+	}
 }

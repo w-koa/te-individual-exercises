@@ -6,8 +6,8 @@ public class Cat extends FarmAnimal {
 		super("Cat", "meow");
 	}
 	
-	public String getSound() {
-		return sound;
-	}
+//	public String getSound() {
+//		return sound;
+//	}
 
 }

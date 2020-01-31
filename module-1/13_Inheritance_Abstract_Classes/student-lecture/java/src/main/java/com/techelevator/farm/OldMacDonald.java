@@ -10,7 +10,7 @@ public class OldMacDonald {
 		FarmAnimal[] inventory = new FarmAnimal[6]; 
 		
 		for (int i=0 ; i < 6; i++) {
-			int random = (int)(Math.random() * 3);
+			int random = (int)(Math.random() * 4);
 			if (random == 0) {
 				inventory[i] = new Chicken();
 			}
@@ -20,8 +20,11 @@ public class OldMacDonald {
 			else if (random == 2) {
 				inventory[i] = new Sheep();
 			} 
+			else inventory[i] = new Cat();
 		}
-			
+		
+		inventory[1].sleep();
+		inventory[4].sleep();
 		
 		for (FarmAnimal item : inventory) {
 			String sound = item.getSound();
