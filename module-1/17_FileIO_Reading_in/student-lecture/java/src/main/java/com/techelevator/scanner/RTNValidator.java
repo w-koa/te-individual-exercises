@@ -16,7 +16,7 @@ public class RTNValidator {
 		try(Scanner fileScanner = new Scanner(inputFile)) {
 			while(fileScanner.hasNextLine()) {
 				String line = fileScanner.nextLine();
-				String rtn = line.substring(0, 9);
+				String rtn = line.substring(0);
 				
 				if(checksumIsValid(rtn) == false) {
 					System.out.println(line);
@@ -52,7 +52,7 @@ public class RTNValidator {
 	private static boolean checksumIsValid(String routingNumber) {
 		int checksum = 0;
 		for(int i = 0; i < 9; i++) {
-			int digit = Integer.parseInt(routingNumber.substring(i, i+1));
+			int digit = Integer.parseInt("" + routingNumber.charAt(i));
 			checksum += digit * CHECKSUM_WEIGHTS[i];
 		}
 		return checksum % 10 == 0;
