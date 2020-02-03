@@ -44,5 +44,11 @@ public class KataFizzBuzzTest {
 		assertEquals(expected, actual);
 	}
 	
+	@Test
+	public void number_13_returns_fizz() {
+		String expected = "Fizz";
+		String actual = fuzz.fizzBuzz(13);
+		assertEquals(expected, actual);
+	}
 	
 }
