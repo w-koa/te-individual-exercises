@@ -3,6 +3,9 @@ package com.techelevator;
 public class KataFizzBuzz {
 
 	public String fizzBuzz(int number) {
+		if (number == 0) {
+			return "";
+		} else
 		if (number % 15 == 0) {
 			return "FizzBuzz";
 		} else
@@ -11,7 +14,8 @@ public class KataFizzBuzz {
 		} else
 		if (number % 5 == 0) {
 			return "Buzz";
-		} else {
+		} else
+		 	{
 			return Integer.toString(number);
 		}
 	}
