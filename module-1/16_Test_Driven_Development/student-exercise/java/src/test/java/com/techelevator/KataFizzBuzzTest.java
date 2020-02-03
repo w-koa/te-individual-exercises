@@ -10,6 +10,12 @@ public class KataFizzBuzzTest {
 	KataFizzBuzz fuzz = new KataFizzBuzz();
 	
 	@Test
+	public void fizzbuzz_1_returns_string_1() {
+		String expected = "1";
+		String actual = fuzz.fizzBuzz(1);
+		assertEquals(expected, actual);
+	}
+	@Test
 	public void number_div_by_3_returns_fizz() {
 		String expected = "Fizz";
 		String actual = fuzz.fizzBuzz(3);
