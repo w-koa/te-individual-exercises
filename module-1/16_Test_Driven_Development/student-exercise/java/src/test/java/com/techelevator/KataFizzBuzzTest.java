@@ -8,6 +8,7 @@ import static org.junit.Assert.*;
 public class KataFizzBuzzTest {
 	
 	KataFizzBuzz fuzz = new KataFizzBuzz();
+	
 	@Test
 	public void number_div_by_3_returns_fizz() {
 		String expected = "Fizz";
@@ -35,5 +36,13 @@ public class KataFizzBuzzTest {
 		String actual = fuzz.fizzBuzz(22);
 		assertEquals(expected, actual);
 	}
+	
+	@Test
+	public void number_0_returns_empty_string() {
+		String expected = "";
+		String actual = fuzz.fizzBuzz(0);
+		assertEquals(expected, actual);
+	}
+	
 	
 }
