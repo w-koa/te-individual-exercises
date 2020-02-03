@@ -162,7 +162,8 @@ public class UseMenuCLI {  // Class representing the MenuCLI process to be used
 		 switch (choice)
 		 {
 		 case MAIN_MENU_OPTION_1 : {
-			 // process for option 1 choice - good place for a method call
+			 String option = (String)menu.getChoiceFromOptions(INSTRUCTOR_OPTIONS);
+			 System.out.println(option);
 			 break;
 		 } 
 		 case MAIN_MENU_OPTION_2 : {

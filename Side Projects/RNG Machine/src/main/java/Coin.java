@@ -1,27 +1,13 @@
 
 public class Coin {
 
-	//Attributes
-	private String result;
-	
-	
-	//Constructor
-	public Coin() {
-		this.result = "Heads";
-	}
-	
-	
-	// Getter
-	public String getResult() {
-		return result;
-	}
-	
+	// Attributes	
 	// Method
-	public String flipCoin() {
+	public void flipCoin() {
 		int flipResult = (int) (Math.random() * 2) + 1;
 		if (flipResult == 1) {
-			return "Heads";			
-		} else return "Tails";
+			System.out.println("\nCoin Flipped: Heads\n");			
+		} else System.out.println("\nCoin Flipped: Tails\n");
 		
 	}
 	

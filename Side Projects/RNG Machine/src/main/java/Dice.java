@@ -1,21 +1,12 @@
 
 public class Dice {
-	// Attributes
-	private int result;
-	
-	// Constructor
-	public Dice() {
-		this.result = 1;
-	}
 
-	// Getter
-	public int getResult() {
-		return result;
-	}
+	//Attributes
 	
 	// Methods
-	public int rollDice() {
-		return this.result = (int) (Math.random() * 6) + 1;
+	public void rollDice() {
+		int rollResult = (int) (Math.random() * 6) + 1;
+		System.out.println("\nDice Rolled: " + rollResult + "\n");
 	}
 	
 }
