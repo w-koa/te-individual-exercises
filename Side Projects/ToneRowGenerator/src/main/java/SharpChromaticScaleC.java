@@ -1,7 +1,9 @@
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-public class SharpChromaticScaleC {
+public class SharpChromaticScaleC implements ChromaticScale{
 
 	// Attributes
 	private Map<String, Integer> sharpChromaticScaleC = new HashMap<String, Integer>();
@@ -23,8 +25,26 @@ public class SharpChromaticScaleC {
 		sharpChromaticScaleC.put("B", 11);
 	}
 
-	// Getter
-	public Map<String, Integer> getSharpChomaticScaleC() {
+	// Getter Overrides
+	
+	@Override
+	public Map<String, Integer> getChromaticScale() {
+		// TODO Auto-generated method stub
 		return sharpChromaticScaleC;
+	}
+
+	@Override
+	public List<String> getChromaticNotes() {
+		List<String> sharpNotes = new ArrayList<String>(sharpChromaticScaleC.keySet());
+		return sharpNotes;
+	}
+
+	@Override
+	public List<Integer> getChromaticValues() {
+		List<Integer> sharpValues = new ArrayList<Integer>();
+		for (String key : sharpChromaticScaleC.keySet()) {
+			sharpValues.add(sharpChromaticScaleC.get(key));
+		}
+		return sharpValues;
 	}
 }
