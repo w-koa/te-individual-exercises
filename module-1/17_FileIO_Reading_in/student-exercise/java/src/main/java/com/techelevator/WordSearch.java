@@ -10,12 +10,13 @@ public class WordSearch {
 		int lineNumber = 0;
 		
 		File inputFile = getInputFileFromUser();
+	
+		
 		try (Scanner fileScanner = new Scanner(inputFile)) {
+			
 			while (fileScanner.hasNextLine()) { // checks to make sure there is something to read
-				
 				String fileLine = fileScanner.nextLine();
 				lineNumber++;
-				
 				System.out.println(lineNumber + ": " + fileLine);
 			}
 		}
@@ -39,9 +40,4 @@ public class WordSearch {
 		
 	}
 	
-	private static String getStringFromUser() {
-		Scanner input = new Scanner(System.in);
-		System.out.println("Enter a word to search for: ");
-	}
-
 }
