@@ -14,12 +14,12 @@ public class RTNValidator {
 		
 		File inputFile = getInputFileFromUser();
 		try(Scanner fileScanner = new Scanner(inputFile)) {
-			while(fileScanner.hasNextLine()) {
-				String line = fileScanner.nextLine();
-				String rtn = line.substring(0);
+			while(fileScanner.hasNextLine()) { // checks to make sure there is something to read
+				String rtn = fileScanner.nextLine(); // picks up one line from file at a time
+				//String rtn = line.substring(0); // this line i meant to remove
 				
 				if(checksumIsValid(rtn) == false) {
-					System.out.println(line);
+					System.out.println(rtn);
 				}
 			}
 		}

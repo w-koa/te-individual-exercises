@@ -10,6 +10,14 @@ public class KataPotterTest {
 	KataPotter potter = new KataPotter();
 	
 	@Test
+	public void null_returns_0() {
+		double actual = 0;
+		int[]books = null;
+		double expected = potter.getCost(books);
+		assertEquals(actual, expected, 0.0001);
+	}
+	
+	@Test
 	public void single_purchase_returns_8() {
 		double actual = 8;
 		int[] books = new int[] {1, 0, 0, 0, 0};
