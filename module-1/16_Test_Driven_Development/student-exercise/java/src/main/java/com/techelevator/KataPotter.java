@@ -1,53 +1,78 @@
 package com.techelevator;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class KataPotter {
 
 	public double getCost(int[] books) {
 
-		int counter = 0;
 		double price = 0;
-		List<Integer> uniqueSet = new ArrayList<>();
+		Queue<Integer> uniqueSet = new LinkedList<>();
 
 		if (books == null) {
 			return 0;
 		}
-		
-		for (int book : books) {
-			if (book > 0) {
-				book = book - 1;
-				counter++;
+		boolean isTrue = true;
+		while (isTrue) {
+			int counter = 0;
+			for (int i = 0; i < books.length; i++) {
+				if (books[i] > 0) {
+					books[i] = books[i] - 1;
+					counter++;
+				}
 			}
+			if (counter == 0) {
+				isTrue = false;
+			}
+			uniqueSet.add(counter);
+			System.out.println(uniqueSet);
 		}
-		uniqueSet.add(counter);
-		System.out.println(uniqueSet.toString());
-		for (int set : uniqueSet) {
-			switch (set) {
-			case (5): {
-				price += 30; // (price * counter) * 0.75; // 30
-				break;
+
+		while (uniqueSet.size() > 0) {
+			int set = uniqueSet.poll();
+
+			if (set == 5) {
+				price += 30;
+			} else if (set == 4) {
+				price += 25.6;
+			} else if (set == 3) {
+				price += 21.6;
+			} else if (set == 2) {
+				price += 15.2;
+			} else if (set == 1) {
+				price += 8;
 			}
-			case (4): {
-				price += 25.6; //(price * counter) * 0.80; // 25.6
-				break;
-			}
-			case (3): {
-				price += 21.6; //(price * counter) * 0.90; // 21.6
-				break;
-			}
-			case (2): {
-				price += 15.2; //(price * counter) * 0.95; // 15.2
-				break;
-			}
-			case (1): {
-				price += 8; //price = 8 * counter; // 8
-				break;
-			}
-			}
+
 		}
 		System.out.println(price);
 		return price;
+
+//		for (int set : uniqueSet) {
+//			switch (set) {
+//			case (5): {
+//				price += 30; // (price * counter) * 0.75; // 30
+//				break;
+//			}
+//			case (4): {
+//				price += 25.6; //(price * counter) * 0.80; // 25.6
+//				break;
+//			}
+//			case (3): {
+//				price += 21.6; //(price * counter) * 0.90; // 21.6
+//				break;
+//			}
+//			case (2): {
+//				price += 15.2; //(price * counter) * 0.95; // 15.2
+//				break;
+//			}
+//			case (1): {
+//				price += 8; //price = 8 * counter; // 8
+//				break;
+//			}
+
+//		}
+//		System.out.println(price);
+//		return price;
 	}
 }
