@@ -17,18 +17,21 @@ public class KataPotter {
 			}
 		}
 		switch (counter) {
-			case (4): {
-				return (price * counter) * 0.80;
-			}
-			case (3): {
-				return (price * counter) * 0.90;
-			}
-			case (2): {
-				return (price * counter) * 0.95;
-			}
-			default: {
-				price = price * counter;
-			}
+		case (5): {
+			return (price * counter) * 0.75;
+		}
+		case (4): {
+			return (price * counter) * 0.80;
+		}
+		case (3): {
+			return (price * counter) * 0.90;
+		}
+		case (2): {
+			return (price * counter) * 0.95;
+		}
+		default: {
+			price = price * counter;
+		}
 		}
 		return price;
 	}
