@@ -8,36 +8,43 @@ public class WordSearch {
 
 	public static void main(String[] args) throws FileNotFoundException {
 		int lineNumber = 0;
+		boolean isCaseSensitive = false;
+		String temp = "";
+		Scanner input = new Scanner(System.in);
+		System.out.println("Enter file path: ");
+		String filePath = input.nextLine();
 		
-		File inputFile = getInputFileFromUser();
-	
+		System.out.println("Enter a word to search for: ");
+		String wordInput = input.nextLine();
 		
-		try (Scanner fileScanner = new Scanner(inputFile)) {
-			
-			while (fileScanner.hasNextLine()) { // checks to make sure there is something to read
-				String fileLine = fileScanner.nextLine();
+		System.out.println("Should this be case sensitive? [Y]es or [N]o");
+		String caseSense = input.nextLine();
+		if (caseSense.equals("Y") || caseSense.equals("y")) {
+			isCaseSensitive = true;			
+		} else wordInput = wordInput.toLowerCase();
+		
+		File searchFile = new File(filePath);
+		if (searchFile.exists() == false) {
+			System.out.println("File does not exist");
+		}
+		
+		try (Scanner fileScanner = new Scanner(searchFile)){
+			while(fileScanner.hasNextLine()) {
+				String words = fileScanner.nextLine();
 				lineNumber++;
-				System.out.println(lineNumber + ": " + fileLine);
+				
+				if(!isCaseSensitive) {
+					temp = words.toLowerCase();
+				}
+				if (words.contains(wordInput)) {
+					System.out.println(lineNumber + " " + words);
+				}
 			}
+		} catch (Exception e) {
+			System.out.println("nooooo, i broke");
 		}
-	}
-
-	private static File getInputFileFromUser() {
-		Scanner userInput = new Scanner(System.in);
-		System.out.print("Please enter path to input file >>> ");
-		String path = userInput.nextLine();
-
-		File inputFile = new File(path);
-		if (inputFile.exists() == false) { // checks for the existence of a file
-			System.out.println(path + " does not exist");
-			System.exit(1); // Ends the program
-		} else if (inputFile.isFile() == false) {
-			System.out.println(path + " is not a file");
-			System.exit(1); // Ends the program
-		}
-		userInput.close();
-		return inputFile;
+		
+		input.close();
 		
 	}
-	
 }
