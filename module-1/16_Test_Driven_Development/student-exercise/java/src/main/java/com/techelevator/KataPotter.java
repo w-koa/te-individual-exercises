@@ -11,20 +11,23 @@ public class KataPotter {
 
 		for (int book : books) {
 			if (book > 0) {
-				
+
 				book = book - 1;
 				counter++;
 			}
-		} 
+		}
 		switch (counter) {
-		case (3): {
-			return (price * counter) * 0.90;
+			case (4): {
+				return (price * counter) * 0.80;
 			}
-		case (2): {
-			return (price * counter) * 0.95;
+			case (3): {
+				return (price * counter) * 0.90;
 			}
-		default: {
-			price = price * counter;
+			case (2): {
+				return (price * counter) * 0.95;
+			}
+			default: {
+				price = price * counter;
 			}
 		}
 		return price;
