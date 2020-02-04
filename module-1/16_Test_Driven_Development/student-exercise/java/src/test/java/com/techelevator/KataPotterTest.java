@@ -12,8 +12,9 @@ public class KataPotterTest {
 	@Test
 	public void single_purchase_returns_8() {
 		double actual = 8;
-		double expected = potter.getCost([1]);
-		assertEquals(actual, expected);
+		int[] books = new int[] {1, 0, 0, 0, 0};
+		double expected = potter.getCost(books);
+		assertEquals(actual, expected, 0.00001);
 	}
 	
 }
