@@ -73,4 +73,12 @@ public class KataPotterTest {
 		assertEquals(actual, expected, 0.0001);
 	}
 	
+	@Test
+	public void two_sets_of_5_and_3_returns_51_pt_2() {
+		double actual = 102.4;
+		int[] books = new int[] {4, 4, 4, 2, 2};
+		double expected = potter.getCost(books);
+		assertEquals(actual, expected, 0.0001);
+	}
+	
 }
