@@ -29,6 +29,11 @@ public class KataPotter {
 			System.out.println(uniqueSet);
 		}
 
+		while (uniqueSet.contains(5) && uniqueSet.contains(3)) {
+			uniqueSet.remove(5);
+			uniqueSet.remove(3);
+			price += 51.2;
+		}
 		while (uniqueSet.size() > 0) {
 			int set = uniqueSet.poll();
 
