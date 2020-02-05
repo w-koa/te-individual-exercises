@@ -37,7 +37,8 @@ public class Testing {
 				.forEachOrdered(x -> sortedMap.put(x.getKey(), x.getValue()));
 	}
 
-	// Major scale extraction method?
+	// Major scale extraction method
+	// Takes a chromatic scale and returns sortedMap containing major scale
 	public static Map<String, Integer> getMajorScale(ChromaticScale sourceChromatic) {
 		sortedMap.clear();
 		Map<String, Integer> tempMap = sourceChromatic.getChromaticScale();
@@ -45,12 +46,13 @@ public class Testing {
 		
 		Map<String, Integer> extractedMajor = new HashMap<String, Integer>();
 		int[] majorValues = { 0, 2, 4, 5, 7, 9, 11 };
-		int i = 0;
-		for (String noteName : sortedMap.keySet()) {
-			if (sortedMap.get(noteName).equals(majorValues[i])) {
-				extractedMajor.put(noteName, majorValues[i]);
-			} 
-			i++;
+		for (int i = 0; i < majorValues.length; i++) {
+			for (String noteName : sortedMap.keySet()) {
+				if (sortedMap.get(noteName).equals(majorValues[i])) {
+					extractedMajor.put(noteName, majorValues[i]);
+					break;
+				} 
+			}
 		}
 		sortedMap.clear();
 		sortAscending(extractedMajor);

@@ -2,6 +2,7 @@ package com.techelevator;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class Lecture {
@@ -68,8 +69,20 @@ public class Lecture {
 		System.out.println("\tAbsolute Path: " + newFile.getAbsolutePath());
 		System.out.println("\tSize: " + newFile.length());
 	
+		System.out.println();
+		System.out.println("Writing to a file");
+		System.out.println("Enter something to be written to file: ");
+		String message = input.nextLine();
 		
+		PrintWriter writer = new PrintWriter(newFile);
+		writer.println(message);
 		
+		System.out.println("File information: ");
+		System.out.println("\tName: " + newFile.getName());
+		System.out.println("\tAbsolute Path: " + newFile.getAbsolutePath());
+		System.out.println("\tSize: " + newFile.length());
 		
+		input.close();
+		writer.close();
 	}
 }
