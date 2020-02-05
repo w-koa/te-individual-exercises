@@ -4,47 +4,64 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Testing {
-	
-	//Sort logic
+
+	// Sort logic
 	// Updates entries so that key at pivot = 0.
 	// Adds 12 to key values that are less than entry at pivot.
 	public static void asdf(Map<String, Integer> source, int pivot) {
-		List<Entry<String, Integer>> list = source.entrySet()
-				.stream()
-					.map(entry -> {
-						return updateEntry(source, pivot, entry);
-					})
-					.sorted(Map.Entry.comparingByValue())
-					.collect(Collectors.toList());
+		List<Entry<String, Integer>> list = source.entrySet().stream().map(entry -> {
+			return updateEntry(source, pivot, entry);
+		}).sorted(Map.Entry.comparingByValue()).collect(Collectors.toList());
 	}
 
 	private static Entry<String, Integer> updateEntry(Map<String, Integer> source, int pivot,
 			Entry<String, Integer> entry) {
-		if (entry.getValue() < pivot) { entry.setValue(entry.getValue() + source.size()); }
+		if (entry.getValue() < pivot) {
+			entry.setValue(entry.getValue() + source.size());
+		}
 		entry.setValue(entry.getValue() - pivot);
 		return entry;
 	}
-	
+
 	// Sorts by ascending value and puts into new Map, sortedMap.
 	// Must use sortedMap from here on out if you want it in order.
 	// Remember to clear sortedMap before trying to add new values!
 	static LinkedHashMap<String, Integer> sortedMap = new LinkedHashMap<>();
+
 	private static void sortAscending(Map<String, Integer> source) {
-		source.entrySet()
-	    .stream()
-	    .sorted(Map.Entry.comparingByValue())
-	    .forEachOrdered(x -> sortedMap.put(x.getKey(), x.getValue()));
+		source.entrySet().stream().sorted(Map.Entry.comparingByValue())
+				.forEachOrdered(x -> sortedMap.put(x.getKey(), x.getValue()));
 	}
-	
-	
-	
+
+	// Major scale extraction method?
+	public static Map<String, Integer> getMajorScale(ChromaticScale sourceChromatic) {
+		sortedMap.clear();
+		Map<String, Integer> tempMap = sourceChromatic.getChromaticScale();
+		sortAscending(tempMap);
+		
+		Map<String, Integer> extractedMajor = new HashMap<String, Integer>();
+		int[] majorValues = { 0, 2, 4, 5, 7, 9, 11 };
+		int i = 0;
+		for (String noteName : sortedMap.keySet()) {
+			if (sortedMap.get(noteName).equals(majorValues[i])) {
+				extractedMajor.put(noteName, majorValues[i]);
+			} 
+			i++;
+		}
+		sortedMap.clear();
+		sortAscending(extractedMajor);
+		System.out.println(sortedMap);
+		return sortedMap;
+	}
+
 	public static void main(String[] args) {
 
 		Map<String, Integer> testing = new HashMap<String, Integer>();
-		
+
 		testing.put("C", 0);
 		testing.put("C#", 1);
 		testing.put("D", 2);
@@ -57,28 +74,27 @@ public class Testing {
 		testing.put("A", 9);
 		testing.put("A#", 10);
 		testing.put("B", 11);
-		
+
 		System.out.println("Before asdf " + testing);
 		asdf(testing, 4);
 		System.out.println("after asdf " + testing);
 		sortAscending(testing);
 		System.out.println("After sortAscending " + sortedMap);
-		
+
 		sortedMap.clear();
 		SharpChromaticScaleC chromaTest = new SharpChromaticScaleC();
-		
+
 		System.out.println("chromatest map: " + chromaTest.getChromaticScale());
 		asdf(chromaTest.getChromaticScale(), 11);
 		System.out.println("Changed to B chromatic: " + chromaTest.getChromaticScale());
-		
-		
+
 		sortAscending(chromaTest.getChromaticScale());
 		System.out.println("Sorted B Chromatic: " + sortedMap);
-		
+
 		sortedMap.clear();
-		
+
 		FlatChromaticScaleC flatChroma = new FlatChromaticScaleC();
-		
+
 		System.out.println(flatChroma.getFlatChromaticScaleC());
 		asdf(flatChroma.getFlatChromaticScaleC(), 5);
 		System.out.println("Flat Chromatic asdf: " + flatChroma.getFlatChromaticScaleC());
@@ -90,11 +106,12 @@ public class Testing {
 		Collections.shuffle(shuffleTest.getChromaticNotes());
 		System.out.println(shuffleTest.getChromaticScale());
 		System.out.println(shuffleTest.getChromaticValues());
-		asdf(shuffleTest.getChromaticScale(),0);
+		asdf(shuffleTest.getChromaticScale(), 0);
 		sortAscending(shuffleTest.getChromaticScale());
 		System.out.println(sortedMap);
-		
-		
+		System.out.println(shuffleTest.getChromaticScale());
+		getMajorScale(shuffleTest);
+
 //		LinkedHashMap<String, Integer> sortedMap = new LinkedHashMap<>();
 //		testing.entrySet()
 //	    .stream()
