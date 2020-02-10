@@ -59,7 +59,32 @@ public class Testing {
 		System.out.println(sortedMap);
 		return sortedMap;
 	}
-
+	
+	
+	// Minor Scale extractor method
+	// Takes a chromatic scale and returns sortedMap as natural minor...
+	// ...problem is that it uses sharps or flats always depending on input ChromaticScale.
+	public static Map<String, Integer> getNaturalMinorScale(ChromaticScale sourceChromatic) {
+		sortedMap.clear();
+		Map<String, Integer> tempMap = sourceChromatic.getChromaticScale();
+		sortAscending(tempMap);
+		
+		Map<String, Integer> extractedMajor = new HashMap<String, Integer>();
+		int[] naturalMinorValues = { 0, 2, 3, 5, 7, 8, 10 };
+		for (int i = 0; i < naturalMinorValues.length; i++) {
+			for (String noteName : sortedMap.keySet()) {
+				if (sortedMap.get(noteName).equals(naturalMinorValues[i])) {
+					extractedMajor.put(noteName, naturalMinorValues[i]);
+					break;
+				} 
+			}
+		}
+		sortedMap.clear();
+		sortAscending(extractedMajor);
+		System.out.println(sortedMap);
+		return sortedMap;
+	}
+	
 	public static void main(String[] args) {
 
 		Map<String, Integer> testing = new HashMap<String, Integer>();
@@ -108,11 +133,13 @@ public class Testing {
 		Collections.shuffle(shuffleTest.getChromaticNotes());
 		System.out.println(shuffleTest.getChromaticScale());
 		System.out.println(shuffleTest.getChromaticValues());
-		asdf(shuffleTest.getChromaticScale(), 0);
+		asdf(shuffleTest.getChromaticScale(), 5);
 		sortAscending(shuffleTest.getChromaticScale());
 		System.out.println(sortedMap);
 		System.out.println(shuffleTest.getChromaticScale());
 		getMajorScale(shuffleTest);
+		getNaturalMinorScale(shuffleTest);
+		getMajorScale(flatChroma);
 
 //		LinkedHashMap<String, Integer> sortedMap = new LinkedHashMap<>();
 //		testing.entrySet()

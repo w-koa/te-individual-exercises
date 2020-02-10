@@ -47,4 +47,6 @@ public class SharpChromaticScaleC implements ChromaticScale{
 		}
 		return sharpValues;
 	}
+
+	
 }
