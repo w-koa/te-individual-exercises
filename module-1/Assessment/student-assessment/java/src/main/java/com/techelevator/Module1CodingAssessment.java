@@ -41,7 +41,7 @@ public class Module1CodingAssessment {
 		while (flowerScan.hasNextLine()) {
 			String flower = flowerScan.nextLine();
 			
-//			System.out.println(flower);
+			System.out.println(flower);
 			
 			
 		}
