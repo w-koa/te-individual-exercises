@@ -121,10 +121,9 @@ LIMIT 10;
 SELECT s.store_id, a.address, COUNT(r.rental_id) AS total_rentals, SUM(pay.amount) AS payments, AVG(pay.amount) AS average_sale
 FROM store s
 JOIN address a ON s.address_id = a.address_id
-JOIN customer co ON s.store_id = co.store_id
-JOIN staff st ON s.store_id = st.store_id
-JOIN payment pay ON co.customer_id = pay.customer_id
-JOIN rental r ON pay.rental_id = r.rental_id
+JOIN inventory i ON s.store_id = i.store_id
+JOIN rental r ON r.inventory_id = i.inventory_id
+JOIN payment pay ON r.rental_id = pay.rental_id
 GROUP BY s.store_id, a.address
 ORDER BY s.store_id;
 
