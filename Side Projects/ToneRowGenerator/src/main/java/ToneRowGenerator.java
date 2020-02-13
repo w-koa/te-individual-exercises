@@ -23,6 +23,8 @@ public class ToneRowGenerator {
 				keySelect = true;
 				System.out.println("Flat Selected");
 			}
+			else 
+				System.out.println("\n" + keyType + " is not a valid option.\n");
 		}
 
 		// Get user input for tone row. (WRITE SOMETHING TO CHECK IF VALID)
@@ -50,9 +52,11 @@ public class ToneRowGenerator {
 			}
 		}
 		
-		// Orders map key by values entered
+		// Orders Sharp Scale map key by values entered
+		// Orders Flat Scale map key by values entered
 
 		System.out.println(userSharpScale.getChromaticScale());
+		System.out.println(userFlatScale.getChromaticScale());
 
 		input.close();
 	}
