@@ -51,4 +51,5 @@ public class FlatChromaticScaleC implements ChromaticScale {
 		return flatValues;
 	}
 
+
 }

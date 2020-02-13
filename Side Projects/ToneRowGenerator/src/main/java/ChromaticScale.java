@@ -6,5 +6,4 @@ public interface ChromaticScale {
 	public Map<String, Integer> getChromaticScale();
 	public List<String> getChromaticNotes();
 	public List<Integer> getChromaticValues();
-	
 }
