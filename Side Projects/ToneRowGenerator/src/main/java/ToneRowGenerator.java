@@ -1,3 +1,7 @@
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class ToneRowGenerator {
@@ -17,20 +21,36 @@ public class ToneRowGenerator {
 			if (keyType.equals("#")) {
 				keySelect = true;
 				selectedSharpKey = true;
-				System.out.println("Sharp Selected");
-			}
-			if (keyType.contentEquals("b")) {
+				System.out.println("\nSharp Selected");
+			} else if (keyType.equals("b")) {
 				keySelect = true;
-				System.out.println("Flat Selected");
-			}
-			else 
+				System.out.println("\nFlat Selected");
+			} else
 				System.out.println("\n" + keyType + " is not a valid option.\n");
 		}
 
+		// Experiment to make random tone row
+		/*
+		boolean choiceCreateRandom = false;
+		while (!choiceCreateRandom) {
+			System.out.println("Create random row? (Y/N)");
+			String choiceRandomString = input.nextLine().toLowerCase();
+			
+			if(choiceRandomString.equals("y") && selectedSharpKey) {
+				// Creates a random sharp row
+				Collections.shuffle(userSharpScale.getChromaticNotes());
+				System.out.println(userSharpScale.getChromaticScale());
+				System.out.println(userSharpScale.getChromaticValues());
+			}
+			
+		}
+		*/
+		
+		
 		// Get user input for tone row. (WRITE SOMETHING TO CHECK IF VALID)
 		System.out.println("\nPlease enter a tone row. Example of format: A, B, C, D, E, F, G, C#, D#, F#, G#, A#."
 				+ "\nAssigns chromatic values based on the order of note names."
-				+ "\nYou can use either note names (C-B) or chromatic values (0 - 11).");
+				+ "\nYou can use either note names (C-B) or chromatic values (0 - 11) where C = 0.");
 		String row = input.nextLine();
 		
 		// Updates map values for Sharp Key based on user input
@@ -40,6 +60,10 @@ public class ToneRowGenerator {
 			for (String note : rowSplit) {
 				userSharpScale.getChromaticScale().put(note, i);
 				i++;
+				if (note.contains("b")) {
+					System.out.println(note + " is not valid and has been removed");
+					userSharpScale.getChromaticScale().remove(note);
+				}
 			}
 		}
 		// Updates map values for Flat Key based on user input
@@ -49,12 +73,29 @@ public class ToneRowGenerator {
 			for (String note : rowSplit) {
 				userFlatScale.getChromaticScale().put(note, i);
 				i++;
+				if (note.contains("#")) {
+					System.out.println(note + " is not valid and has been removed");
+					userFlatScale.getChromaticScale().remove(note);
+				}
 			}
 		}
 		
 		// Orders Sharp Scale map key by values entered
+		if (row.contains("0") && selectedSharpKey) {
+			String[] rowSplit = row.split(", ");
+			Map<String, Integer> newUserSharp = new LinkedHashMap<String, Integer>();
+			List<String> notesTemp = new ArrayList<>();
+			for (String key : userSharpScale.getChromaticScale().keySet()) {
+				notesTemp.add(key);
+			}
+			System.out.println("notes temporary test " + notesTemp.toString());
+			System.out.println(newUserSharp.toString());
+			
+		}
+		
 		// Orders Flat Scale map key by values entered
 
+		
 		System.out.println(userSharpScale.getChromaticScale());
 		System.out.println(userFlatScale.getChromaticScale());
 

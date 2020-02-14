@@ -154,7 +154,7 @@ public class Testing {
 		sortedMap.clear();
 		SharpChromaticScaleC shuffleTest = new SharpChromaticScaleC();
 		Collections.shuffle(shuffleTest.getChromaticNotes());
-		System.out.println(shuffleTest.getChromaticScale());
+		System.out.println("Post shuffle scale" + shuffleTest.getChromaticScale());
 		System.out.println(shuffleTest.getChromaticValues());
 		asdf(shuffleTest.getChromaticScale(), 5);
 		sortAscending(shuffleTest.getChromaticScale());
