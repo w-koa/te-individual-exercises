@@ -22,7 +22,9 @@ CREATE TABLE projects
 CREATE TABLE employee_projects
 (
         employee_id INTEGER REFERENCES employees (employee_id),
-        project_id INTEGER REFERENCES projects (project_id)
+        project_id INTEGER REFERENCES projects (project_id),
+        
+        PRIMARY KEY (employee_id, project_id)
         );
 
 CREATE TABLE departments
@@ -34,7 +36,9 @@ CREATE TABLE departments
 CREATE TABLE employee_departments
 (
         employee_id INTEGER REFERENCES employees (employee_id),
-        dept_id INTEGER REFERENCES departments (dept_id)
+        dept_id INTEGER REFERENCES departments (dept_id),
+        
+        PRIMARY KEY (employee_id, dept_id)
         );
         
 COMMIT TRANSACTION;
