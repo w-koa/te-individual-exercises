@@ -50,7 +50,8 @@ public class ToneRowGenerator {
 		// Get user input for tone row. (WRITE SOMETHING TO CHECK IF VALID)
 		System.out.println("\nPlease enter a tone row. Example of format: A, B, C, D, E, F, G, C#, D#, F#, G#, A#."
 				+ "\nAssigns chromatic values based on the order of note names."
-				+ "\nYou can use either note names (C-B) or chromatic values (0 - 11) where C = 0.");
+				+ "\nYou can use either note names (C-B) or chromatic values (0 - 11) where C = 0."
+				+ "\n Row: ");
 		String row = input.nextLine();
 		
 		// Updates map values for Sharp Key based on user input

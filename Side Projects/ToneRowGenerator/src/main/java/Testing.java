@@ -12,7 +12,7 @@ public class Testing {
 	// Sort logic
 	// Updates entries so that key at pivot = 0.
 	// Adds 12 to key values that are less than entry at pivot.
-	public static void asdf(Map<String, Integer> source, int pivot) {
+	public static void pivotTranspose(Map<String, Integer> source, int pivot) {
 		List<Entry<String, Integer>> list = source.entrySet().stream().map(entry -> {
 			return updateEntry(source, pivot, entry);
 		}).sorted(Map.Entry.comparingByValue()).collect(Collectors.toList());
@@ -126,7 +126,7 @@ public class Testing {
 		testing.put("B", 11);
 
 		System.out.println("Before asdf " + testing);
-		asdf(testing, 4);
+		pivotTranspose(testing, 4);
 		System.out.println("after asdf " + testing);
 		sortAscending(testing);
 		System.out.println("After sortAscending " + sortedMap);
@@ -135,7 +135,7 @@ public class Testing {
 		SharpChromaticScaleC chromaTest = new SharpChromaticScaleC();
 
 		System.out.println("chromatest map: " + chromaTest.getChromaticScale());
-		asdf(chromaTest.getChromaticScale(), 11);
+		pivotTranspose(chromaTest.getChromaticScale(), 11);
 		System.out.println("Changed to B chromatic: " + chromaTest.getChromaticScale());
 
 		sortAscending(chromaTest.getChromaticScale());
@@ -146,7 +146,7 @@ public class Testing {
 		FlatChromaticScaleC flatChroma = new FlatChromaticScaleC();
 
 		System.out.println(flatChroma.getFlatChromaticScaleC());
-		asdf(flatChroma.getFlatChromaticScaleC(), 5);
+		pivotTranspose(flatChroma.getFlatChromaticScaleC(), 5);
 		System.out.println("Flat Chromatic asdf: " + flatChroma.getFlatChromaticScaleC());
 		sortAscending(flatChroma.getFlatChromaticScaleC());
 		System.out.println("Flat chromatic in sortedMap: " + sortedMap);
@@ -156,7 +156,7 @@ public class Testing {
 		Collections.shuffle(shuffleTest.getChromaticNotes());
 		System.out.println("Post shuffle scale" + shuffleTest.getChromaticScale());
 		System.out.println(shuffleTest.getChromaticValues());
-		asdf(shuffleTest.getChromaticScale(), 5);
+		pivotTranspose(shuffleTest.getChromaticScale(), 5);
 		sortAscending(shuffleTest.getChromaticScale());
 		System.out.println(sortedMap);
 		System.out.println(shuffleTest.getChromaticScale());
