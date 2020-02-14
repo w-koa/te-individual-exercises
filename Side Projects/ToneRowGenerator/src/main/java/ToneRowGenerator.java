@@ -89,6 +89,7 @@ public class ToneRowGenerator {
 			for (String key : userSharpScale.getChromaticScale().keySet()) {
 				notesTemp.add(key);
 			}
+			
 			System.out.println("notes temporary test " + notesTemp.toString());
 			System.out.println(newUserSharp.toString());
 			
