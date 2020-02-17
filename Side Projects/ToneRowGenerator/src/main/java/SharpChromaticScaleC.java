@@ -47,6 +47,21 @@ public class SharpChromaticScaleC implements ChromaticScale{
 		}
 		return sharpValues;
 	}
-
+	
+	@Override
+	public String getNoteNameAtIndex(int index) {
+		List<String> sharpNotes = new ArrayList<String>(sharpChromaticScaleC.keySet());
+		String noteName = sharpNotes.get(index);
+		return noteName;
+	}
+	
+	@Override
+	public int getNoteValAtIndex(int index) {
+		List<Integer> sharpValues = new ArrayList<Integer>();
+		for (String key : sharpChromaticScaleC.keySet()) {
+			sharpValues.add(sharpChromaticScaleC.get(key));
+		}
+		return sharpValues.get(index);
+	}
 	
 }

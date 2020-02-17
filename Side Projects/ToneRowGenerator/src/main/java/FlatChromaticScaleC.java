@@ -50,6 +50,21 @@ public class FlatChromaticScaleC implements ChromaticScale {
 		}
 		return flatValues;
 	}
-
+	
+	@Override
+	public String getNoteNameAtIndex(int index) {
+		List<String> flatNotes = new ArrayList<String>(flatChromaticScaleC.keySet());
+		String noteName = flatNotes.get(index);
+		return noteName;
+	}
+	
+	@Override
+	public int getNoteValAtIndex(int index) {
+		List<Integer> flatValues = new ArrayList<Integer>();
+		for (String key : flatChromaticScaleC.keySet()) {
+			flatValues.add(flatChromaticScaleC.get(key));
+		}
+		return flatValues.get(index);
+	}
 
 }

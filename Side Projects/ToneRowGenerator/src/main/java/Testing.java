@@ -130,17 +130,23 @@ public class Testing {
 		System.out.println("after asdf " + testing);
 		sortAscending(testing);
 		System.out.println("After sortAscending " + sortedMap);
-
+		
 		sortedMap.clear();
 		SharpChromaticScaleC chromaTest = new SharpChromaticScaleC();
-
+		System.out.println("Note at index 0: " + chromaTest.getNoteNameAtIndex(0));
+		System.out.println("Value at index 0: " + chromaTest.getNoteValAtIndex(0));
 		System.out.println("chromatest map: " + chromaTest.getChromaticScale());
+		System.out.println("Values: " + chromaTest.getChromaticValues());
+		
 		pivotTranspose(chromaTest.getChromaticScale(), 11);
 		System.out.println("Changed to B chromatic: " + chromaTest.getChromaticScale());
 
 		sortAscending(chromaTest.getChromaticScale());
 		System.out.println("Sorted B Chromatic: " + sortedMap);
 
+		
+//		System.out.println("Value at index 0: " + chromaTest.getNoteValAtIndex(0));
+		
 		sortedMap.clear();
 
 		FlatChromaticScaleC flatChroma = new FlatChromaticScaleC();
