@@ -31,29 +31,24 @@ public class ToneRowGenerator {
 
 		// Experiment to make random tone row
 		/*
-		boolean choiceCreateRandom = false;
-		while (!choiceCreateRandom) {
-			System.out.println("Create random row? (Y/N)");
-			String choiceRandomString = input.nextLine().toLowerCase();
-			
-			if(choiceRandomString.equals("y") && selectedSharpKey) {
-				// Creates a random sharp row
-				Collections.shuffle(userSharpScale.getChromaticNotes());
-				System.out.println(userSharpScale.getChromaticScale());
-				System.out.println(userSharpScale.getChromaticValues());
-			}
-			
-		}
-		*/
-		
-		
+		 * boolean choiceCreateRandom = false; while (!choiceCreateRandom) {
+		 * System.out.println("Create random row? (Y/N)"); String choiceRandomString =
+		 * input.nextLine().toLowerCase();
+		 * 
+		 * if(choiceRandomString.equals("y") && selectedSharpKey) { // Creates a random
+		 * sharp row Collections.shuffle(userSharpScale.getChromaticNotes());
+		 * System.out.println(userSharpScale.getChromaticScale());
+		 * System.out.println(userSharpScale.getChromaticValues()); }
+		 * 
+		 * }
+		 */
+
 		// Get user input for tone row. (WRITE SOMETHING TO CHECK IF VALID)
 		System.out.println("\nPlease enter a tone row. Example of format: A, B, C, D, E, F, G, C#, D#, F#, G#, A#."
 				+ "\nAssigns chromatic values based on the order of note names."
-				+ "\nYou can use either note names (C-B) or chromatic values (0 - 11) where C = 0."
-				+ "\n Row: ");
+				+ "\nYou can use either note names (C-B) or chromatic values (0 - 11) where C = 0." + "\n Row: ");
 		String row = input.nextLine();
-		
+
 		// Updates map values for Sharp Key based on user input
 		if (row.contains("C") && selectedSharpKey) {
 			String[] rowSplit = row.split(", ");
@@ -80,28 +75,27 @@ public class ToneRowGenerator {
 				}
 			}
 		}
-		
+
 		// Orders Sharp Scale map key by values entered
 		if (row.contains("0") && selectedSharpKey) {
 			String[] rowSplit = row.split(", ");
-			Map<String, Integer> newUserSharp = new LinkedHashMap<String, Integer>();
-			List<String> notesTemp = new ArrayList<>();
-			for (String key : userSharpScale.getChromaticScale().keySet()) {
-				notesTemp.add(key);
+			int[] rowSplitInts = new int[12];
+			for (int i = 0; i < rowSplit.length; i++) {
+				rowSplitInts[i] = Integer.parseInt(rowSplit[i]);
+				System.out.println(rowSplitInts[i]);
 			}
-			
-			System.out.println("notes temporary test " + notesTemp.toString());
-			System.out.println(newUserSharp.toString());
-			
+
+			Map<String, Integer> newUserSharp = new LinkedHashMap<String, Integer>();
+			for (int i = 0; i < rowSplitInts.length; i++) {
+				newUserSharp.put(userSharpScale.getChromaticNotes().get(rowSplitInts[i]), rowSplitInts[i]);
+			}
+			System.out.println("created from numbers" + newUserSharp);
+			// Orders Flat Scale map key by values entered
+
+			System.out.println(userSharpScale.getChromaticScale());
+//		System.out.println(userFlatScale.getChromaticScale());
+
+			input.close();
 		}
-		
-		// Orders Flat Scale map key by values entered
-
-		
-		System.out.println(userSharpScale.getChromaticScale());
-		System.out.println(userFlatScale.getChromaticScale());
-
-		input.close();
 	}
-
 }

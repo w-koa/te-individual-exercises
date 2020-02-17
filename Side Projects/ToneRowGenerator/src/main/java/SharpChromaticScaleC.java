@@ -1,12 +1,12 @@
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 public class SharpChromaticScaleC implements ChromaticScale{
 
 	// Attributes
-	private Map<String, Integer> sharpChromaticScaleC = new HashMap<String, Integer>();
+	private Map<String, Integer> sharpChromaticScaleC = new LinkedHashMap<String, Integer>();
 
 	//Constructor for SharpChromatic Scale
 	public SharpChromaticScaleC() {
