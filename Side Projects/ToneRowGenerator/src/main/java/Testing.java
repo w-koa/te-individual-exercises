@@ -43,7 +43,7 @@ public class Testing {
 		sortedMap.clear();
 		Map<String, Integer> tempMap = sourceChromatic.getChromaticScale();
 		sortAscending(tempMap);
-		
+
 		Map<String, Integer> extractedMajor = new HashMap<String, Integer>();
 		int[] majorValues = { 0, 2, 4, 5, 7, 9, 11 };
 		for (int i = 0; i < majorValues.length; i++) {
@@ -51,7 +51,7 @@ public class Testing {
 				if (sortedMap.get(noteName).equals(majorValues[i])) {
 					extractedMajor.put(noteName, majorValues[i]);
 					break;
-				} 
+				}
 			}
 		}
 		sortedMap.clear();
@@ -59,16 +59,16 @@ public class Testing {
 		System.out.println(sortedMap);
 		return sortedMap;
 	}
-	
-	
+
 	// Natural Minor Scale extractor method
 	// Takes a chromatic scale and returns sortedMap as natural minor...
-	// ...problem is that it uses sharps or flats always depending on input ChromaticScale.
+	// ...problem is that it uses sharps or flats always depending on input
+	// ChromaticScale.
 	public static Map<String, Integer> getNaturalMinorScale(ChromaticScale sourceChromatic) {
 		sortedMap.clear();
 		Map<String, Integer> tempMap = sourceChromatic.getChromaticScale();
 		sortAscending(tempMap);
-		
+
 		Map<String, Integer> extractedMajor = new HashMap<String, Integer>();
 		int[] naturalMinorValues = { 0, 2, 3, 5, 7, 8, 10 };
 		for (int i = 0; i < naturalMinorValues.length; i++) {
@@ -76,7 +76,7 @@ public class Testing {
 				if (sortedMap.get(noteName).equals(naturalMinorValues[i])) {
 					extractedMajor.put(noteName, naturalMinorValues[i]);
 					break;
-				} 
+				}
 			}
 		}
 		sortedMap.clear();
@@ -84,15 +84,16 @@ public class Testing {
 		System.out.println(sortedMap);
 		return sortedMap;
 	}
-	
+
 	// Minor Scale extractor method
 	// Takes a chromatic scale and returns sortedMap as harmonic minor...
-	// ...problem is that it uses sharps or flats always depending on input ChromaticScale.
+	// ...problem is that it uses sharps or flats always depending on input
+	// ChromaticScale.
 	public static Map<String, Integer> getHarmonicMinorScale(ChromaticScale sourceChromatic) {
 		sortedMap.clear();
 		Map<String, Integer> tempMap = sourceChromatic.getChromaticScale();
 		sortAscending(tempMap);
-		
+
 		Map<String, Integer> extractedMajor = new HashMap<String, Integer>();
 		int[] naturalMinorValues = { 0, 2, 3, 5, 7, 8, 11 };
 		for (int i = 0; i < naturalMinorValues.length; i++) {
@@ -100,7 +101,7 @@ public class Testing {
 				if (sortedMap.get(noteName).equals(naturalMinorValues[i])) {
 					extractedMajor.put(noteName, naturalMinorValues[i]);
 					break;
-				} 
+				}
 			}
 		}
 		sortedMap.clear();
@@ -108,42 +109,68 @@ public class Testing {
 		System.out.println(sortedMap);
 		return sortedMap;
 	}
-	
-	// Experiment to print matrix
-	
+
+	// Prints 12-tone matrix! Use sortedMap as source.
 	public static void printNotesMatrix(Map<String, Integer> source) {
 		List<String> notes = new ArrayList<>();
 		List<Integer> values = new ArrayList<>();
-		
+
 		for (String note : source.keySet()) {
 			notes.add(note);
 		}
 		for (int value : source.values()) {
 			values.add(value);
 		}
-		System.out.println("P" + values.get(0) + notes.toString() + " ");
+		System.out.println("     I" + values.toString());
+		System.out.println("P" + values.get(0) + "     " + notes.toString());
 		for (int i = 1; i < notes.size(); i++) {
 			int j;
-			System.out.print("P" + values.get(i) + " " );
-			for (j = i ; j < notes.size(); j++) {
-				System.out.print(notes.get(j)+ ", ");
+			System.out.print("P" + values.get(i) + "\t");
+			for (j = i; j < notes.size(); j++) {
+				System.out.print(notes.get(j) + ", ");
 			}
-			for (int k = 0 ; k < i; k++) {
-				if ( k < i - 1)
+			for (int k = 0; k < i; k++) {
+				if (k < i - 1)
 					System.out.print(notes.get(k) + ", ");
-				else 
+				else
 					System.out.print(notes.get(k) + " ");
 			}
 			System.out.println();
-			
 		}
-		
-		
-		
 	}
+
+	// Better printer... BUT only works correctly if going up chromatically.
+	public static void printNotesMatrixTest(Map<String, Integer> source) {
+		List<String> notes = new ArrayList<>();
+		List<Integer> values = new ArrayList<>();
+
+		for (String note : source.keySet()) {
+			notes.add(note);
+		}
+		for (int value : source.values()) {
+			values.add(value);
+		}
+		System.out.println("     I" + values.toString());
+		System.out.println("P" + values.get(0) + "     " + notes.toString());
+		for (int i = notes.size() - 1; i > 0; i--) {
+			int j;
+			System.out.print("P" + values.get(i) + "\t");
+			for (j = i; j < notes.size(); j++) {
+				System.out.print(notes.get(j) + ", ");
+			}
+			for (int k = 0; k < i; k++) {
+				if (k < i - 1)
+					System.out.print(notes.get(k) + ", ");
+				else
+					System.out.print(notes.get(k));
+			}
+			System.out.println();
+		}
+	}
+
 	public static void main(String[] args) {
 
-		Map<String, Integer> testing = new HashMap<String, Integer>();
+		Map<String, Integer> testing = new LinkedHashMap<String, Integer>();
 
 		testing.put("C", 0);
 		testing.put("C#", 1);
@@ -158,52 +185,87 @@ public class Testing {
 		testing.put("A#", 10);
 		testing.put("B", 11);
 
-		System.out.println("Before asdf " + testing);
-		pivotTranspose(testing, 4);
-		System.out.println("after asdf " + testing);
-		sortAscending(testing);
-		System.out.println("After sortAscending " + sortedMap);
-		
-		sortedMap.clear();
-		SharpChromaticScaleC chromaTest = new SharpChromaticScaleC();
-		System.out.println("Note at index 0: " + chromaTest.getNoteNameAtIndex(0));
-		System.out.println("Value at index 0: " + chromaTest.getNoteValAtIndex(0));
-		System.out.println("chromatest map: " + chromaTest.getChromaticScale());
-		System.out.println("Values: " + chromaTest.getChromaticValues());
-		
-		pivotTranspose(chromaTest.getChromaticScale(), 11);
-		System.out.println("Changed to B chromatic: " + chromaTest.getChromaticScale());
+		List<Integer> primeZero = new ArrayList<>();
+		for (Integer val : testing.values()) {
+			primeZero.add(val);
+		}
 
-		sortAscending(chromaTest.getChromaticScale());
-		System.out.println("Sorted B Chromatic: " + sortedMap);
+		List<Integer> inversionOne = new ArrayList<>();
+		// This properly finds the first column of inversions! (IT IS PRINTED IN A ROW
+		// STILL)
+		for (Integer val : testing.values()) {
+			inversionOne.add(12 - val);
+			for (int i = 0; i < inversionOne.size(); i++) {
+				if (inversionOne.get(i) == 12) {
+					inversionOne.set(i, 0);
+				}
+			}
+		}
+		List<Integer> primeOne = new ArrayList<>();
+		for (Integer val : testing.values()) {
+			primeOne.add(val);
+			for (int i = 0; i < primeOne.size(); i++) {
+				primeOne.set(i, val + inversionOne.get(1));
+				if (primeOne.get(i) == 12) {
+					primeOne.set(i, 0);
+				}
+//				if (primeOne.get(i) > 11) {
+//					primeOne.set(i, val - 12);
+//				}
+			}
+		}
 
-		printNotesMatrix(sortedMap);
-		
+		System.out.println("P0 " + primeZero.toString());
+		System.out.println("this is a column: " + inversionOne.toString());
+		System.out.println(primeOne.toString());
 
-		
-		
-		sortedMap.clear();
-
-		FlatChromaticScaleC flatChroma = new FlatChromaticScaleC();
-
-		System.out.println(flatChroma.getFlatChromaticScaleC());
-		pivotTranspose(flatChroma.getFlatChromaticScaleC(), 5);
-		System.out.println("Flat Chromatic asdf: " + flatChroma.getFlatChromaticScaleC());
-		sortAscending(flatChroma.getFlatChromaticScaleC());
-		System.out.println("Flat chromatic in sortedMap: " + sortedMap);
-		System.out.println(sortedMap.keySet());
-		sortedMap.clear();
-		SharpChromaticScaleC shuffleTest = new SharpChromaticScaleC();
-		Collections.shuffle(shuffleTest.getChromaticNotes());
-		System.out.println("Post shuffle scale" + shuffleTest.getChromaticScale());
-		System.out.println(shuffleTest.getChromaticValues());
-		pivotTranspose(shuffleTest.getChromaticScale(), 5);
-		sortAscending(shuffleTest.getChromaticScale());
-		System.out.println(sortedMap);
-		System.out.println(shuffleTest.getChromaticScale());
-		getMajorScale(shuffleTest);
-		getNaturalMinorScale(flatChroma);
-		getMajorScale(flatChroma);
+//		System.out.println("Before asdf " + testing);
+//		pivotTranspose(testing, 4);
+//		System.out.println("after asdf " + testing);
+//		sortAscending(testing);
+//		System.out.println("After sortAscending " + sortedMap);
+//		
+//		sortedMap.clear();
+//		SharpChromaticScaleC chromaTest = new SharpChromaticScaleC();
+//		System.out.println("Note at index 0: " + chromaTest.getNoteNameAtIndex(0));
+//		System.out.println("Value at index 0: " + chromaTest.getNoteValAtIndex(0));
+//		System.out.println("chromatest map: " + chromaTest.getChromaticScale());
+//		System.out.println("Values: " + chromaTest.getChromaticValues());
+//		
+//		pivotTranspose(chromaTest.getChromaticScale(), 11);
+//		System.out.println("Changed to B chromatic: " + chromaTest.getChromaticScale());
+//
+//		sortAscending(chromaTest.getChromaticScale());
+//		System.out.println("Sorted B Chromatic: " + sortedMap);
+//
+//		printNotesMatrix(sortedMap);
+//		printNotesMatrixTest(sortedMap);
+//		
+//
+//		
+//		
+//		sortedMap.clear();
+//
+//		FlatChromaticScaleC flatChroma = new FlatChromaticScaleC();
+//
+//		System.out.println(flatChroma.getFlatChromaticScaleC());
+//		pivotTranspose(flatChroma.getFlatChromaticScaleC(), 5);
+//		System.out.println("Flat Chromatic asdf: " + flatChroma.getFlatChromaticScaleC());
+//		sortAscending(flatChroma.getFlatChromaticScaleC());
+//		System.out.println("Flat chromatic in sortedMap: " + sortedMap);
+//		System.out.println(sortedMap.keySet());
+//		sortedMap.clear();
+//		SharpChromaticScaleC shuffleTest = new SharpChromaticScaleC();
+//		Collections.shuffle(shuffleTest.getChromaticNotes());
+//		System.out.println("Post shuffle scale" + shuffleTest.getChromaticScale());
+//		System.out.println(shuffleTest.getChromaticValues());
+//		pivotTranspose(shuffleTest.getChromaticScale(), 5);
+//		sortAscending(shuffleTest.getChromaticScale());
+//		System.out.println(sortedMap);
+//		System.out.println(shuffleTest.getChromaticScale());
+//		getMajorScale(shuffleTest);
+//		getNaturalMinorScale(flatChroma);
+//		getMajorScale(flatChroma);
 
 //		LinkedHashMap<String, Integer> sortedMap = new LinkedHashMap<>();
 //		testing.entrySet()

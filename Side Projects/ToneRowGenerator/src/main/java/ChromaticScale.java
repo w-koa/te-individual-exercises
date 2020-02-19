@@ -8,4 +8,5 @@ public interface ChromaticScale {
 	public List<Integer> getChromaticValues();
 	public String getNoteNameAtIndex(int index);
 	public int getNoteValAtIndex(int index);
+	public void printNotesMatrix(Map<String, Integer> source);
 }

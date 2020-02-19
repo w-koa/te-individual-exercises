@@ -50,13 +50,13 @@ public class FlatChromaticScaleC implements ChromaticScale {
 		}
 		return flatValues;
 	}
-	
+
 	@Override
 	public String getNoteNameAtIndex(int index) {
 		List<String> flatNotes = new ArrayList<String>(flatChromaticScaleC.keySet());
 		return flatNotes.get(index);
 	}
-	
+
 	@Override
 	public int getNoteValAtIndex(int index) {
 		List<Integer> flatValues = new ArrayList<Integer>();
@@ -66,4 +66,32 @@ public class FlatChromaticScaleC implements ChromaticScale {
 		return flatValues.get(index);
 	}
 
+	// Prints 12-tone matrix! Use sortedMap as source.
+	@Override
+	public void printNotesMatrix(Map<String, Integer> source) {
+		List<String> notes = new ArrayList<>();
+		List<Integer> values = new ArrayList<>();
+
+		for (String note : source.keySet()) {
+			notes.add(note);
+		}
+		for (int value : source.values()) {
+			values.add(value);
+		}
+		System.out.println("P" + values.get(0) + "     " + notes.toString());
+		for (int i = notes.size() - 1; i > 0 ; i--) {
+			int j;
+			System.out.print("P" + values.get(i) + "\t");
+			for (j = i; j < notes.size(); j++) {
+				System.out.print(notes.get(j) + ", ");
+			}
+			for (int k = 0; k < i; k++) {
+				if (k < i - 1)
+					System.out.print(notes.get(k) + ", ");
+				else
+					System.out.print(notes.get(k) + " ");
+			}
+			System.out.println();
+		}
+	}
 }

@@ -4,6 +4,16 @@ import java.util.Scanner;
 
 public class ToneRowGenerator {
 
+	// Sorts by ascending value and puts into new Map, sortedMap.
+	// Must use sortedMap from here on out if you want it in order.
+	// Remember to clear sortedMap before trying to add new values!
+	static LinkedHashMap<String, Integer> sortedMap = new LinkedHashMap<>();
+
+	private static void sortAscending(Map<String, Integer> source) {
+		source.entrySet().stream().sorted(Map.Entry.comparingByValue())
+				.forEachOrdered(x -> sortedMap.put(x.getKey(), x.getValue()));
+	}
+	
 	public static void main(String[] args) {
 
 		Scanner input = new Scanner(System.in);
@@ -62,6 +72,9 @@ public class ToneRowGenerator {
 						userSharpScale.getChromaticScale().remove(note);
 					}
 				}
+				System.out.println("Printing Matrix....\n");
+				sortAscending(userSharpScale.getChromaticScale());
+				userSharpScale.printNotesMatrix(sortedMap);
 			}
 			// Updates map values for Flat Key based on user input
 			if (row.contains("C") && !selectedSharpKey) {
@@ -120,7 +133,7 @@ public class ToneRowGenerator {
 			}
 //		} // end of while validRow
 		
-		System.out.println("Matrix created: \n");
+		
 		
 		
 		
