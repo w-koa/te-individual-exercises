@@ -1,5 +1,6 @@
 package com.techelevator.city;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -70,13 +71,19 @@ public class JDBCCityDAO implements CityDAO {
 
 	@Override
 	public List<City> findCitiesByCountryCode(String countryCode) {
-		// TODO Auto-generated method stub
-		return null;
+		List<City> cities = new ArrayList<>();
+		String sqlFindCityByCountryCode = "SELECT * FROM city WHERE countrycode = ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlFindCityByCountryCode, countryCode);
+		
+		while(results.next()) {
+			cities.add(mapRowToCity(results));
+		}
+		return cities;
 	}
 
 	@Override
 	public List<City> findCitiesByDistrict(String district) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 

@@ -42,78 +42,88 @@ public class ToneRowGenerator {
 		 */
 
 		// Get user input for tone row. (WRITE SOMETHING TO CHECK IF VALID)
-		System.out.println("\nPlease enter a tone row. Example of format: A, B, C, D, E, F, G, C#, D#, F#, G#, A#."
-				+ "\nAssigns chromatic values based on the order of note names."
-				+ "\nUnassigned notes will retain their original values!"
-				+ "\nYou can use either note names (C-B) or chromatic values (0 - 11) where C = 0." + "\nRow: ");
-		String row = input.nextLine();
+		boolean validRow = false;
+//		while (!validRow) {
+			System.out.println("\nPlease enter a tone row. Example of format: A, B, C, D, E, F, G, C#, D#, F#, G#, A#."
+					+ "\nAssigns chromatic values based on the order of note names."
+					+ "\nUnassigned notes will retain their original values!"
+					+ "\nYou can use either note names (C-B) or chromatic values (0 - 11) where C = 0." + "\nRow: ");
+			String row = input.nextLine();
 
-		// Updates map values for Sharp Key based on user input
-		if (row.contains("C") && selectedSharpKey) {
-			String[] rowSplit = row.split(", ");
-			int i = 0;
-			for (String note : rowSplit) {
-				userSharpScale.getChromaticScale().put(note, i);
-				i++;
-				if (note.contains("b")) {
-					System.out.println(note + " is not valid and has been removed");
-					userSharpScale.getChromaticScale().remove(note);
+			// Updates map values for Sharp Key based on user input
+			if (row.contains("C") && selectedSharpKey) {
+				String[] rowSplit = row.split(", ");
+				int i = 0;
+				for (String note : rowSplit) {
+					userSharpScale.getChromaticScale().put(note, i);
+					i++;
+					if (note.contains("b")) {
+						System.out.println(note + " is not valid and has been removed");
+						userSharpScale.getChromaticScale().remove(note);
+					}
 				}
 			}
-		}
-		// Updates map values for Flat Key based on user input
-		if (row.contains("C") && !selectedSharpKey) {
-			String[] rowSplit = row.split(", ");
-			int i = 0;
-			for (String note : rowSplit) {
-				userFlatScale.getChromaticScale().put(note, i);
-				i++;
-				if (note.contains("#")) {
-					System.out.println(note + " is not valid and has been removed");
-					userFlatScale.getChromaticScale().remove(note);
+			// Updates map values for Flat Key based on user input
+			if (row.contains("C") && !selectedSharpKey) {
+				String[] rowSplit = row.split(", ");
+				int i = 0;
+				for (String note : rowSplit) {
+					userFlatScale.getChromaticScale().put(note, i);
+					i++;
+					if (note.contains("#")) {
+						System.out.println(note + " is not valid and has been removed");
+						userFlatScale.getChromaticScale().remove(note);
+					}
 				}
 			}
-		}
 
-		// Orders Sharp Scale map key by values entered by making new map
-		// Creates and displays new map, newUserSharp
-		if (row.contains("0") && selectedSharpKey) {
-			String[] rowSplit = row.split(", ");
-			int[] rowSplitInts = new int[12];
-			for (int i = 0; i < rowSplit.length; i++) {
-				rowSplitInts[i] = Integer.parseInt(rowSplit[i]);
-				System.out.println(rowSplitInts[i]);
+			// Orders Sharp Scale map key by values entered by making new map
+			// Creates and displays new map, newUserSharp
+			if (row.contains("0") && selectedSharpKey) {
+				String[] rowSplit = row.split(", ");
+				int[] rowSplitInts = new int[12];
+				for (int i = 0; i < rowSplit.length; i++) {
+					rowSplitInts[i] = Integer.parseInt(rowSplit[i]);
+//					System.out.println(rowSplitInts[i]);
+				}
+
+				Map<String, Integer> newUserSharp = new LinkedHashMap<String, Integer>();
+				for (int i = 0; i < rowSplitInts.length; i++) {
+					if (rowSplitInts[i] > 11 && rowSplitInts[i] < 0) {
+						System.out.println("Numbers must be between 0 and 11");
+					} else
+						newUserSharp.put(userSharpScale.getChromaticNotes().get(rowSplitInts[i]), rowSplitInts[i]);
+				}
+				System.out.println("Tone Row created: " + newUserSharp);
+
 			}
 
-			Map<String, Integer> newUserSharp = new LinkedHashMap<String, Integer>();
-			for (int i = 0; i < rowSplitInts.length; i++) {
-				if (rowSplitInts[i] > 11 && rowSplitInts[i] < 0) {
-					System.out.println("Numbers must be between 0 and 11");
-				} else
-				newUserSharp.put(userSharpScale.getChromaticNotes().get(rowSplitInts[i]), rowSplitInts[i]);
-			}
-			System.out.println("Tone Row created: " + newUserSharp);
+			// Orders Flat Scale map key by values entered by making new map
+			// Creates and displays new map, newUserFlat
+			if (row.contains("0") && !selectedSharpKey) {
+				String[] rowSplit = row.split(", ");
+				int[] rowSplitInts = new int[12];
+				for (int i = 0; i < rowSplit.length; i++) {
+					rowSplitInts[i] = Integer.parseInt(rowSplit[i]);
+//					System.out.println(rowSplitInts[i]);
+				}
 
-		}
+				Map<String, Integer> newUserFlat = new LinkedHashMap<String, Integer>();
+				for (int i = 0; i < rowSplitInts.length; i++) {
+					if (rowSplitInts[i] > 11 && rowSplitInts[i] < 0) {
+						System.out.println("Numbers must be between 0 and 11");
+					} else
+						newUserFlat.put(userSharpScale.getChromaticNotes().get(rowSplitInts[i]), rowSplitInts[i]);
+				}
+				System.out.println("Tone Row created: " + newUserFlat);
+
+			}
+//		} // end of while validRow
 		
-		// Orders Flat Scale map key by values entered by making new map
-		// Creates and displays new map, newUserFlat
-		if (row.contains("0") && !selectedSharpKey) {
-			String[] rowSplit = row.split(", ");
-			int[] rowSplitInts = new int[12];
-			for (int i = 0; i < rowSplit.length; i++) {
-				rowSplitInts[i] = Integer.parseInt(rowSplit[i]);
-				System.out.println(rowSplitInts[i]);
-			}
-
-			Map<String, Integer> newUserFlat = new LinkedHashMap<String, Integer>();
-			for (int i = 0; i < rowSplitInts.length; i++) {
-				newUserFlat.put(userSharpScale.getChromaticNotes().get(rowSplitInts[i]), rowSplitInts[i]);
-			}
-			System.out.println("Tone Row created: " + newUserFlat);
-
-		}
-
+		System.out.println("Matrix created: \n");
+		
+		
+		
 
 		input.close();
 	}

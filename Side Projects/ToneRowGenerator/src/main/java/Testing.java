@@ -1,10 +1,10 @@
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Testing {
@@ -108,6 +108,39 @@ public class Testing {
 		System.out.println(sortedMap);
 		return sortedMap;
 	}
+	
+	// Experiment to print matrix
+	
+	public static void printNotesMatrix(Map<String, Integer> source) {
+		List<String> notes = new ArrayList<>();
+		List<Integer> values = new ArrayList<>();
+		
+		for (String note : source.keySet()) {
+			notes.add(note);
+		}
+		for (int value : source.values()) {
+			values.add(value);
+		}
+		System.out.println("P" + values.get(0) + notes.toString() + " ");
+		for (int i = 1; i < notes.size(); i++) {
+			int j;
+			System.out.print("P" + values.get(i) + " " );
+			for (j = i ; j < notes.size(); j++) {
+				System.out.print(notes.get(j)+ ", ");
+			}
+			for (int k = 0 ; k < i; k++) {
+				if ( k < i - 1)
+					System.out.print(notes.get(k) + ", ");
+				else 
+					System.out.print(notes.get(k) + " ");
+			}
+			System.out.println();
+			
+		}
+		
+		
+		
+	}
 	public static void main(String[] args) {
 
 		Map<String, Integer> testing = new HashMap<String, Integer>();
@@ -144,8 +177,10 @@ public class Testing {
 		sortAscending(chromaTest.getChromaticScale());
 		System.out.println("Sorted B Chromatic: " + sortedMap);
 
+		printNotesMatrix(sortedMap);
 		
-//		System.out.println("Value at index 0: " + chromaTest.getNoteValAtIndex(0));
+
+		
 		
 		sortedMap.clear();
 
