@@ -13,5 +13,81 @@
     box-sizing: border-box;
     font-family: Tahoma, Verdana, Segoe, sans-serif;
   }
+  aside {
+    position: fixed;
+    display: inline-block;
+    width: 200px;
+    padding: 0px;
   
+    border-right-width: thin;
+    border-style: none solid none none;
+    border-color: rgba(0, 173, 238, 0.4);
+  }
+  aside > img {
+    width: 150px;
+    margin-left: 20px;
+  }
+  aside > nav ul {
+    margin-left: 0px;
+    
+  }
+  aside > nav ul li {
+    list-style-type: none;
+    padding-bottom: 20px;
+    text-align: center;
+    margin: 0px;
+    margin-left: -50px;
+  }
+
+ 
+  h2 {
+    color:#8CC36F;
+
+  }
+  a {
+    font-size: 20px;
+    color: #00ADEE;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding-bottom: 10px;
+    border-style: none none solid none;
+    border-bottom-width: thin;
+    border-color: rgba(0, 173, 238, 0.4);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+  }
+
+  main {
+ 
+    margin-top: 0px;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding-left: 200px;
+    align-self: start;
+
+  }
+  header > img {
+    max-height: 150px;
+    max-width: auto;
+  }
+  main > img {
+    max-width: 100%;
+    height: auto;
+    margin-top: -40px;
+  }
+ section > div {
+   display: inline-block;
+   margin-top: 20px;
+   width: 33%;
+   padding: 0px 10px 0px 10px;
+ }
+
+ #our-work {
+   border-style: none solid none solid;
+   border-width: thin;
+   border-color: rgba(170, 239, 135, 0.8);
+ }
+ .fas {
+   padding: 10px;
+ }
   

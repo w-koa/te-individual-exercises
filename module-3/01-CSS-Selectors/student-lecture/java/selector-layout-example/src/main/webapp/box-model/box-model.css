@@ -4,9 +4,9 @@ html * {
 }
 #slug_1 {
   background-color: #ECA008;
-  padding: 100px;
-  margin: 50px;
-  border: 50px solid black;
+  padding: 10px;
+  margin: 200px;
+  border: 10px dashed rgb(231, 10, 183);
 }
 #slug_2 {
   background-color: #ECA008;

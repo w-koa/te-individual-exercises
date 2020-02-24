@@ -10,7 +10,7 @@ SELECT first_name, email FROM users ORDER BY created DESC;
 
 -- Select published date from posts and a count of all the posts published/not published
 SELECT created, published, count(published) AS published_count FROM posts WHERE published IS NULL OR published IS NOT NULL
-GROUP BY created, published
+GROUP BY created, publishe
 ORDER BY created;
 
 -- Select the user's first_name, last_name, and email and the name of the post for all posts created after Oct. 1st 2019
