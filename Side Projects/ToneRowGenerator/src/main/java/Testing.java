@@ -201,23 +201,34 @@ public class Testing {
 				}
 			}
 		}
-		List<Integer> primeOne = new ArrayList<>();
-		for (Integer val : testing.values()) {
-			primeOne.add(val);
-			for (int i = 0; i < primeOne.size(); i++) {
-				primeOne.set(i, val + inversionOne.get(1));
-				if (primeOne.get(i) == 12) {
-					primeOne.set(i, 0);
+
+		List<Integer> allPrimes = new ArrayList<>();
+		List<Integer> primeRow = new ArrayList<>();
+		for (int i = 0; i < 11; i++) {
+			allPrimes.addAll(primeRow);
+			for (int j = 0; j < 11; j++) {
+				primeRow.add(inversionOne.get(j));
+				for (int k = 0; k < 11; k++) {
+					primeRow.add(primeRow.get(j) + primeZero.get(i));
+					if (primeRow.get(i) > 11) {
+						primeRow.set(i, primeRow.get(i) - 12);
+					}
 				}
-//				if (primeOne.get(i) > 11) {
-//					primeOne.set(i, val - 12);
-//				}
+			}
+		}
+
+		List<Integer> primeOne = new ArrayList<>();
+		primeOne.add(inversionOne.get(1));
+		for (int i = 1; i < 11; i++) {
+			primeOne.add(primeOne.get(0) + primeZero.get(i));
+			if (primeOne.get(i) > 11) {
+				primeOne.set(i, primeOne.get(i) - 12);
 			}
 		}
 
 		System.out.println("P0 " + primeZero.toString());
 		System.out.println("this is a column: " + inversionOne.toString());
-		System.out.println(primeOne.toString());
+		System.out.println(allPrimes.get(1).toString());
 
 //		System.out.println("Before asdf " + testing);
 //		pivotTranspose(testing, 4);
