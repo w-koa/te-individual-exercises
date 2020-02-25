@@ -11,8 +11,9 @@ align-items: : flex-start, flex-end, center, stretch, baseline.
   flex-direction: row;
   flex-wrap: wrap;
   background-color: burlywood;
-  justify-content: flex-start;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
 }
 
 .myContainer > div {

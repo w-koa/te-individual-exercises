@@ -10,5 +10,81 @@
 
 html {
     font-size: 16px;
+    background-color: rgba(192, 192, 192, 0.1);
 }
 
+header > img {
+    height: 50px;
+    width: auto;
+    margin: 0px 8% 0px 8%;
+}
+
+.headline {
+    grid-area: headline;
+    font-size: 92px;
+    margin: 0px 8% 0px 8%;
+}
+
+#student-quote {
+    grid-area: student-quote;
+}
+footer {
+    grid-area: footer;
+    text-align: left;
+    margin-left: 8%;
+}
+h3 {
+    color: var(--blue);
+}
+
+
+
+#student-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: 0px 8% 0px 8%;
+    row-gap: 20px;
+    column-gap: 50px;
+    justify-content: center;
+    grid-template-areas: 
+    "quote quote photo"
+    "profile profile contact"
+    "experience experience experience"
+}
+
+#student-picture {
+    grid-area: photo;
+}
+
+#student-picture > img {
+    border-radius: 50%;
+}
+
+#student-quote {
+    grid-area: quote;
+    margin: auto;
+    
+}
+
+#student-profile {
+    grid-area: profile;
+}
+
+#student-contact {
+    grid-area: contact;
+    text-align: center;
+    font-style: italic;
+}
+
+#experience {
+    grid-area: experience;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#experience > div {
+    width: 33%;
+    padding: 20px;    
+}

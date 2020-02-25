@@ -92,3 +92,34 @@ main .content {
   line-height: 50px;
   margin: 0 auto;
 }
+
+header {
+  grid-area: header;
+
+}
+
+nav {
+  grid-area: nav;
+}
+
+main {
+  grid-area: main;
+}
+
+#order-now {
+  grid-area: fall-festival;
+}
+
+#store {
+  grid-area: store;
+}
+
+body {
+  display: grid;
+  grid-template-columns: 1fr 2fr 2fr 2fr 2fr 1fr;
+  gap: 10px;
+  grid-template-areas: 
+  ". header header nav nav ."
+  ". main main main main ."
+  ". fall-festival fall-festival store store.";
+}
