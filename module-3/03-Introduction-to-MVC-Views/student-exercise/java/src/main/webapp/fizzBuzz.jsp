@@ -32,16 +32,13 @@
 	<c:forEach begin="1" end="${param.number}" var="number">
 	<c:choose>
 		<c:when test="${number % 15 == 0}">
-			<c:set var="rowClassAttribute" value="fizzbuzz" />
-			<li>fizzbuzz</li>
+			<li class = "fizzbuzz">fizzbuzz</li>
 		</c:when>
 		<c:when test="${number % 5 == 0 }">
-			<c:set var="rowClassAttribute" value="Buzz!" />
-			<li>Buzz!</li>
+			<li class = "buzz">Buzz!</li>
 		</c:when>
 		<c:when test = "${number % 3 == 0 }">
-			<c:set var = "rowClassAttribute" value = "Fizz!"/>
-			<li>Fizz!</li>
+			<li class = "fizz">Fizz!</li>
 		</c:when>
 		<c:otherwise>
 			<li>${number}</li>
