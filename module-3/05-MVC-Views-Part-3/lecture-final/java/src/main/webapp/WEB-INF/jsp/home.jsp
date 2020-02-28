@@ -1,11 +1,9 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<c:import url="/WEB-INF/jsp/header.jsp">
-	<c:param name='pageTitle' value='The Solar System' />
-	<c:param name='author' value='Andy' />
-</c:import>
-		<c:url var='mercuryImgLoc' value='/img/mercury.jpg' />
+	<c:import url="/WEB-INF/jsp/header.jsp">
+	    <c:param name="pageTitle" value="The Solar System" />
+	</c:import>
 
 	<p>The Solar System formed 4.6 billion years ago from the
 		gravitational collapse of a giant interstellar molecular cloud. The
@@ -32,16 +30,15 @@
 		</ul>
 		
 		<h3>Solar System Talk</h3>
-
+		<c:url var="forumHref" value="/forum" />
 		<p>Join a conversation with your fellow Solar System residents 
 		      on the <a href="${forumHref}">Solar System Geek Forum</a>!</p>
 	</div>
 
 	<div class="planet">
 		<h2>Mercury</h2>
-		
-		<img src="${mercuryImgLoc}" />
-		
+		<c:url var="mercuryImgSrc" value="/img/mercury.jpg" />
+		<img src="${mercuryImgSrc}">
 		<p>Mercury is the smallest and closest to the Sun of the eight
 			planets in the Solar System, with an orbital period of about 88 Earth
 			days. Seen from Earth, it appears to move around its orbit in about
@@ -60,7 +57,8 @@
 
 	<div class="planet">
 		<h2>Venus</h2>
-		
+		<c:url var="venusImgSrc" value="/img/venus.jpg" />
+		<img src="${venusImgSrc}">
 		<p>Venus is the second planet from the Sun, orbiting it every
 			224.7 Earth days. It has no natural satellite. It is named after the
 			Roman goddess of love and beauty. After the Moon, it is the brightest
@@ -82,7 +80,8 @@
 
 	<div class="planet">
 		<h2>Earth</h2>
-		
+		<c:url var="earthImgSrc" value="/img/earth.jpg" />
+		<img src="${earthImgSrc}">
 		<p>Earth is the third planet from the Sun, the densest planet in
 			the Solar System, the largest of the Solar System's four terrestrial
 			planets, and the only astronomical object known to harbor life. The
@@ -101,7 +100,8 @@
 
 	<div class="planet">
 		<h2>Mars</h2>
-
+		<c:url var="marsImgSrc" value="/img/mars.jpg" />
+		<img src="${marsImgSrc}">
 		<p>Mars is the fourth planet from the Sun and the second smallest
 			planet in the Solar System, after Mercury. Named after the Roman god
 			of war, it is often referred to as the "Red Planet" because the iron
@@ -123,7 +123,8 @@
 
 	<div class="planet">
 		<h2>Jupiter</h2>
-
+		<c:url var="jupiterImgSrc" value="/img/jupiter.jpg" />
+		<img src="${jupiterImgSrc}">
 		<p>Jupiter is the fifth planet from the Sun and the largest in the
 			Solar System. It is a giant planet with a mass one-thousandth that of
 			the Sun, but two and a half times that of all the other planets in
@@ -147,7 +148,8 @@
 
 	<div class="planet">
 		<h2>Saturn</h2>
-
+		<c:url var="saturnImgSrc" value="/img/saturn.jpg" />
+		<img src="${saturnImgSrc}">
 		<p>Saturn is the sixth planet from the Sun and the second-largest
 			in the Solar System, after Jupiter. It is a gas giant with an average
 			radius about nine times that of Earth. Although only one-eighth the
@@ -171,7 +173,8 @@
 
 	<div class="planet">
 		<h2>Uranus</h2>
-
+		<c:url var="uranusImgSrc" value="/img/uranus.jpg" />
+		<img src="${uranusImgSrc}">
 		<p>Uranus is the seventh planet from the Sun. It has the
 			third-largest planetary radius and fourth-largest planetary mass in
 			the Solar System. Uranus is similar in composition to Neptune, and
@@ -191,8 +194,8 @@
 
 	<div class="planet">
 		<h2>Neptune</h2>
-
-
+		<c:url var="neptuneImgSrc" value="/img/neptune.jpg" />
+		<img src="${neptuneImgSrc}">
 		<p>Neptune is the eighth and farthest planet from the Sun in the
 			Solar System. It is the fourth-largest planet by diameter and the
 			third-largest by mass. Among the giant planets in the Solar System,

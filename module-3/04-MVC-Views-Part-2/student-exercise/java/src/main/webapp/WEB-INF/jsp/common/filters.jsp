@@ -15,9 +15,15 @@
         -->
 <div id="filter-options">
 	<h3>Refine By</h3>
+	
+	<c:url value='/products' var='prodPage'>
+		<c:param name='minPrice' value='25'/>
+		<c:param name='maxPrice' value='50'/>
+	</c:url>
+	
 	<ul>
 		<li><a href="#">Under $25</a></li>
-		<li><a href="#">$25 to $50</a></li>
+		<li><a href="${prodPage}">$25 to $50</a></li>
 		<li><a href="#">$50 &amp; Above</a></li>
 	</ul>
 	<p>Avg. Review</p>

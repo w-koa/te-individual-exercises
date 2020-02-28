@@ -21,12 +21,53 @@
 		<div id="sorting-options">
 			<h3>Sort By</h3>
 			<ul>
-				<li><a href="#">Price - Low to High</a></li>
+			
+			<c:url var='lowToHighUrl' value='/products'>
+				<c:param name='sortOrder' value='PriceLowToHigh'/>
+			</c:url>
+			
+				<li><a href="${lowToHighUrl}">Price - Low to High</a></li>
 				<li><a href="#">Price - High to Low</a></li>
 				<li><a href="#">Rating - High to Low</a></li>
 			</ul>
 		</div>
+Demo Demo Demo!
 
+<c:forEach var="product" items="${products}">
+
+	<p>product placeholder.</p>
+	<div>
+		<c:out value="${product.name}"/> <br>
+		<c:out value="${product.description}"/> <br>	
+		<c:out value="${product.remainingStock}"/> <br>
+		
+		<c:set var="prodStock" value="${product.remainingStock}" />
+		
+		<c:choose>
+			<c:when test="${prodStock ==0}">
+				Sold Out!&#9763;
+			</c:when>
+			<c:otherwise>
+				Buy Buy Buy!
+			</c:otherwise>
+		</c:choose>
+		
+		
+		<c:out value="${product.averageRating}"/> <br>	
+	<p>**********</p>	
+		
+	</div>
+
+
+</c:forEach>
+
+
+
+
+
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+Demo Demo Demo!
 		<!-- Container for all of the Products -->
 		<!-- The list of products is available using the `products` variable -->
 		<div id="grid">
