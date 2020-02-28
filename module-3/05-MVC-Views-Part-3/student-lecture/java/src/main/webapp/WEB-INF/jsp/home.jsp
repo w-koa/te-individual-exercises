@@ -1,12 +1,6 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<c:import url="/WEB-INF/jsp/header.jsp">
-	<c:param name='pageTitle' value='The Solar System' />
-	<c:param name='author' value='Andy' />
-</c:import>
-		<c:url var='mercuryImgLoc' value='/img/mercury.jpg' />
-
 	<p>The Solar System formed 4.6 billion years ago from the
 		gravitational collapse of a giant interstellar molecular cloud. The
 		vast majority of the system's mass is in the Sun, with most of the
@@ -39,8 +33,6 @@
 
 	<div class="planet">
 		<h2>Mercury</h2>
-		
-		<img src="${mercuryImgLoc}" />
 		
 		<p>Mercury is the smallest and closest to the Sun of the eight
 			planets in the Solar System, with an orbital period of about 88 Earth
