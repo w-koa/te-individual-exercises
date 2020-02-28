@@ -39,6 +39,17 @@
 
 			<c:forEach var="product" items="${products}">
 
+				<c:choose>
+					<c:when test="${product.remainingStock == 0 }">
+						<c:set var="soldOut" value="sold-out" />
+						<c:set var="bannerType" value="banner" />
+					</c:when>
+					<c:otherwise>
+						<c:set var="soldOut" value="" />
+					</c:otherwise>
+				</c:choose>
+			
+
 				<div class="tile ${soldOut}">
 					<c:if
 						test="${product.topSeller == true && product.remainingStock > 0 }">
@@ -80,9 +91,53 @@
 
 			</c:forEach>
 
-			
-			
-			
+			<%--
+			<div class="tile ">
+				<!-- Include this if the product is considered a Top Seller -->
+				<span class="banner top-seller">Top Seller!</span>
+
+				<!-- Link to the Detail page using the product id (e.g. products/detail?id=1) -->
+				<a class="product-image" href="#"> <img
+					src="<c:url value="/images/product-images/grey-sofa.jpg" />" />
+				</a>
+				<div class="details">
+					<p class="name">Grey Sofa</p>
+
+					<!-- .filled will make the star solid -->
+					<div class="rating">
+						<span class="filled">&#9734;</span> <span class="filled">&#9734;</span>
+						<span class="filled">&#9734;</span> <span class="filled">&#9734;</span>
+						<span>&#9734;</span>
+					</div>
+
+					<!-- Include this if the remaining quantity is greater than 0, but less than or equal to 5 -->
+					<span class="product-alert">Only 4 left!</span>
+					<p class="price">$939.00</p>
+				</div>
+			</div>
+
+			<!-- Add the .sold-out class if the remaining quantity is 0 -->
+			<div class="tile sold-out">
+				<!-- Include this if the remaining quantity is 0 -->
+				<span class="banner">Sold Out</span>
+
+				<!-- Link to the Detail page using the product id (e.g. products/detail?id=1) -->
+				<a class="product-image" href="#"> <img
+					src="<c:url value="/images/product-images/grey-sofa.jpg" />" />
+				</a>
+				<div class="details">
+					<p class="name">Grey Sofa</p>
+
+					<!-- .filled will make the star solid -->
+					<div class="rating">
+						<span class="filled">&#9734;</span> <span>&#9734;</span> <span>&#9734;</span>
+						<span>&#9734;</span> <span>&#9734;</span>
+					</div>
+
+					<p class="price">$939.00</p>
+				</div>
+			</div>
+			 --%>
 		</div>
 	</div>
 </div>
