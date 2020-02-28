@@ -1,5 +1,8 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:import url = "/WEB-INF/jsp/header.jsp">
+	<c:param name = 'pageTitle' value = "The Solar System" />
+</c:import>
 
 	<p>The Solar System formed 4.6 billion years ago from the
 		gravitational collapse of a giant interstellar molecular cloud. The

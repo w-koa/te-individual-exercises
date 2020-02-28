@@ -6,6 +6,8 @@ by the "uri" attribute and makes it available using the alias provided by
 We can use whatever prefix we want, but it's common to use "c" for this
 library --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+
 
 <!DOCTYPE html>
 <html>
@@ -95,8 +97,9 @@ library --%>
 					<c:set var='rowClassAttribute' value='marker' />
 				</c:if>
 				<tr class="${rowClassAttribute}">
+				<c:set var = "meter" value = "${ feet * .3048 }"></c:set>
 					<td>${feet}</td> 
-					<td>${feet * .3048}</td>
+					<td><fmt:formatNumber type = "number" maxFractionDigits = "2" value = "${ meter }"/></td>
 				</tr>	
 			</c:forEach>
 		</table>

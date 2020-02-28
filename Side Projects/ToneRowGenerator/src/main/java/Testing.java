@@ -7,6 +7,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
+import org.omg.CORBA.portable.ValueBase;
+
 public class Testing {
 
 	// Sort logic
@@ -185,9 +187,28 @@ public class Testing {
 		testing.put("A#", 10);
 		testing.put("B", 11);
 
+		List<String> notesToShuffle = new ArrayList<>();
+		for (String note : testing.keySet()) {
+			notesToShuffle.add(note);
+		}
+		Collections.shuffle(notesToShuffle);
+		
+		
+		Map<String, Integer> newTest = new LinkedHashMap<>();
+		for (String note : notesToShuffle) {
+			newTest.put(note, testing.get(note));
+		}
+		
+		
+		System.out.println("new test: " + newTest);
+		sortedMap.clear();
+		pivotTranspose(newTest, newTest.entrySet().iterator().next().getValue());
+		sortAscending(newTest);
+		System.out.println("newtest sorted: " + sortedMap);
+		
 		List<Integer> primeZero = new ArrayList<>();
-		for (Integer val : testing.values()) {
-			primeZero.add(val);
+		for (int i = 0; i < notesToShuffle.size(); i++) {
+			primeZero.add(testing.get(notesToShuffle.get(i)));
 		}
 		System.out.println(primeZero.toString());
 		sortedMap.clear();
@@ -243,6 +264,8 @@ public class Testing {
 			System.out.println("P" + val + " \t[" + val + "]");
 		}
 		System.out.println("this is a column: " + inversionZero.toString() + " size: " + inversionZero.size());
+		System.out.println("prime one" + primeOne);
+		
 //		System.out.println(allPrimes.get(1).toString());
 
 //		System.out.println("Before asdf " + testing);

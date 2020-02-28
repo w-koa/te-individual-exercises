@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
+
 <c:import url="/WEB-INF/jsp/common/header.jsp">
 	<c:param name="pageTitle" value="Product Details" />
 </c:import>
@@ -32,5 +33,10 @@
 		<!--<button disabled>Sold Out</button>-->
 	</div>
 </div>
+
+<c:forEach var = "product" items = "${products}">
+<c:out value ="${product.name}"/>
+
+</c:forEach>
 
 <c:import url="/WEB-INF/jsp/common/footer.jsp" />
