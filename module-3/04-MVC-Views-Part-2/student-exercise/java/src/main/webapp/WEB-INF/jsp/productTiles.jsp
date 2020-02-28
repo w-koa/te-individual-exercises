@@ -21,52 +21,67 @@
 		 when you load the page up. -->
 
 		<c:forEach var="product" items="${products}">
+			<c:choose>
+				<c:when test="${product.remainingStock == 0 }">
+					<c:set var="tileType" value="sold-out" />
+					<c:set var="bannerType" value="banner" />
+				</c:when>
+				<c:when test="${product.topSeller == true && product.remainingStock > 0 }">
+					<c:set var="tileType" value = "top-seller "/>
+				</c:when>
+				
+				<c:otherwise>
+					<c:set var="tileType" value="" />
+				</c:otherwise>
+			</c:choose>
+			<div class="tile ${tileType}">
+				<c:if
+					test="${product.topSeller == true && product.remainingStock > 0 }">
+					<span class="banner top-seller">Top Seller!</span>
+				</c:if>
+				<c:if test="${product.remainingStock == 0}">
+					<span class="banner">Sold Out</span>
+				</c:if>
 
-				<div class="tile ${soldOut}">
-					<c:if
-						test="${product.topSeller == true && product.remainingStock > 0 }">
-						<span class="banner top-seller">Top Seller!</span>
-					</c:if>
-					<c:if test="${product.remainingStock == 0}">
-						<span class="banner">Sold Out</span>
-					</c:if>
+				<!-- Link to the Detail page using the product id (e.g. products/detail?id=1) -->
+				<a class="product-image" href="#"> <img
+					src="<c:url value="/images/product-images/${product.imageName}" />" />
+				</a>
+				<div class="details">
 
-					<!-- Link to the Detail page using the product id (e.g. products/detail?id=1) -->
-					<a class="product-image" href="#"> <img
-						src="<c:url value="/images/product-images/${product.imageName}" />" />
-					</a>
-					<div class="details">
+					<p class="name">
+						<c:out value="${product.name}" />
+					</p>
 
-						<p class="name">
-							<c:out value="${product.name}" />
-						</p>
+					<!-- .filled will make the star solid -->
+					<div class="rating">
+						<c:forEach begin="1" end="${product.averageRating}">
+							<span class="filled">&#9734;</span>
+						</c:forEach>
+						<c:forEach begin="${product.averageRating}" end="4">
+							<span>&#9734;</span>
+						</c:forEach>
 
-						<!-- .filled will make the star solid -->
-						<div class="rating">
-							<c:forEach begin = "1" end = "${product.averageRating}">
-								<span class="filled">&#9734;</span>
-							</c:forEach>
-							<c:forEach begin = "${product.averageRating}" end = "4">
-								<span>&#9734;</span>
-							</c:forEach>
-							
-						</div>
-						<c:if test="${product.remainingStock <= 5 && product.remainingStock >= 1}">
-							<span class="product-alert">Only ${product.remainingStock} left!</span>
-						</c:if>
-						<p class="price">
-							<fmt:formatNumber type = "currency" minFractionDigits = "2" value = "${product.price}"/>
-						</p>
 					</div>
+					<c:if
+						test="${product.remainingStock <= 5 && product.remainingStock >= 1}">
+						<span class="product-alert">Only ${product.remainingStock}
+							left!</span>
+					</c:if>
+					<p class="price">
+						<fmt:formatNumber type="currency" minFractionDigits="2"
+							value="${product.price}" />
+					</p>
 				</div>
+			</div>
 
 
-			</c:forEach>
+		</c:forEach>
 		<!-- Standard Product -->
 		<div class="tile  ">
 			<!-- Link to the Detail page using the product id (e.g. products/detail?id=1) -->
-			<a class="product-image" href="#"> 
-				<img src="<c:url value="/images/product-images/grey-sofa.jpg" />" />
+			<a class="product-image" href="#"> <img
+				src="<c:url value="/images/product-images/grey-sofa.jpg" />" />
 			</a>
 			<div class="details">
 				<p class="name">
@@ -75,11 +90,8 @@
 
 				<!-- .filled will make the star solid -->
 				<div class="rating">
-					<span class="filled">&#9734;</span> 
-					<span>&#9734;</span> 
-					<span>&#9734;</span>
-					<span>&#9734;</span> 
-					<span>&#9734;</span>
+					<span class="filled">&#9734;</span> <span>&#9734;</span> <span>&#9734;</span>
+					<span>&#9734;</span> <span>&#9734;</span>
 				</div>
 
 				<p class="price">$939.00</p>
@@ -89,8 +101,8 @@
 		<!-- Add the .top-seller class if the product is considered a Top Seller -->
 		<div class="tile top-seller ">
 			<!-- Link to the Detail page using the product id (e.g. products/detail?id=1) -->
-			<a class="product-image" href="#"> 
-				<img src="<c:url value="/images/product-images/grey-sofa.jpg" />" />
+			<a class="product-image" href="#"> <img
+				src="<c:url value="/images/product-images/grey-sofa.jpg" />" />
 			</a>
 			<div class="details">
 				<p class="name">
@@ -99,10 +111,8 @@
 
 				<!-- .filled will make the star solid -->
 				<div class="rating">
-					<span class="filled">&#9734;</span> 
-					<span class="filled">&#9734;</span>
-					<span class="filled">&#9734;</span> 
-					<span class="filled">&#9734;</span>
+					<span class="filled">&#9734;</span> <span class="filled">&#9734;</span>
+					<span class="filled">&#9734;</span> <span class="filled">&#9734;</span>
 					<span>&#9734;</span>
 				</div>
 
@@ -121,8 +131,8 @@
 			<span class="banner">Sold Out</span>
 
 			<!-- Link to the Detail page using the product id (e.g. products/detail?id=1) -->
-			<a class="product-image" href="#"> 
-				<img src="<c:url value="/images/product-images/grey-sofa.jpg" />" />
+			<a class="product-image" href="#"> <img
+				src="<c:url value="/images/product-images/grey-sofa.jpg" />" />
 			</a>
 			<div class="details">
 				<p class="name">
@@ -131,10 +141,8 @@
 
 				<!-- .filled will make the star solid -->
 				<div class="rating">
-					<span class="filled">&#9734;</span> 
-					<span class="filled">&#9734;</span>
-					<span class="filled">&#9734;</span> 
-					<span class="filled">&#9734;</span>
+					<span class="filled">&#9734;</span> <span class="filled">&#9734;</span>
+					<span class="filled">&#9734;</span> <span class="filled">&#9734;</span>
 					<span>&#9734;</span>
 				</div>
 
