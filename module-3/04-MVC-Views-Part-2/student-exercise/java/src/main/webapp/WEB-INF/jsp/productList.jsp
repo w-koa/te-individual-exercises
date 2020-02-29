@@ -8,7 +8,7 @@
 <div id="card-page">
 	<c:import url="/WEB-INF/jsp/common/filters.jsp">
 		<%-- Modify the baseRoute to apply filters to the current route. --%>
-		<c:param name="baseRoute" value="#" />
+		<c:param name="baseRoute" value="/products" />
 	</c:import>
 
 	<div class="main-content">
@@ -21,9 +21,12 @@
 		<div id="sorting-options">
 			<h3>Sort By</h3>
 			<ul>
-				<li><a href="#">Price - Low to High</a></li>
-				<li><a href="#">Price - High to Low</a></li>
-				<li><a href="#">Rating - High to Low</a></li>
+				<c:url var = "lowToHighURL" value = "/products?sortOrder=PriceLowToHigh"/>
+				<c:url var = "highToLowURL" value = "/products?sortOrder=PriceHighToLow"/>
+				<c:url var = "ratingHighToLowURL" value = "/products?sortOrder=RatingHighToLow"/>
+				<li><a href="${lowToHighURL}">Price - Low to High</a></li>
+				<li><a href="${highToLowURL}">Price - High to Low</a></li>
+				<li><a href="${ratingHighToLowURL}">Rating - High to Low</a></li>
 			</ul>
 		</div>
 
@@ -42,7 +45,6 @@
 				<c:choose>
 					<c:when test="${product.remainingStock == 0 }">
 						<c:set var="soldOut" value="sold-out" />
-						<c:set var="bannerType" value="banner" />
 					</c:when>
 					<c:otherwise>
 						<c:set var="soldOut" value="" />
@@ -60,7 +62,8 @@
 					</c:if>
 
 					<!-- Link to the Detail page using the product id (e.g. products/detail?id=1) -->
-					<a class="product-image" href="#"> <img
+					<c:url var = "detailLink" value = "/products/detail?id=${product.id}"/>
+					<a class="product-image" href="${detailLink}"> <img
 						src="<c:url value="/images/product-images/${product.imageName}" />" />
 					</a>
 					<div class="details">

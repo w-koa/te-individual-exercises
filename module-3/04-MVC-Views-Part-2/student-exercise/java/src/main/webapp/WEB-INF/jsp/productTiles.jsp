@@ -8,13 +8,14 @@
 <div id="masonry-page">
 	<c:import url="/WEB-INF/jsp/common/filters.jsp">
 		<%-- Modify the baseRoute to apply filters to the current route. --%>
-		<c:param name="baseRoute" value="#" />
+		<c:param name="baseRoute" value="/products/tiles" />
 	</c:import>
 
 	<!-- Container for all of the Products -->
 	<!-- The list of products is available using the `products` variable -->
 	<div id="grid" class="main-content">
 
+		
 		<!-- The following HTML shows different examples of what HTML
 		 could be rendered based on different rules. For purposes
 		 of demonstration we've written it out so you can see it
@@ -44,7 +45,8 @@
 				</c:if>
 
 				<!-- Link to the Detail page using the product id (e.g. products/detail?id=1) -->
-				<a class="product-image" href="#"> <img
+				<c:url var = "detailLink" value = "/products/detail?id=${product.id}"/>
+				<a class="product-image" href="${detailLink}"> <img
 					src="<c:url value="/images/product-images/${product.imageName}" />" />
 				</a>
 				<div class="details">

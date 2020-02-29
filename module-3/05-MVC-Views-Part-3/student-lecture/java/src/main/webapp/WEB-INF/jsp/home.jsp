@@ -37,6 +37,8 @@
 	<div class="planet">
 		<h2>Mercury</h2>
 		
+		<c:url var = "mercuryImgLoc" value = "/img/mercury.jpg"/>
+		<img  src="${mercuryImgLoc}">
 		<p>Mercury is the smallest and closest to the Sun of the eight
 			planets in the Solar System, with an orbital period of about 88 Earth
 			days. Seen from Earth, it appears to move around its orbit in about
