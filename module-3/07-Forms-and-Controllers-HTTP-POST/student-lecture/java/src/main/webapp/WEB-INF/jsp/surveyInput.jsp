@@ -11,7 +11,7 @@
 			<h1>Tell us what you think is Awesome</h1>
 			
 			<c:url var='surveyInputUrl' value='/surveyInput' />				
-			<form>
+			<form action = "${surveyInputUrl}" method = "POST">
 				<div class="formGroup">
 					<label for="color">What is your favorite color?</label>
 					<input type="text" name="color" id="color" />

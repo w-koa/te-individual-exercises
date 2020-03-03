@@ -11,7 +11,7 @@
 			<h1>You are this close to Awesome...</h1>
 			
 			<c:url var='signupInputUrl' value='/notificationSignupInput' />		
-			<form>
+			<form action = "${signUpInputUrl}" method = "POST">
 				<div class="formGroup">
 					<label for="firstName">First Name: </label>
 					<input type="text" name="firstName" id="firstName" />

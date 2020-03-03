@@ -20,6 +20,20 @@ public class SurveyController {
 	public String showSurveyInput() {
 		return "surveyInput";
 	}
+	
+	@RequestMapping(path = "/surveyInput", method = RequestMethod.POST)
+	public String postSurveyInput(Survey survey) {
+		
+		surveyDao.save(survey);
+		return "redirect:/surveyResult";
+	}
 
-
+	@RequestMapping(path = "/surveyResult", method = RequestMethod.GET)
+	public String showSurveyResult(ModelMap map) {
+		
+		Survey survey = surveyDao.getSurvey();
+		map.addAttribute("survey", survey);
+		
+		return "surveyResult";
+	}
 }

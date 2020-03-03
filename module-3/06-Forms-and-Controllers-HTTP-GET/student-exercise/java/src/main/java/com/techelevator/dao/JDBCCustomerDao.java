@@ -29,12 +29,16 @@ public class JDBCCustomerDao implements CustomerDao {
 	public List<Customer> searchAndSortCustomers(String search, String sort) {
 		
 		 List<Customer> customers = new ArrayList<>();
+		 
+		 System.out.println("this is term I'm searching for: " + search);
+
+		 System.out.println("this is how I'm sorting by: " + sort);
 
 	        String customerSearchSql = "SELECT first_name, last_name, email, activebool FROM customer " + 
 	        		"WHERE first_name ILIKE ? OR last_name ILIKE ? " + 
-	        		"ORDER BY ?";
+	        		"ORDER BY " + sort;
 	        SqlRowSet results = jdbcTemplate.queryForRowSet(customerSearchSql, "%" + search + "%", 
-	        		"%" + search + "%", sort);
+	        		"%" + search + "%");
 	        while (results.next()) {
 	            customers.add(mapRowToCustomer(results));
 	        }

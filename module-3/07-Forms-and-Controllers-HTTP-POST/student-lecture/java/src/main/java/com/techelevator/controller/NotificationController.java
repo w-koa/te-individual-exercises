@@ -1,16 +1,10 @@
 package com.techelevator.controller;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import com.techelevator.model.NotificationSignupDAO;
 
 @Controller
 public class NotificationController {
@@ -28,4 +22,22 @@ public class NotificationController {
 	}
 
 
+	@RequestMapping(path = "/notificationSignupInput", method = RequestMethod.POST)
+	public String processNotificationSignupForm(@RequestParam String firstName, @RequestParam String lastName,
+			@RequestParam String emailAddress, @RequestParam int age) {
+		
+		System.out.println(firstName);
+		System.out.println(lastName);
+		System.out.println(emailAddress);
+		
+		
+		return "redirect:/notificationSignupResult";
+	}
+	
+	@RequestMapping(path = "/notificationSignupResult", method = RequestMethod.GET)
+	public String showNotificationResult() {
+		return "notificationSignupResult";
+	}
+	
+	
 }
