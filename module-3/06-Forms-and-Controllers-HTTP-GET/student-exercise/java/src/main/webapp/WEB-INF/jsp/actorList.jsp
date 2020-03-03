@@ -7,12 +7,12 @@
 
 <c:url var="formAction" value="/actorSearchResult" />
 
-<form method="GET" action="${formAction}">
-	<div class="formInputGroup">
-		<input type="text" name="lastName" id="actorSearch"
+<form class="formContainer" method="GET" action="${formAction}">
+	<div class="actorFormInputGroup">
+		<input class="form-control" type="text" name="lastName" id="actorSearch"
 			placeholder="Search" />
 	
-	<input class="formSubmitButton" type="submit" value="Submit" />
+	<input class="btn btn-default" type="submit" value="Submit" />
 	</div>
 </form>
 

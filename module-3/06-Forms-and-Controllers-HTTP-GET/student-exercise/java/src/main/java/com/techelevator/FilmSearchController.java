@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.techelevator.dao.CategoryDao;
 import com.techelevator.dao.FilmDao;
-import com.techelevator.dao.model.Category;
+import com.techelevator.dao.model.Film;
 
 /**
  * FilmSearchController
@@ -32,11 +32,16 @@ public class FilmSearchController {
     
     
     @RequestMapping("/filmSearchResults")
-    public String searchFilms(@RequestParam String minLength, @RequestParam String maxLength, @RequestParam String genre) {
+    public String searchFilms(@RequestParam String genre, @RequestParam String minLength, @RequestParam String maxLength,
+    		 ModelMap filmMap) {
     	
+    	int minLengthInt = Integer.parseInt(minLength);
+    	int maxLengthInt = Integer.parseInt(maxLength);
+    	List<Film> matchingFilms = filmDao.getFilmsBetween(genre, minLengthInt, maxLengthInt);
     	
+    	filmMap.put("matchingFilms", matchingFilms);
     	
-        return null;
+        return "filmList";
     }
 
 }

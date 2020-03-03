@@ -4,20 +4,21 @@
 
 <%@include file="common/header.jspf"%>
 
-<c:url var="formAction" value="/filmList" />
+<c:url var="formAction" value="/filmSearchResults" />
 
-<form class = "formContainer" method="GET" action="${formAction}">
+<form class="formContainer" method="GET" action="${formAction}">
 	<div class="formInputGroup">
-		<label>Minimum Length:</label> <input class = "form-control" type="text" name="minLength"
-			id="minLength" placeholder="Search" />
+		<label>Minimum Length:</label> <input class="form-control" type="text"
+			name="minLength" id="minLength" />
 	</div>
 	<div class="formInputGroup">
 
-		<label>Maximum Length:</label> <input class = "form-control" type="text" name="maxLength"
-			id="maxLength" placeholder="Search" />
+		<label>Maximum Length:</label> <input class="form-control" type="text"
+			name="maxLength" id="maxLength" />
 	</div>
 	<div class="formInputGroup">
-		<label>Genre</label> <select class = "form-control" name="category" id="category">
+		<label>Genre</label> <select class="form-control" name="genre"
+			id="genre">
 			<%--
 			I wish we could just loop it, but i guess i'll do this with copypasta
 			<forEach var="category" items="categoryList">
@@ -57,11 +58,33 @@ Travel
 			<option value="Travel">Travel</option>
 
 		</select>
-		
 	</div>
-	 <input class="btn btn-default" type="submit" value="Submit" />
+
+
+
+	<input class="btn btn-default" type="submit" value="Submit" />
 </form>
 
+<div>
+	<table class="table">
+		<tr>
+			<th>Title</th>
+			<th>Description</th>
+			<th>Release Year</th>
+			<th>Length</th>
+			<th>Rating</th>
+		</tr>
+		<c:forEach var="film" items="${matchingFilms}">
+			<tr>
+				<td><c:out value="${film.title}" /></td>
+				<td>${film.description}</td>
+				<td>${film.releaseYear}</td>
+				<td>${film.length}</td>
+				<td>${film.rating}</td>
+			</tr>
+		</c:forEach>
 
+	</table>
+</div>
 
 <%@include file="common/footer.jspf"%>

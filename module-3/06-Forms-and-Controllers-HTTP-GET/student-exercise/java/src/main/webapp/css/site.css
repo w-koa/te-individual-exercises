@@ -15,6 +15,11 @@ select,
 textarea {
     max-width: 280px;
 }
+.actorFormInputGroup{
+	display: flex;
+	width: 350px;
+	
+}
 .formContainer {
 	display: flex;
 	align-items: center;
