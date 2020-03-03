@@ -1,6 +1,7 @@
 package com.techelevator.dao;
 
 import com.techelevator.dao.model.Customer;
+import com.techelevator.dao.model.Film;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,8 +27,27 @@ public class JDBCCustomerDao implements CustomerDao {
 
 	@Override
 	public List<Customer> searchAndSortCustomers(String search, String sort) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		 List<Customer> customers = new ArrayList<>();
+
+	        String customerSearchSql = "SELECT first_name, last_name, email, activebool FROM customer " + 
+	        		"WHERE first_name ILIKE ? OR last_name ILIKE ? " + 
+	        		"ORDER BY ?";
+	        SqlRowSet results = jdbcTemplate.queryForRowSet(customerSearchSql, "%" + search + "%", 
+	        		"%" + search + "%", sort);
+	        while (results.next()) {
+	            customers.add(mapRowToCustomer(results));
+	        }
+	        return customers;
 	}
+	
+	 private Customer mapRowToCustomer(SqlRowSet results) {
+	        Customer customerRow = new Customer();
+	        customerRow.setFirstName(results.getString("first_name"));
+	        customerRow.setLastName(results.getString("last_name"));
+	        customerRow.setEmail(results.getString("email"));
+	        customerRow.setActive(results.getBoolean("activebool"));
+	        return customerRow;
+	    }
 
 }
