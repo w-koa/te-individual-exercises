@@ -4,4 +4,22 @@
 
 <%@include file="common/header.jspf"%>
 
+
+<form method="GET" action="${formAction}">
+	<div class="formInputGroup">
+		<input type="text" name="lastName" id="actorSearch"
+			placeholder="Search" />
+	
+	<input class="formSubmitButton" type="submit" value="Submit" />
+	</div>
+</form>
+
+
+
+
+
+
+
+
+
 <%@include file="common/footer.jspf"%>

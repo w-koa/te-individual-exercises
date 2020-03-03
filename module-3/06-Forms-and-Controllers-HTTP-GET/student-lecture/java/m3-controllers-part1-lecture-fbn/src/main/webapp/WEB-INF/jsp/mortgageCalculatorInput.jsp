@@ -6,7 +6,9 @@
 
 <h2>Mortgage Calculator</h2>
 
-<form method="GET">
+<c:url var = "formAction" value = "/mortgageCalculatorResult"/>
+
+<form method="GET" action = "${formAction}">
 	<div class="formInputGroup">
 		<label for="loanAmount">Loan Amount:</label> 
 		<input type="text" name="loanAmount" id="loanAmount" />

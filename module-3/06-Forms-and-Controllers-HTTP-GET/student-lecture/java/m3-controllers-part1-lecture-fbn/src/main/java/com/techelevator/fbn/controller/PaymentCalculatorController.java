@@ -2,8 +2,6 @@ package com.techelevator.fbn.controller;
 
 import java.math.BigDecimal;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,7 +26,26 @@ import com.techelevator.fbn.model.MortgageLoanEstimate;
  * Controllers (and pretty much everything else in Spring) can also be
  * configured using XML.  However, annotations have become the
  * suggested way of wiring together a Spring application. */
+@Controller
 public class PaymentCalculatorController {
-
+	
+	@RequestMapping ("/mortgageCalculatorInput")
+	public String  showMortgageForm() {
+		return "mortgageCalculatorInput";
+	}
+	
+	@RequestMapping("/mortgageCalculatorResult")
+	public String showResults(@RequestParam BigDecimal loanAmount, 
+			@RequestParam int loanTerm, 
+			@RequestParam BigDecimal rate,
+			ModelMap map) {
+		
+		MortgageLoanEstimate estimate = new MortgageLoanEstimate(loanAmount, loanTerm, rate);
+		
+		map.put("estimate", estimate);
+		
+		return "mortgageCalculatorResult";
+		
+	}
 
 }

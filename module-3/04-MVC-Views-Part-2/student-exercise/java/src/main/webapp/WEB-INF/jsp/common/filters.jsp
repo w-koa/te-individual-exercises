@@ -68,6 +68,7 @@
 			<c:param name="category" value="Home" />
 		</c:url>
 		<li><a href="${filterHome}">Home</a></li>
+		
 		<c:url value="${baseRoute}" var="filterApparel">
 			<c:param name="category" value="Apparel" />
 		</c:url>

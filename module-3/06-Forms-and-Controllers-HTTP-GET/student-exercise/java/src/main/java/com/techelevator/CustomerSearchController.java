@@ -14,4 +14,17 @@ public class CustomerSearchController {
     @Autowired
     private CustomerDao customerDao;
 
+    @RequestMapping("/customerSearch")
+    public String displayCustomerSearch() {
+    	return "customerList";
+    }
+    
+    
+    @RequestMapping("/customerSearchResults")
+    public String displayCustomerSearchResults() {
+    	
+    	return "customerList";
+    }
+    
+    
 }
