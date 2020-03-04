@@ -6,7 +6,7 @@
 
 How many shares of <strong><c:out value="${param.ticker}"/></strong> do you want to buy?
 <c:url var="purchaseUrl" value="/stockPurchase"/>
-<form>
+<form action="${purchaseUrl}" method="POST">
 	<input type="hidden" name="ticker" value="${param.ticker}">
 	<input type="number" name="shares">
 	<input type="submit" value="Buy">

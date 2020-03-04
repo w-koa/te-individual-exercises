@@ -1,0 +1,59 @@
+
+h3 {
+	font-weight: bold;
+}
+
+.headerText {
+	text-align: center;
+	font-weight: bold;
+}
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+}
+.reviewHeader {
+	margin: 20px;
+	text-align: left;
+	font-weight: bold;
+}
+.formContainer {
+	margin-left: 20px;
+	margin-right: 20px;
+	padding: 20px;
+	border-bottom: 1px solid;
+}
+
+.formInputGroup {
+	width: 30%;
+	padding: 10px;
+}
+
+
+.formInputGroup textarea{
+	width: 200%;
+}
+
+.btn {
+	margin-top: 10px;
+	margin-left: 10px;
+	
+}
+
+.headerText {
+	text-align: center;
+}
+.reviewSection {
+	margin: 20px;
+}
+
+.reviewContainer {
+	border-bottom: 1px solid;
+}
+
+.reviewBlock {
+	padding: 10px;
+	
+}
+

@@ -21,6 +21,31 @@ public class CheckingApplicationController {
 		return "checkingApplication/personalInformationInput";
 	}
 
+	@RequestMapping(path="/personalInformationInput", method = RequestMethod.POST)
+	public String processPersonalInfoInput(@RequestParam String firstName, @RequestParam String lastName,
+			@DateTimeFormat(pattern = "MM/dd/yyyy") @RequestParam LocalDate dateOfBirth,
+			@RequestParam String stateOfBirth, @RequestParam String emailAddress, @RequestParam String phoneNumber
+			, HttpSession session) {
+		
+		CheckingAccountApplication application = new CheckingAccountApplication();
+		
+		application.setFirstName(firstName);
+		application.setLastName(lastName);
+		application.setDateOfBirth(dateOfBirth);
+		application.setEmailAddress(emailAddress);
+		application.setStateOfBirth(stateOfBirth);
+		application.setPhoneNumber(phoneNumber);
+		
+		session.setAttribute("customerApplication", application);
+		
+		return "redirect:/checkingApplication/addressInput";
+	}
+	
+	@RequestMapping(path="/addressInput", method = RequestMethod.GET)
+	public String displayAddressInput() {
+		return "checkingApplication/addressInput";
+	}
+	
 	@RequestMapping(path = "/thankYou", method = RequestMethod.GET)
 	public String displayThankYou() {
 		return "checkingApplication/thankYou";

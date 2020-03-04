@@ -32,6 +32,25 @@ public class StocksController {
 		return "stocks/stocksLandingPage";
 	}
 
+	@RequestMapping(path="/stockPurchase", method= RequestMethod.POST)
+	public String buyStock(@RequestParam String ticker, @RequestParam int shares,
+			RedirectAttributes redirectAttributes) {
+		
+		LocalDateTime currentTime = LocalDateTime.now();
+		String timeString = currentTime.toString();
+		timeString = timeString.substring(0, 10) + " " + timeString.substring(11,16);
+		
+		redirectAttributes.addFlashAttribute("timeStamp", timeString);
+		redirectAttributes.addFlashAttribute("ticker", ticker);
+		redirectAttributes.addFlashAttribute("shares", shares);
+		return "redirect:/stocksConfirmation";
+	}
+	
+	@RequestMapping(path="/stocksConfirmation", method = RequestMethod.GET)
+	public String stockConfirmation() {
+		return "stocks/stocksConfirmationPage";
+	}
+	
 	@RequestMapping(path = { "/stockPurchase" }, method = RequestMethod.GET)
 	public String buyStockForm() {
 		return "stocks/stocksPurchasePage";

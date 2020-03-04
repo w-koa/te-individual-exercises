@@ -8,7 +8,7 @@
 <h3>Personal Information</h3>
 
 <c:url var='personalInfoInputUrl' value='/checkingApplication/personalInformationInput' />
-<form>
+<form action = "${personalInfoInputUrl}" method = "POST">
 
 	<div class="formInputGroup">
 		<label for="firstName">First Name:</label> 
