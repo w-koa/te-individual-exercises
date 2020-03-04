@@ -46,6 +46,31 @@ public class CheckingApplicationController {
 		return "checkingApplication/addressInput";
 	}
 	
+	@RequestMapping(path="/addressInput", method = RequestMethod.POST)
+	public String processAddressInput(@RequestParam String streetAddress, @RequestParam String apartmentNumber,
+			@RequestParam String city, @RequestParam String state, @RequestParam String zipCode, 
+			HttpSession session) {
+		
+		CheckingAccountApplication application = (CheckingAccountApplication) session.getAttribute("customerApplication");
+		application.setAddressStreet(streetAddress);
+		application.setAddressApartment(apartmentNumber);
+		application.setAddressCity(city);
+		application.setAddressState(state);
+		application.setAddressZip(zipCode);
+		
+		session.setAttribute("customerApplication", application);
+		
+		
+		return "redirect:/checkingApplication/summary";
+	}
+	
+	@RequestMapping(path="/checkingApplication/summary", method = RequestMethod.GET)
+	public String displayApplicationSummary() {
+		
+		return "checkingApplication/summary";
+	}
+	
+	
 	@RequestMapping(path = "/thankYou", method = RequestMethod.GET)
 	public String displayThankYou() {
 		return "checkingApplication/thankYou";

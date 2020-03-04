@@ -7,7 +7,7 @@
 <h2>New Checking Account Application</h2>
 <h3>Address</h3>
 <c:url var='addressInputUrl' value='/checkingApplication/addressInput' />
-<form>
+<form action ="${addressInputUrl}" method="POST">
 	<div class="formInputGroup">
 		<label for="streetAddress">Street Address:</label> 
 		<input type="text" name="streetAddress" id="streetAddress" />

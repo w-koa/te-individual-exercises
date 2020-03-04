@@ -22,3 +22,10 @@ form > * {
 form > label {
 	font-weight: bold;
 }
+
+form div {
+	display: contents;
+}
+form div label {
+	font-weight: bold;
+}
