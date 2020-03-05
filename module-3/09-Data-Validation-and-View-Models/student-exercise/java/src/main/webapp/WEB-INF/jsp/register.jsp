@@ -16,43 +16,43 @@
 			modelAttribute="register">
 			<div>
 				<label for="firstName">First Name</label>
-				<form:input path="firstName" />
+				<form:input path="firstName" placeholder="enter first name" />
 				<form:errors path="firstName" cssClass="error" />
 			</div>
 			<div>
 				<label for="lastName">Last Name</label>
-				<form:input path="lastName" />
+				<form:input path="lastName" placeholder="enter last name" />
 				<form:errors path="lastName" cssClass="error" />
 			</div>
 			<div>
 				<label for="email">Email Address</label>
-				<form:input path="email" />
+				<form:input path="email" placeholder="enter email" id="email"/>
 				<form:errors path="email" cssClass="error" />
 			</div>
 			<div>
 				<label for="confirmEmail">Confirm Email Address</label>
-				<form:input path="confirmEmail" />
+				<form:input path="confirmEmail" placeholder="confirm email" id="confirmEmail"/>
 				<form:errors path="confirmEmail" cssClass="error" />
 			</div>
 			<div>
 				<label for="password">Password</label>
-				<form:input path="password" />
+				<form:input path="password" placeholder="enter password" id="password"/>
 				<form:errors path="password" cssClass="error" />
 			</div>
 			<div>
 				<label for="confirmPassword">Confirm Password</label>
-				<form:input path="confirmPassword" />
+				<form:input path="confirmPassword" placeholder="confirm password" id="confirmPassword"/>
 				<form:errors path="confirmPassword" cssClass="error" />
 			</div>
 			<div>
 				<label for="birthday">Birthday</label>
-				<form:input path="birthday" />
+				<form:input path="birthday" placeholder="enter birthday"/>
 				<form:errors path="birthday" cssClass="error" />
 			</div>
 			<div>
 				<label for="tickets">Number of Tickets</label>
-				<form:input path="numberOfTickets"/>
-				<form:errors path="birthday" cssClass = "error"/>
+				<form:input path="numberOfTickets" placeholder="enter number of tickets"/>
+				<form:errors path="numberOfTickets" cssClass="error" />
 			</div>
 			<div>
 				<input type="submit" value="Sign Me Up!" />

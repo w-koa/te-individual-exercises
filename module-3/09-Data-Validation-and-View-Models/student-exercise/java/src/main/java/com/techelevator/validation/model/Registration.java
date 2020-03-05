@@ -1,22 +1,26 @@
 package com.techelevator.validation.model;
 
-import java.time.LocalDate;
+import java.util.Date;
 
+import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.format.annotation.DateTimeFormat;
 
 public class Registration {
 
 	@NotBlank(message = "*")
-	@Max(value = 20, message = "Must be 20 characters or less")
+	@Size(max = 20, message = "Must be 20 characters or less")
 	private String firstName;
 	
 	@NotBlank(message = "*")
-	@Max(value = 20, message = "Must be 20 characters or less")
+	@Size(max = 20, message = "Must be 20 characters or less")
 	private String lastName;
 	
 	@NotBlank(message = "*")
@@ -24,23 +28,39 @@ public class Registration {
 	private String email;
 	
 	@NotBlank(message = "*")
+	@Email(message = "Invalid email address")
 	private String confirmEmail;
 	
 	@NotBlank(message = "*")
-	@Min(value = 8, message = "Password must be 8 or more characters")
+	@Size(min = 8, message = "Password must be 8 or more characters")
 	private String password;
 	
 	@NotBlank(message = "*")
+	@Size(min = 8, message = "Password must be 8 or more characters")
 	private String confirmPassword;
 	
-	@NotBlank(message = "*")
-	@Pattern(regexp= "\\dd/\\MM\\/yyyy", message = "Value is not valid for Birthday")
-	private LocalDate birthDate;
+	@NotNull(message = "*")
+	@Past(message = "Must be a past date")
+	@DateTimeFormat(pattern="dd/MM/yyyy")
+	private Date birthday;
 	
-	@NotBlank(message = "*")
+	@NotNull(message = "*")
 	@Min(value = 1, message = "Must be between 1 - 10")
 	@Max(value = 10, message = "Must be between 1 - 10")
-	private int numberOfTickets;
+	private Integer numberOfTickets;
+	
+	@AssertTrue(message = "passwords must match")
+	private Boolean passwordIsMatching;	
+	
+	public Boolean getIsMatching(String original, String retyped) {
+		Boolean isMatching = (original == retyped);
+		return isMatching;
+	}
+	
+	@AssertTrue(message = "emails must match")
+	private Boolean emailIsMatching;
+	
+	
 	/*
 	 * First Name Required, Max Length (20) 
 	 * Last Name Required, Max Length (20)
@@ -89,17 +109,29 @@ public class Registration {
 	public void setConfirmPassword(String confirmPassword) {
 		this.confirmPassword = confirmPassword;
 	}
-	public LocalDate getBirthDate() {
-		return birthDate;
-	}
-	public void setBirthDate(LocalDate birthDate) {
-		this.birthDate = birthDate;
-	}
-	public int getNumberOfTickets() {
+	public Integer getNumberOfTickets() {
 		return numberOfTickets;
 	}
-	public void setNumberOfTickets(int numberOfTickets) {
+	public void setNumberOfTickets(Integer numberOfTickets) {
 		this.numberOfTickets = numberOfTickets;
+	}
+	public Date getBirthday() {
+		return birthday;
+	}
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
+	}
+	public Boolean getPasswordIsMatching() {
+		return passwordIsMatching;
+	}
+	public void setPasswordIsMatching(Boolean passwordIsMatching) {
+		this.passwordIsMatching = getIsMatching(password, confirmPassword);
+	}
+	public Boolean getEmailIsMatching() {
+		return emailIsMatching;
+	}
+	public void setEmailIsMatching(Boolean emailIsMatching) {
+		this.emailIsMatching = getIsMatching(email, confirmEmail);
 	}
 
 }

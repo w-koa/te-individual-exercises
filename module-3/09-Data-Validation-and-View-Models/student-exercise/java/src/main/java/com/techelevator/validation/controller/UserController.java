@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.techelevator.validation.model.Login;
+import com.techelevator.validation.model.Registration;
 
 @Controller
 public class UserController {
@@ -26,7 +27,11 @@ public class UserController {
 	// Return the empty registration view
 	
 	@RequestMapping(path = "/register", method = RequestMethod.GET)
-	public String getRegisterPage() {
+	public String getRegisterPage(ModelMap modelHolder) {
+		
+		if (!modelHolder.containsAttribute("register")) {
+			modelHolder.put("register", new Registration());
+		}
 		return "register";
 	}
 
@@ -35,6 +40,23 @@ public class UserController {
 	// the
 	// registration view (if validation fails)
 
+	@RequestMapping(path="/register", method=RequestMethod.POST)
+	public String processRegistration(@Valid @ModelAttribute Registration register,
+			BindingResult result, RedirectAttributes flash) {
+		
+		flash.addFlashAttribute("register", register);
+		if (result.hasErrors()) {
+			flash.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "register", result);
+			return "redirect:/register";
+		}
+		
+		return "redirect:/registrationSuccess";
+	}
+	
+	@RequestMapping(path="/registrationSuccess", method = RequestMethod.GET)
+	public String registrationSuccess() {
+		return "registrationSuccess";
+	}
 	// GET: /login
 	// Return the empty login view
 	
@@ -64,8 +86,6 @@ public class UserController {
 		
 		return "redirect:/loginSuccess";
 	}
-	
-	
 	
 	// GET: /confirmation
 	// Return the confirmation view

@@ -15,9 +15,15 @@
 		<form:form action="${formAction}" method="POST" modelAttribute="login">
 			<div>
 				<label for="email">Email</label>
-				<form:input path="email" />
+				<form:input path="email" placeholder="enter email" />
 				<form:errors path="email" cssClass="error" />
 			</div>
+			<div>
+				<label for="password">Password</label>
+				<form:input path="password" placeholder="enter password" />
+				<form:errors path="password" cssClass="error" />
+			</div>
+			<input type="submit" value="Log In" />
 		</form:form>
 
 
