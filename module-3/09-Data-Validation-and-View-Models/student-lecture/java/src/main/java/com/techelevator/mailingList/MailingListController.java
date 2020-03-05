@@ -15,5 +15,31 @@ import com.techelevator.mailingList.model.MailingListSignUp;
 @Controller
 public class MailingListController {
 
+	@RequestMapping(path="/", method = RequestMethod.GET)
+	public String showMailingListForm(ModelMap modelHolder) {
+		
+		if (!modelHolder.containsAttribute("signUp")) {
+			modelHolder.put("signUp", new MailingListSignUp());
+		}
+		
+		return "signUp";
+	}
 	
+	@RequestMapping(path = "/signUp", method=RequestMethod.POST)
+	public String inputMailingListForm(@Valid @ModelAttribute MailingListSignUp signUp,
+			BindingResult result, RedirectAttributes flash) {
+		
+		flash.addFlashAttribute("signUp", signUp);
+		if (result.hasErrors()) {
+			flash.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "signUp", result);
+			return "redirect:/";
+		}
+		
+		return "redirect:/thanks";
+	}
+	
+	@RequestMapping(path = "/thanks", method=RequestMethod.GET)
+	public String showThanks() {
+		return "thanks";
+	}
 }
