@@ -43,7 +43,6 @@ public class UserController {
 	@RequestMapping(path="/register", method=RequestMethod.POST)
 	public String processRegistration(@Valid @ModelAttribute Registration register,
 			BindingResult result, RedirectAttributes flash) {
-		
 		flash.addFlashAttribute("register", register);
 		if (result.hasErrors()) {
 			flash.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "register", result);

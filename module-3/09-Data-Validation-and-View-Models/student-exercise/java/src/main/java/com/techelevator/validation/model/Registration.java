@@ -25,19 +25,19 @@ public class Registration {
 	
 	@NotBlank(message = "*")
 	@Email(message = "Invalid email address")
-	private String email;
+	private String email = "";
 	
 	@NotBlank(message = "*")
 	@Email(message = "Invalid email address")
-	private String confirmEmail;
+	private String confirmEmail = "";
 	
 	@NotBlank(message = "*")
 	@Size(min = 8, message = "Password must be 8 or more characters")
-	private String password;
+	private String password = "";
 	
 	@NotBlank(message = "*")
 	@Size(min = 8, message = "Password must be 8 or more characters")
-	private String confirmPassword;
+	private String confirmPassword = "";
 	
 	@NotNull(message = "*")
 	@Past(message = "Must be a past date")
@@ -49,16 +49,17 @@ public class Registration {
 	@Max(value = 10, message = "Must be between 1 - 10")
 	private Integer numberOfTickets;
 	
-	@AssertTrue(message = "passwords must match")
-	private Boolean passwordIsMatching;	
-	
-	public Boolean getIsMatching(String original, String retyped) {
-		Boolean isMatching = (original == retyped);
+	@AssertTrue(message = "Passwords must match")
+	public boolean isPasswordMatching() {
+		boolean isMatching = (this.password.equals(this.confirmPassword));
 		return isMatching;
 	}
 	
-	@AssertTrue(message = "emails must match")
-	private Boolean emailIsMatching;
+	@AssertTrue(message = "Emails must match")
+	public boolean isEmailMatching() {
+		boolean isMatching = (this.email.equals(this.confirmEmail));
+		return isMatching;
+	}
 	
 	
 	/*
@@ -121,17 +122,6 @@ public class Registration {
 	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
 	}
-	public Boolean getPasswordIsMatching() {
-		return passwordIsMatching;
-	}
-	public void setPasswordIsMatching(Boolean passwordIsMatching) {
-		this.passwordIsMatching = getIsMatching(password, confirmPassword);
-	}
-	public Boolean getEmailIsMatching() {
-		return emailIsMatching;
-	}
-	public void setEmailIsMatching(Boolean emailIsMatching) {
-		this.emailIsMatching = getIsMatching(email, confirmEmail);
-	}
+	
 
 }

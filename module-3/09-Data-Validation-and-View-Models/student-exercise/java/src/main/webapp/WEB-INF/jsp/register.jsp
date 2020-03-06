@@ -33,6 +33,7 @@
 				<label for="confirmEmail">Confirm Email Address</label>
 				<form:input path="confirmEmail" placeholder="confirm email" id="confirmEmail"/>
 				<form:errors path="confirmEmail" cssClass="error" />
+				<form:errors path="emailMatching" cssClass="error"/>
 			</div>
 			<div>
 				<label for="password">Password</label>
@@ -43,15 +44,16 @@
 				<label for="confirmPassword">Confirm Password</label>
 				<form:input path="confirmPassword" placeholder="confirm password" id="confirmPassword"/>
 				<form:errors path="confirmPassword" cssClass="error" />
+				<form:errors path="passwordMatching" cssClass="error"/>
 			</div>
 			<div>
 				<label for="birthday">Birthday</label>
-				<form:input path="birthday" placeholder="enter birthday"/>
+				<form:input path="birthday" placeholder="enter birthday mm/dd/yyyy"/>
 				<form:errors path="birthday" cssClass="error" />
 			</div>
 			<div>
 				<label for="tickets">Number of Tickets</label>
-				<form:input path="numberOfTickets" placeholder="enter number of tickets"/>
+				<form:input path="numberOfTickets" placeholder="enter number of tickets 1-10"/>
 				<form:errors path="numberOfTickets" cssClass="error" />
 			</div>
 			<div>
