@@ -18,6 +18,17 @@ public class SiteController {
     private AuthProvider auth;
 
     // Add a mapping to the private page.
+    
+    @RequestMapping(path = "/private", method = RequestMethod.GET)
+    public String privatePage() throws UnauthorizedException {
+    	String[] allowedRoles = {"user", "admin"};
+    	if (auth.userHasRole(allowedRoles)) {
+    		return "private";
+    	} else {
+    		throw new UnauthorizedException();
+    	}
+    	
+    }
 
     @RequestMapping(path = "/about", method = RequestMethod.GET)
     public String aboutPage() throws UnauthorizedException {

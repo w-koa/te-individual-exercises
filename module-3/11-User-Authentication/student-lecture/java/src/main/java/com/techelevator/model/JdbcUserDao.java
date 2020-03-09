@@ -54,9 +54,20 @@ public class JdbcUserDao implements UserDao {
     @Override
     public User saveUser(String userName, String password, String role) {
 
+    	SaltedPair saltedPair = this.hashData(password);
+    	
+    	String sql = "INSERT INTO users (username, password, salt, role) VALUES (?, ?, ?, ?) RETURNING id";
+    	
+    	long newId = jdbcTemplate.queryForObject(sql, Long.class, userName, saltedPair.getHashedPassword(), saltedPair.getHash(), role);
+    	
+    	User newUser = new User();
+    	newUser.setId(newId);
+    	newUser.setUsername(userName);
+    	newUser.setRole(role);
+    	
     	// add SQL to save user.
 
-        return null;
+        return newUser;
     }
 
     @Override
@@ -79,7 +90,19 @@ public class JdbcUserDao implements UserDao {
     public User getValidUserWithPassword(String userName, String password) {
         String sqlSearchForUser = "SELECT * FROM users WHERE UPPER(username) = ?";
 
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSearchForUser, userName.toUpperCase());
         // write code to match the passwords.
+        
+        while (results.next()) {
+        	
+        	String storedSalt = results.getString("salt");
+        	String storedPass = results.getString("password");
+        	String hashedPass = passwordHasher.computeHash(password, Base64.decode(storedSalt));
+
+        	if (storedPass.equals(hashedPass)) {
+        		return mapResultToUser(results);
+        	}
+        }
         
         return null;
     }
@@ -97,6 +120,7 @@ public class JdbcUserDao implements UserDao {
         while (results.next()) {
             User user = mapResultToUser(results);
             users.add(user);
+            
         }
 
         return users;

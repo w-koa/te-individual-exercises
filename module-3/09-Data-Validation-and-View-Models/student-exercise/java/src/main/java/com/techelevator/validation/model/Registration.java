@@ -25,19 +25,32 @@ public class Registration {
 	
 	@NotBlank(message = "*")
 	@Email(message = "Invalid email address")
-	private String email = "";
+	private String email;
+	private String confirmEmail;
+//	private boolean emailMatching;	This appears to work without needing to exist
 	
-	@NotBlank(message = "*")
-	@Email(message = "Invalid email address")
-	private String confirmEmail = "";
+	@AssertTrue(message = "Emails must match")
+    public boolean isEmailMatching() {
+        if (email != null) {
+            return email.equals(confirmEmail);
+        }
+        return true;
+    }
 	
 	@NotBlank(message = "*")
 	@Size(min = 8, message = "Password must be 8 or more characters")
-	private String password = "";
+	private String password;
+	private String confirmPassword;
+//	private boolean passwordMatching;
 	
-	@NotBlank(message = "*")
-	@Size(min = 8, message = "Password must be 8 or more characters")
-	private String confirmPassword = "";
+	@AssertTrue(message = "Passwords must match")
+    public boolean isPasswordMatching() {
+        if (password != null) {
+            return password.equals(confirmPassword);
+        }
+        return true;
+    }
+	
 	
 	@NotNull(message = "*")
 	@Past(message = "Must be a past date")
@@ -49,20 +62,23 @@ public class Registration {
 	@Max(value = 10, message = "Must be between 1 - 10")
 	private Integer numberOfTickets;
 	
-	@AssertTrue(message = "Passwords must match")
-	public boolean isPasswordMatching() {
-		boolean isMatching = (this.password.equals(this.confirmPassword));
-		return isMatching;
-	}
 	
-	@AssertTrue(message = "Emails must match")
-	public boolean isEmailMatching() {
-		boolean isMatching = (this.email.equals(this.confirmEmail));
-		return isMatching;
-	}
+	// These Asserts did work, but needed to instantiate the attributes to empty strings
+	// otherwise it would throw Null Pointer. 
+	
+//	@AssertTrue(message = "Passwords must match")
+//	public boolean isPasswordMatching() {
+//		boolean isMatching = (this.password.equals(this.confirmPassword));
+//		return isMatching;
+//	}
+//	@AssertTrue(message = "Emails must match")
+//	public boolean isEmailMatching() {
+//		boolean isMatching = (this.email.equals(this.confirmEmail));
+//		return isMatching;
+//	}
 	
 	
-	/*
+	/* For reference
 	 * First Name Required, Max Length (20) 
 	 * Last Name Required, Max Length (20)
 	 * Email Required, Valid Email Address 
