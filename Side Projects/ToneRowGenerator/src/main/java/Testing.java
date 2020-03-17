@@ -209,7 +209,7 @@ public class Testing {
 		
 		Map<String, Integer> primeZeroMap = new LinkedHashMap<>();
 		for (String key : newTest.keySet()) {
-			primeZeroMap.put(key, sortedMap.get(key));
+			primeZeroMap.put(key, newTest.get(key));
 		}
 
 		List<Integer> primeZero = new ArrayList<>();
@@ -262,6 +262,7 @@ public class Testing {
 		}
 		System.out.println("this is a column: " + inversionZero.toString() + " size: " + inversionZero.size());
 		System.out.println("prime one" + primeOne);
+		System.out.println("this is prime zero map" + primeZeroMap);
 		
 //		System.out.println(allPrimes.get(1).toString());
 

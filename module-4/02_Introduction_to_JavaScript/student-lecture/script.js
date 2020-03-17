@@ -9,6 +9,18 @@
  * They don't have a return type and the naming convention is camel-case.
  */
 function variables() {
+  console.log('JavaScript!');
+  let myStrVar = "a string variable";
+  let myNumVar = 3.14;
+  let myNumVar2 = 9999;
+  let myBoolVar = false;
+
+  let myArray = [3, 4, 23, 12];
+
+  let age = 20;
+  console.log("age is: " + age);
+  console.log(`age is: ${age} yep`);
+ 
 
 }
 
@@ -20,6 +32,8 @@ function variables() {
  */
 function printParameters(param1, param2) {
 
+  console.log('param 1 is' + param1);
+  console.log('param 2 is ' + param2);
 }
 
 /**
@@ -31,6 +45,8 @@ function printParameters(param1, param2) {
  */
 function equality(x, y) {
 
+  console.log(" x == y: "  + (x==y));
+  console.log('x === y ' + (x===y));
 }
 
 /**
@@ -41,6 +57,11 @@ function equality(x, y) {
  */
 function falsy(x) {
 
+  if(x) {
+    console.log(x +' is truthy');
+  } else {
+    console.log(x + ' is falsy');
+  }
 }
 
 /**
@@ -51,6 +72,18 @@ function falsy(x) {
 */
 function objects() {
 
+  const person = {
+    firstName: "Bob",
+    lastName: "Loblaw",
+    age: 40,
+    employees: ["Mister Man", "Duuuude", "Broooo"],
+    toString: function() {
+      return this.firstName + " " + this.lastName + " " + this.employees;
+    }
+  }
+  console.log("first name: " + person.firstName);
+  console.log("employees " + person.employees);
+  console.log(person.toString());
 }
 
 /*
@@ -107,4 +140,9 @@ function stringFunctions(value) {
         - trim()
         - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String
     */
+
+    let someString = 'Herro wurrld';
+    console.log("length of the string is " + someString.length);
+    console.log("substring " + someString.substr(3,5));
+    console.log("za " + someString.substr(6));
 }
