@@ -11,6 +11,28 @@
 		iqTest("") → 0 // there are no numbers in the given set
         iqTest("2 2 4 6") → 0 // all numbers are even, therefore there is no position of an odd number
 */
+    function iqTest(numbers) {
+        let array = numbers.split(" ");
+        let evenNums = [];
+        let oddNums = [];
+        for (i = 0; i < array.length; i++) {
+            if (array[i] % 2 == 0) {
+                evenNums.push(i);
+            } else
+            oddNums.push(i);
+        }
+        if (numbers.length == 0) {
+            return 0;
+        }
+        if (evenNums.length == 1) {
+            return evenNums[0] + 1;
+        } else
+        if (oddNums.length == 1) {
+            return oddNums[0] + 1;
+        } else
+         
+        return 0;
+    }
 
 /*
 2. **titleCase** Write a function that will convert a string into title case, given an optional 
@@ -28,3 +50,29 @@ argument is unused.
 		titleCase('THE WIND IN THE WILLOWS', 'The In') // should return: 'The Wind in the Willows'
         titleCase('the quick brown fox') // should return: 'The Quick Brown Fox'
 */
+    function titleCase(title) {
+        let titleArray = title.split(" ");
+        let exceptions = ["the", "in", "a", "an", "of", "and"];
+
+        for (i = 0; i < titleArray.length; i++) {
+            console.log("this is before " + titleArray[i]);
+            titleArray[i] = titleArray[i].toLowerCase();
+            temp = titleArray[i].split("");
+            temp[0] = temp[0].toUpperCase();
+            temp = temp.join("");
+            titleArray[i] = temp;
+            
+            if (i != 0) {
+                for (j = 0; j < exceptions.length; j++) {
+                    if (titleArray[i].toLowerCase() == exceptions[j].toLowerCase()) {
+                    titleArray[i] = titleArray[i].toLowerCase();
+                    }
+                }
+            } 
+            console.log("this is after doing stuff " + titleArray[i]);
+        }
+        console.log(titleArray);
+        let titleFied = titleArray.join(" ");
+        return titleFied;
+        
+    }
