@@ -55,7 +55,6 @@ argument is unused.
         let exceptions = ["the", "in", "a", "an", "of", "and"];
 
         for (i = 0; i < titleArray.length; i++) {
-            console.log("this is before " + titleArray[i]);
             titleArray[i] = titleArray[i].toLowerCase();
             temp = titleArray[i].split("");
             temp[0] = temp[0].toUpperCase();
@@ -69,9 +68,7 @@ argument is unused.
                     }
                 }
             } 
-            console.log("this is after doing stuff " + titleArray[i]);
         }
-        console.log(titleArray);
         let titleFied = titleArray.join(" ");
         return titleFied;
         
