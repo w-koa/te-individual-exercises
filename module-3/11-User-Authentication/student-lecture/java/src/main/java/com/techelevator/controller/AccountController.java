@@ -54,6 +54,7 @@ public class AccountController {
 
     @RequestMapping(path = "/register", method = RequestMethod.GET)
     public String register(ModelMap modelHolder) {
+    	
         if (!modelHolder.containsAttribute("user")) {
             modelHolder.put("user", new User());
         }

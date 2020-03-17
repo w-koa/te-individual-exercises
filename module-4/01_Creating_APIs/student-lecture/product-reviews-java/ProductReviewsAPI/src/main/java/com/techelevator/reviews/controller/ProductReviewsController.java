@@ -23,4 +23,50 @@ import com.techelevator.reviews.model.ProductReview;
 @RequestMapping("/api/reviews")
 public class ProductReviewsController {
 
+	private ProductReviewDao reviewDao;
+	
+	public ProductReviewsController(ProductReviewDao reviewDao) {
+		this.reviewDao = reviewDao;
+		
+	}
+	
+	@GetMapping()
+	public List<ProductReview> list() {
+		return reviewDao.list();
+	}
+	
+	@GetMapping("/(id)")
+	public ProductReview read(@PathVariable int id) {
+		ProductReview productReview = reviewDao.read(id);
+		return productReview;
+	}
+	
+	@PostMapping("/save")
+	@ResponseStatus(HttpStatus.CREATED)
+	public ProductReview create(@RequestBody ProductReview productReview) {
+		return reviewDao.create(productReview);
+	}
+	
+	@PutMapping("/(id)")
+	public ProductReview update(@RequestBody ProductReview productReview, @PathVariable int id) {
+		
+		ProductReview requestedReview = reviewDao.read(id);
+		if (requestedReview != null) {
+			return reviewDao.update(productReview);
+		} else {
+			throw new ProductReviewNotFoundException(id, "id not found");
+		}
+	}
+	
+	@DeleteMapping("/{id}")
+	public void delete(@PathVariable int id) {
+		
+		ProductReview requestedReview = reviewDao.read(id);
+		if (requestedReview != null) {
+			reviewDao.delete(id);
+		} else {
+			throw new ProductReviewNotFoundException(id, "id not found");
+		}
+	}
+	
 }

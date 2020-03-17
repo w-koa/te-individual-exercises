@@ -1,17 +1,22 @@
 package com.techelevator.controllers;
 
-import com.techelevator.daos.PuppyDao;
-import com.techelevator.models.Puppy;
-
-import java.io.IOException;
-import java.net.URL;
-import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.techelevator.daos.PuppyDao;
+import com.techelevator.exceptions.PuppyNotFoundException;
+import com.techelevator.models.Puppy;
 
 /**
  * Puppies API Controller
@@ -27,10 +32,47 @@ import org.springframework.ui.ModelMap;
  * DELETE - /api/removePuppy/# - Delete the Puppy from the database whose id matches the # specified 
  * 
  */
-
+@RestController
+@CrossOrigin
+@RequestMapping("/api/puppies")
 public class PuppiesController {
 	
 	@Autowired
 	PuppyDao thePuppies;
+	
+	@GetMapping
+	public List<Puppy> getPuppies() {
+		return thePuppies.getPuppies();
+	}
+	
+	@GetMapping("/{id}")
+	public Puppy getPuppy(@PathVariable int id) throws PuppyNotFoundException {
+		Puppy puppy = thePuppies.getPuppy(id);
+		if (thePuppies.getPuppy(id) != null) {
+			return puppy;
+		} else {
+			throw new PuppyNotFoundException("oops, puppy not found!");
+		}
+		
+	}
+	
+	@PostMapping("/newPuppy")
+	@ResponseStatus(HttpStatus.CREATED)
+	public void savePuppy(@RequestBody Puppy puppyToSave) {
+		thePuppies.savePuppy(puppyToSave);
+	}
+	
+	
+	@DeleteMapping("/{id}")
+	public void removePuppy(@PathVariable int id) {
+		
+		Puppy puppyToRemove = thePuppies.getPuppy(id);
+		if (puppyToRemove != null) {
+			thePuppies.removePuppy(id);
+		} else {
+			throw new PuppyNotFoundException();
+		}
+		
+	}
 	
 }

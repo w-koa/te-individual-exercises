@@ -30,7 +30,7 @@ public class PuppyJdbcDao implements PuppyDao {
 
     @Override
     public Puppy getPuppy(int id) {
-        String sqlGetPuppy = "SELECT * FROM puppies WHERE id=?";
+        String sqlGetPuppy = "SELECT * FROM puppies WHERE id = ?";
         SqlRowSet result = template.queryForRowSet(sqlGetPuppy, id);
         if(result.next()) {
             return mapResultToPuppy(result);

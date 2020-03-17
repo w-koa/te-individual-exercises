@@ -202,24 +202,21 @@ public class Testing {
 		
 		System.out.println("new test: " + newTest);
 		sortedMap.clear();
+		// This abomination of a call properly gets the first value for proper pivot transpose.
+		// No need to put into order since it would just arrange by increasing rather than be a tone row.
 		pivotTranspose(newTest, newTest.entrySet().iterator().next().getValue());
-		sortAscending(newTest);
-		System.out.println("newtest sorted: " + sortedMap);
+		System.out.println(newTest);
 		
+		Map<String, Integer> primeZeroMap = new LinkedHashMap<>();
+		for (String key : newTest.keySet()) {
+			primeZeroMap.put(key, sortedMap.get(key));
+		}
+
 		List<Integer> primeZero = new ArrayList<>();
 		for (int i = 0; i < notesToShuffle.size(); i++) {
 			primeZero.add(testing.get(notesToShuffle.get(i)));
 		}
-		System.out.println(primeZero.toString());
-		sortedMap.clear();
-		Collections.shuffle(primeZero);
-//		pivotTranspose(testing, primeZero.get(0));
-//		sortAscending(testing);
-//		System.out.println("sorted map " + sortedMap);
-//		List<Integer> truePrimeZero = new ArrayList<>();
-//		for (Integer val : sortedMap.values()) {
-//			truePrimeZero.add(val);
-//		}
+
 		List<Integer> inversionZero = new ArrayList<>();
 		//  (IT IS PRINTED IN A ROW
 		// STILL)
