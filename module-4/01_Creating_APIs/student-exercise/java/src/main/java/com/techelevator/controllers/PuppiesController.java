@@ -40,12 +40,12 @@ public class PuppiesController {
 	@Autowired
 	PuppyDao thePuppies;
 	
-	@GetMapping
+	@GetMapping("/allPuppies")
 	public List<Puppy> getPuppies() {
 		return thePuppies.getPuppies();
 	}
 	
-	@GetMapping("/{id}")
+	@GetMapping("/puppy/{id}")
 	public Puppy getPuppy(@PathVariable int id) throws PuppyNotFoundException {
 		Puppy puppy = thePuppies.getPuppy(id);
 		if (thePuppies.getPuppy(id) != null) {
@@ -63,7 +63,7 @@ public class PuppiesController {
 	}
 	
 	
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/removePuppy/{id}")
 	public void removePuppy(@PathVariable int id) {
 		
 		Puppy puppyToRemove = thePuppies.getPuppy(id);
