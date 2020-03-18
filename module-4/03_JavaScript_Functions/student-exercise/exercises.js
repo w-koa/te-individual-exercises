@@ -105,6 +105,11 @@ function addAll() {
  * an array and prepends 'Happy ' to the beginning of all the
  * words and returns them as a new array. Use the `map` function.
  */
+/**
+ * makeHappy adds "Happy " to each string in the array.
+ * @param {string[]} stringArray string array of words to add "Happy " to
+ * @returns {string[]} happyStrings, the array of strings with "Happy " + the original string.
+ */
 function makeHappy(stringArray) {
   
   let happyStrings = stringArray.map((word) => "Happy " + word);
@@ -148,9 +153,10 @@ function getFullAddressesOfProperties(addresses) {
  * It should work for strings and numbers.
  */
 /**
- * 
+ * findLargest goes through an array of string or numbers and returns the number or string
+ * of the largest value.
  * @param {string or number} array a string or number array to be evaluated.
- * @returns {number} largest, largest number found.
+ * @returns {number} largest, largest number or string (begins with closest to z) found.
  */
 function findLargest(array) {
   let largest = "";
@@ -179,8 +185,8 @@ function findLargest(array) {
  * Read the tests to verify you have the correct behavior.
  */
 /**
- * 
- * @param {number[]} array array of arrays to be added together
+ * getSumOfSubArrayValues returns the total sum of an array of arrays.
+ * @param {number[]} array array of arrays to be summed
  * @returns {number} final, summed total of all subarrays. Returns 0 if there are no parameters
  * or if the array is empty.
  */
