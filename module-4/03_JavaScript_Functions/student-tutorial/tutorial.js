@@ -5,6 +5,9 @@
  *
  * @returns {number} 1
  */
+function turnOn() {
+  return true;
+}
 
 /**
  * Create a function called returnsName.
@@ -13,6 +16,9 @@
  *
  * @returns {string} your name
  */
+function returnsName() {
+  return "MEOW MEOW";
+}
 
 /**
  * Create a function called returnGivenParameter that takes a
@@ -21,6 +27,9 @@
  * @param {any} thing any value
  * @returns {any} the parameter that we were given
  */
+function returnGivenParameter(thing) {
+  return thing;
+}
 
 /**
  * Now create a function called takeOptionalParameter
@@ -31,6 +40,9 @@
  * @param {any} [thing=0] any value
  * @returns {any} the parameter given, or 0 if none is given
  */
+function takeOptionalParameter(thing = 0) {
+  return thing;
+}
 
 /**
  * Write an anonymous function in the filter that will
@@ -46,6 +58,9 @@
 function filterArrayToOnlySingleDigitNumbers(arrayToFilter) {
   return arrayToFilter.filter(
     // WRITE CODE HERE
+    (element) => {
+      return element < 10 && element > -10;
+    }
   );
 }
 
@@ -62,6 +77,7 @@ function filterArrayToOnlySingleDigitNumbers(arrayToFilter) {
 function mapArrayToDoubleAllNumbers(arrayToDouble) {
   return arrayToDouble.map(
     // WRITE CODE HERE
+    (element) => {return element * 2}
   );
 }
 
@@ -79,6 +95,9 @@ function mapArrayToDoubleAllNumbers(arrayToDouble) {
 function reduceArrayToFindProduct(arrayToMultiply) {
   return arrayToMultiply.reduce(
     // WRITE CODE HERE
+    (current, element) => {
+      return current * element;
+    }
   );
 }
 
@@ -92,6 +111,9 @@ function reduceArrayToFindProduct(arrayToMultiply) {
 function filterStringArrayForSon(arrayToFilter) {
   return arrayToFilter.filter(
     // WRITE CODE HERE
+    (string) => {
+      return string.includes("son");
+    }
   );
 }
 
@@ -105,6 +127,9 @@ function filterStringArrayForSon(arrayToFilter) {
 function makeNamesAllCaps(arrayToCapitalize) {
   return arrayToCapitalize.map(
     // WRITE CODE HERE
+    (string) => {
+      return string.toUpperCase();
+    }
   );
 }
 
@@ -118,7 +143,14 @@ function makeNamesAllCaps(arrayToCapitalize) {
  *
  * Also be sure to document the return type and what it's returning.
  */
-
+/**
+ * 
+ * @param {number} temperature temperature to be converted
+ * @param {string} temperatureUnit temperature type to convert it to
+ * @param {boolean} includeUnit include the type in result or not
+ * Converts the temperature based on tempUnit, returns the converted temperature and unit
+ * if includeUnit is true.
+ */
 function convertTemperature(temperature, temperatureUnit, includeUnit = false) {
   let convertedTemp = 0;
   let convertedUnit = 'F';
