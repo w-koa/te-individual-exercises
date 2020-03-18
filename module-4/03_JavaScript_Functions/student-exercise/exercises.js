@@ -194,9 +194,9 @@ function findLargest(array) {
      newArray.push(element.reduce((subelement, subtotal) => {return subtotal + subelement}));
      
    });
-   console.log(newArray)
+   
   
    final = (newArray.reduce((sub, total) =>  sub + total));
-   console.log("final number: " + final);
+   
    return final;
  }
