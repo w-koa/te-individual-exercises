@@ -212,6 +212,7 @@ public class Testing {
 			primeZeroMap.put(key, newTest.get(key));
 		}
 
+		
 		List<Integer> primeZero = new ArrayList<>();
 		for (int i = 0; i < notesToShuffle.size(); i++) {
 			primeZero.add(testing.get(notesToShuffle.get(i)));
