@@ -36,13 +36,20 @@ const reviews = [
  * Get our page page title by the id and the query the .name selector
  * once you have the element you can add the product name to the span.
  */
+function setPageTitle() {
+  const pageTitle = document.getElementById('main');
+  pageTitle.querySelector('.name').innerText = "Squirrely Review Book Review";
 
+}
 
 
 /**
  * Add our product description to the page.
  */
-
+function setProductDescription() {
+  const pageDescription = document.querySelector('.description');
+  pageDescription.innerText = description;
+}
 
 
 /**
@@ -50,7 +57,13 @@ const reviews = [
  * I will loop over the array of reviews and use some helper functions
  * to create the elements needed for our markup and add them to the DOM
  */
-
+function setReviews() {
+  const setReviews = document.querySelector('#main');
+  document.createElement('ul');
+  for (i = 0; i < reviews.length; i++) {
+    document.createElement('li').innerText = reviews[i];
+  }
+}
 
 
 /**
@@ -85,8 +98,8 @@ const reviews = [
 
 
 // set the product reviews page title
-
+setPageTitle();
 // set the product reviews page description
-
+setProductDescription();
 // display all of the product reviews on our page
 
