@@ -69,3 +69,7 @@ iframe {
 	width: 500px;
 	height: auto;
 }
+
+table th {
+	color: #eeefc9;
+}
