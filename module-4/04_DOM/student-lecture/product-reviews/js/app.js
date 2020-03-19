@@ -57,12 +57,30 @@ function setProductDescription() {
  * I will loop over the array of reviews and use some helper functions
  * to create the elements needed for our markup and add them to the DOM
  */
-function setReviews() {
-  const setReviews = document.querySelector('#main');
-  document.createElement('ul');
-  for (i = 0; i < reviews.length; i++) {
-    document.createElement('li').innerText = reviews[i];
-  }
+function displayReviews() {
+  
+  const main = document.getElementById("main");
+  // for (i = 0; i < reviews.length; i++) {
+  //   const container = document.createElement('div');
+  //   addReviewer(container, reviews[i].reviewer);
+  //   addRating(container, reviews[i].rating);
+  //   addTitle(container, reviews[i].title);
+  //   addText(container, reviews[i].review);
+  
+  //   main.appendChild(container);
+  // }
+
+
+  reviews.forEach( review => {
+    const container = document.createElement('div');
+    container.setAttribute('class', 'review');
+    addReviewer(container, review.reviewer);
+    addRating(container, review.rating);
+    addTitle(container, review.title);
+    addText(container, review.review);
+
+    main.appendChild(container);
+  })
 }
 
 
@@ -73,13 +91,28 @@ function setReviews() {
  * @param {HTMLElement} el: The element to append the reviewer to
  * @param {string} name The name of the reviewer
  */
-
+function addReviewer(el, name) {
+  const reviewer = document.createElement('h4');
+  reviewer.innerText = name;
+  el.appendChild(reviewer);
+}
 
 /**
  * I will add the rating div along with a star image for the number of ratings 1-5
  * @param {HTMLElement} parent
  * @param {Number} numberOfStars
  */
+function addRating(parent, numberOfStars) {
+  const rating = document.createElement('div');
+  rating.setAttribute('class', 'rating');
+  for (i = 0; i < numberOfStars; i++) {
+    const star = document.createElement('img');
+    star.setAttribute('class', 'ratingStar');
+    star.src = 'img/star.png';
+    rating.appendChild(star);
+  }
+  parent.appendChild(rating);
+}
 
 
 
@@ -88,6 +121,11 @@ function setReviews() {
  * @param {HTMLElement} parent
  * @param {string} title
  */
+function addTitle(parent, title) {
+  const h3 = document.createElement('h3');
+  h3.innerText = title;
+  parent.appendChild(h3);
+}
 
 
 /**
@@ -95,6 +133,11 @@ function setReviews() {
  * @param {HTMLElement} parent
  * @param {string} review
  */
+function addText(parent, review) {
+  const p = document.createElement('p');
+  p.innerText = review;
+  parent.appendChild(p);
+}
 
 
 // set the product reviews page title
@@ -102,4 +145,4 @@ setPageTitle();
 // set the product reviews page description
 setProductDescription();
 // display all of the product reviews on our page
-
+displayReviews();
