@@ -10,7 +10,9 @@
 <meta charset="ISO-8859-1">
 <title>About Zinogre</title>
 </head>
-
+<div>
+	<h1>About Zinogre</h1>
+</div>
 <div>
 	<c:url var="zinogrePic" value="/images/zinogre.jpg"/>
 	<img class="responsive" src="${zinogrePic}" alt="zinogrePic">
@@ -25,7 +27,13 @@
 
 
 </div>
+<div>
+	<h2>Zinogre's Weaknesses</h2>
+	<c:url var="weaknessPic" value="/images/zinogre_weakness.jpg"/>
+	<img id="weaknessPic" src="${weaknessPic}" alt="weaknesses">
 
+
+</div>
 
 	
 <c:import url="/WEB-INF/jsp/common/footer.jsp" />
