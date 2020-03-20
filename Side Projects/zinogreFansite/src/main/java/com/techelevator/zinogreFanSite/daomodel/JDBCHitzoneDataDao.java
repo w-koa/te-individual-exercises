@@ -15,10 +15,10 @@ public class JDBCHitzoneDataDao implements HitzoneDataDao {
 
 	private JdbcTemplate jdbcTemplate;
 	
-//	@Autowired
-//	public JDBCHitzoneDataDao(DataSource dataSource) {
-//		this.jdbcTemplate = new JdbcTemplate(dataSource);
-//	}
+	@Autowired
+	public JDBCHitzoneDataDao(DataSource dataSource) {
+		this.jdbcTemplate = new JdbcTemplate(dataSource);
+	}
 	
 	// READ
 	// Gets all the hitzone Data from zinogre_hitzones table

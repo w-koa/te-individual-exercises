@@ -14,8 +14,8 @@ import com.techelevator.zinogreFanSite.daomodel.JDBCHitzoneDataDao;
 @Controller 
 public class HomeController {
 
-//	@Autowired
-//	private JDBCHitzoneDataDao hitzoneDao;
+	@Autowired
+	private JDBCHitzoneDataDao hitzoneDao;
 	
 	
 	@RequestMapping(path = "/", method = RequestMethod.GET)
@@ -26,10 +26,10 @@ public class HomeController {
 	
 	@RequestMapping(path = "/about", method = RequestMethod.GET)
 	public String displayAbout(ModelMap map) {
-//		
-//		List<HitzoneData> hitzoneDataList = hitzoneDao.getAllHitzoneData();
-//		
-//		map.addAttribute("allHitzoneData", hitzoneDataList);
+		
+		List<HitzoneData> hitzoneDataList = hitzoneDao.getAllHitzoneData();
+		
+		map.addAttribute("allHitzoneData", hitzoneDataList);
 		
 		
 		

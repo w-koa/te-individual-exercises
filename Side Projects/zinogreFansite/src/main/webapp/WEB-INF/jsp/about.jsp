@@ -48,8 +48,7 @@
 				<th>Dragon</th>
 				<th>Stun</th>
 			</tr>
-			<%-- commented out temporarily
-			<c:forEach var="hitzoneData" items="${AllHitzoneData}">
+			<c:forEach var="hitzoneData" items="${allHitzoneData}">
 			<tr>
 				<td><c:out value="${hitzoneData.part}"/></td>
 				<td><c:out value="${hitzoneData.sever}"/></td>
@@ -65,8 +64,7 @@
 			</tr>
 			
 			</c:forEach>
-			 --%>
-			<p>Credit to Kiranico for data</p>
+			<p>Credit to Kiranico.com for data</p>
 		
 		
 		</table>
