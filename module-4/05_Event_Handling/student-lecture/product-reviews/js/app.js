@@ -60,9 +60,19 @@ function displayReview(review) {
 
 // LECTURE STARTS HERE ---------------------------------------------------------------
 
-setPageTitle();
-setPageDescription();
-displayReviews();
+document.addEventListener("DOMContentLoaded", () => {
+
+  setPageTitle();
+  setPageDescription();
+  displayReviews();
+
+
+  const toggleButton = document.getElementById('btnToggleForm');
+  toggleButton.addEventListener('click', showHideForm);
+  const saveButton = document.getElementById('btnSaveReview');
+  saveButton.addEventListener('click', (event) => {event.preventDefault(); saveReview(); });
+})
+
 
 /**
  * Take an event on the description and swap out the description for a text box.
@@ -83,6 +93,19 @@ displayReviews();
 /**
  * I will show / hide the add review form
  */
+function showHideForm() {
+  const btn = document.getElementById('btnToggleForm');
+  const form = document.querySelector('form');
+
+  if (form.classList.contains('d-none')) {
+    form.classList.remove('d-none');
+    btn.innerText = 'Hide Form';
+
+  } else {
+    form.classList.add('d-none');
+    btn.innerText = 'Add Review';
+  }
+}
 
 
 /**
@@ -93,3 +116,21 @@ displayReviews();
 /**
  * I will save the review that was added using the add review from
  */
+
+
+ function saveReview() {
+   const name = document.getElementById('name');
+   const title = document.getElementById('title');
+   const review = document.getElementById('review');
+   const rating = document.getElementById('rating');
+
+   const newReview = {
+     reviewer: name.value,
+     title: title.value,
+     review: review.value,
+     rating: rating.value
+   };
+
+   reviews.push(newReview);
+   displayReview(newReview);
+ }
