@@ -27,8 +27,8 @@ public class JDBCHitzoneDataDao implements HitzoneDataDao {
 
 		List<HitzoneData> hitzoneDataList = new ArrayList<>();
 		
-		String sqlGetHitzoneData = "SELECT (part, sever_dmg, blunt_dmg, ranged_dmg, "
-				+ "fire_dmg, water_dmg, thunder_dmg, ice_dmg, dragon_dmg, stun_dmg) "
+		String sqlGetHitzoneData = "SELECT id, part, sever_dmg, blunt_dmg, ranged_dmg, "
+				+ "fire_dmg, water_dmg, thunder_dmg, ice_dmg, dragon_dmg, stun_dmg "
 				+ "FROM zinogre_hitzones";
 		
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetHitzoneData);
@@ -43,24 +43,30 @@ public class JDBCHitzoneDataDao implements HitzoneDataDao {
 	// Don't need, just for practice
 	// UPDATE
 	@Override
-	public void updateHitzoneData() {
-		// TODO Auto-generated method stub
+	public void updateHitzonePartDataById(int id, String partName) {
 		
-
+		String sqlUpdateHitzoneData = "UPDATE zinogre_hitzones SET part = ? WHERE id = ?";
+		jdbcTemplate.update(sqlUpdateHitzoneData, partName, id);
 	}
 
 	// Don't need, just for practice
 	@Override
-	public void deleteHitzoneData() {
-		// TODO Auto-generated method stub
+	public void deleteHitzoneDataById(int id) {
 
+		String sqlDeleteHitzoneData = "DELETE FROM zinogre_hitzones WHERE id = ?";
+		jdbcTemplate.update(sqlDeleteHitzoneData, id);
 	}
 
 	// Don't need, just for practice
 	@Override
-	public void saveHitzoneData() {
-		// TODO Auto-generated method stub
-
+	public void saveHitzoneData(HitzoneData hitzoneData) {
+		
+		String sqlSaveHitzoneData = "INSERT INTO zinogre_hitzones (part, sever_dmg, "
+				+ "blunt_dmg, ranged_dmg, fire_dmg, water_dmg, thunder_dmg, ice_dmg, dragon_dmg, stun_dmg) "
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ? ";
+		jdbcTemplate.update(sqlSaveHitzoneData, hitzoneData.getPart(), hitzoneData.getSever(), hitzoneData.getBlunt(), 
+				hitzoneData.getRanged(), hitzoneData.getFire(), hitzoneData.getWater(), hitzoneData.getThunder(), 
+				hitzoneData.getIce(), hitzoneData.getDragon(), hitzoneData.getStun());
 	}
 	
 	// Helper Method to set hitzone data from RowSet
@@ -79,6 +85,17 @@ public class JDBCHitzoneDataDao implements HitzoneDataDao {
 		hitzoneData.setStun(row.getInt("stun_dmg"));
 		
 		return hitzoneData;
+	}
+	
+	// Helper Method to get next serial Id
+	private int getNextId() {
+		String sqlSelectNextId = "SELECT NEXTVAL('seq_surveyid')";
+		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlSelectNextId);
+		if (result.next()) {
+			return result.getInt(1);
+		} else {
+			throw new RuntimeException("Something went wrong while getting the next survey id");
+		}
 	}
 
 }
