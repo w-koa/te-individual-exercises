@@ -22,9 +22,11 @@
 		<nav>
 			<ul>
 				<c:url var="aboutURL" value="/about" />
+				<c:url var="galleryURL" value = "/gallery"/>
 				<c:url var="storeURL" value="/store" />
 				<li><a href="${homeURL}">Home</a></li>
 				<li><a href="${aboutURL}">About</a></li>
+				<li><a href ="${galleryURL}">Gallery</a></li>
 				<li><a href="${storeURL}">Store</a></li>
 			</ul>
 		</nav>

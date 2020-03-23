@@ -88,13 +88,14 @@ public class JDBCHitzoneDataDao implements HitzoneDataDao {
 	}
 	
 	// Helper Method to get next serial Id
+	// Keeps making new Ids when used, be careful with this one.
 	private int getNextId() {
-		String sqlSelectNextId = "SELECT NEXTVAL('seq_surveyid')";
+		String sqlSelectNextId = "SELECT NEXTVAL('zinogre_hitzones_id_seq')";
 		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlSelectNextId);
 		if (result.next()) {
 			return result.getInt(1);
 		} else {
-			throw new RuntimeException("Something went wrong while getting the next survey id");
+			throw new RuntimeException("Something went wrong while getting the next hitzone id");
 		}
 	}
 

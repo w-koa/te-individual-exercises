@@ -83,3 +83,9 @@ td {
 	border-bottom: 1px solid grey;
 	color: #eeefc9;
 }
+
+.storeImage {
+	width: 250px;
+	height: auto;
+	border-radius: 20%;
+}
