@@ -69,7 +69,9 @@ iframe {
 	width: 500px;
 	height: auto;
 }
-
+table {
+	margin-left: 40px;
+}
 table th {
 	color: #eeefc9;
 	text-align: center;
@@ -88,4 +90,11 @@ td {
 	width: 250px;
 	height: auto;
 	border-radius: 20%;
+}
+
+.detailImage {
+	width: 500px;
+	height: auto;
+	border-radius:20%;
+	margin-left: 40px;
 }

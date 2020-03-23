@@ -23,8 +23,12 @@
 			<c:forEach var="product" items="${productList}">
 				<tr>
 					<c:url var="picLocation" value="/images/${product.picLocation}" />
-					<td><img class="storeImage" src="${picLocation}"></td>
-					<td><c:out value="${product.name}" /></td>
+					<c:url var="detailURL" value="/detail">
+						<c:param name="id" value="${product.id}" />
+					</c:url>
+					<td><a href="${detailURL}"><img class="storeImage"
+							src="${picLocation}"></a></td>
+					<td><a href="${detailURL}"><c:out value="${product.name}" /></a></td>
 					<td><c:out value="${product.description}" /></td>
 					<td><c:out value="$${product.price}" /></td>
 				</tr>
