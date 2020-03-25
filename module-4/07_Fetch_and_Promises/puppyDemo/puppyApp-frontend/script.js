@@ -9,7 +9,11 @@ function prepPage() {
 
 function loadThePuppies() {
     
-
+    console.log('load pups')
+    fetch('http://localhost:8080/01-Puppies-API-Final/api/allPuppies')
+    .then( (response) => {return response.json();})
+    .then( (data) => {puppies = data; populatePage(); console.log(puppies)})
+    .catch( (err) => {console.log(err)})
 }
 
 function populatePage() {
