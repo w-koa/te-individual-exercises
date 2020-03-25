@@ -112,7 +112,7 @@ public class Testing {
 		return sortedMap;
 	}
 
-	// Prints 12-tone matrix! Use sortedMap as source.
+	// Prints 12-tone matrix! Use sortedMap as source. - this messes everything up as it sorts map into chromatic order!!
 	public static void printNotesMatrix(Map<String, Integer> source) {
 		List<String> notes = new ArrayList<>();
 		List<Integer> values = new ArrayList<>();
@@ -206,12 +206,24 @@ public class Testing {
 		// No need to put into order since it would just arrange by increasing rather than be a tone row.
 		pivotTranspose(newTest, newTest.entrySet().iterator().next().getValue());
 		System.out.println(newTest);
+		System.out.println("testing printer with newTest:");
+		printNotesMatrix(newTest);
 		
 		Map<String, Integer> primeZeroMap = new LinkedHashMap<>();
 		for (String key : newTest.keySet()) {
 			primeZeroMap.put(key, newTest.get(key));
 		}
 
+		Map<String, Integer> inversionZeroMap = new LinkedHashMap<>();
+		for (String key : newTest.keySet()) {
+			inversionZeroMap.put(key, 12 - newTest.get(key));
+			
+		}
+		for (String key : inversionZeroMap.keySet()) {
+			if (inversionZeroMap.get(key).equals(12)) {
+				inversionZeroMap.put(key, 0);
+			}
+		}
 		
 		List<Integer> primeZero = new ArrayList<>();
 		for (int i = 0; i < notesToShuffle.size(); i++) {
@@ -264,6 +276,8 @@ public class Testing {
 		System.out.println("this is a column: " + inversionZero.toString() + " size: " + inversionZero.size());
 		System.out.println("prime one" + primeOne);
 		System.out.println("this is prime zero map" + primeZeroMap);
+		System.out.println("this is inversion zero map: " + inversionZeroMap);
+		
 		
 //		System.out.println(allPrimes.get(1).toString());
 

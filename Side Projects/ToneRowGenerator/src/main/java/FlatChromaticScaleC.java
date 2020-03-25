@@ -79,7 +79,7 @@ public class FlatChromaticScaleC implements ChromaticScale {
 			values.add(value);
 		}
 		System.out.println("P" + values.get(0) + "     " + notes.toString());
-		for (int i = notes.size() - 1; i > 0 ; i--) {
+		for (int i = notes.size() - 1; i > 0; i--) {
 			int j;
 			System.out.print("P" + values.get(i) + "\t");
 			for (j = i; j < notes.size(); j++) {
