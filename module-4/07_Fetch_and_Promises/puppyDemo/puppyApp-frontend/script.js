@@ -9,12 +9,7 @@ function prepPage() {
 
 function loadThePuppies() {
     
-    // -> puppy API location:
-    // This assumes server boots first
-    fetch('http://localhost:8080/01-Puppies-API-Final/api/') 
-    .then(  (response) => { return response.json(); }  ) 
-    .then( (data) => { puppies = data; populatePage(); }  )
-    .catch(  (err) => { console.error(err) }  );
+
 }
 
 function populatePage() {
