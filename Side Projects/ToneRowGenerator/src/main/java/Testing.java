@@ -206,8 +206,7 @@ public class Testing {
 		// No need to put into order since it would just arrange by increasing rather than be a tone row.
 		pivotTranspose(newTest, newTest.entrySet().iterator().next().getValue());
 		System.out.println(newTest);
-		System.out.println("testing printer with newTest:");
-		printNotesMatrix(newTest);
+		
 		
 		Map<String, Integer> primeZeroMap = new LinkedHashMap<>();
 		for (String key : newTest.keySet()) {
@@ -224,6 +223,15 @@ public class Testing {
 				inversionZeroMap.put(key, 0);
 			}
 		}
+		
+		Map<String, Integer> primeOneMap = new LinkedHashMap<>();
+		for (String key : primeZeroMap.keySet()) {
+			primeOneMap.put(key, 1 + primeZeroMap.get(key));
+			if (primeOneMap.get(key) == 12) {
+				primeOneMap.put(key, 0);
+			}
+		}
+		
 		
 		List<Integer> primeZero = new ArrayList<>();
 		for (int i = 0; i < notesToShuffle.size(); i++) {
@@ -269,15 +277,15 @@ public class Testing {
 		}
 
 		
-		System.out.println("P0 \t" + primeZero.toString());
-		for(int val : inversionZero) {
-			System.out.println("P" + val + " \t[" + val + "]");
-		}
-		System.out.println("this is a column: " + inversionZero.toString() + " size: " + inversionZero.size());
-		System.out.println("prime one" + primeOne);
+//		System.out.println("P0 \t" + primeZero.toString());
+//		for(int val : inversionZero) {
+//			System.out.println("P" + val + " \t[" + val + "]");
+//		}
+//		System.out.println("this is a column: " + inversionZero.toString() + " size: " + inversionZero.size());
+//		System.out.println("prime one" + primeOne);
 		System.out.println("this is prime zero map" + primeZeroMap);
 		System.out.println("this is inversion zero map: " + inversionZeroMap);
-		
+		System.out.println("this is prime one map: " + primeOneMap);
 		
 //		System.out.println(allPrimes.get(1).toString());
 
