@@ -11,11 +11,21 @@
       </div>
 
       <div class="well">
-        <span class="amount">1</span>
-        1 Star Review
+        <span class="amount">{{oneStars}}</span>
+        1 Star Reviews
+      </div>
+      <div class="well">
+        <span class="amount">{{twoStars}}</span>
+        2 Star Reviews
       </div>
     </div>
 
+    <div class="review" v-for="review in reviews" v-bind:key='review.id'>
+      <h4>{{review.reviewer}}</h4>
+      <h3>{{review.title}}</h3>
+      <p>{{review.review}}</p>
+      <p>Rating: {{review.rating}}</p>
+    </div>
   </div>
 </template>
 
@@ -34,7 +44,7 @@ export default {
           title: "What a book!",
           review:
             "It certainly is a book. I mean, I can see that. Pages kept together with glue (I hope that's glue) and there's writing on it, in some language.",
-          rating: 3
+          rating: 2
         },
         {
           id: 2,
@@ -71,6 +81,26 @@ export default {
       }, 0);
       return sum / this.reviews.length;
     },
+
+    oneStars() {
+      let total = 0;
+      this.reviews.forEach( (review) => {
+        // if (review.rating == 1) 
+        //   total += 1;
+        // 
+        total = (review.rating === 1) ? total + 1 : total;
+        
+      })
+      return total;
+    },
+
+    twoStars() {
+      let total = 0;
+      this.reviews.forEach( (review) => {
+        total = (review.rating === 2) ? total + 1: total;
+      })
+      return total;
+    }
 
     
   }

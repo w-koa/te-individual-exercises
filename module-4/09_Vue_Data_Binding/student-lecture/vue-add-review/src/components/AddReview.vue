@@ -42,6 +42,15 @@
         </form>
       </div>
 
+      <div class="col-5">
+        <h2>Current Data</h2>
+        <hr/>
+        <p>Title: {{review.title}}</p>
+        <p>Reviewer: {{review.reviewer}}</p>
+        <p>Rating: {{review.rating}}</p>
+        <p>Review: {{ review.review}}</p>
+      </div>
+
     </div>
   </div>
 </template>

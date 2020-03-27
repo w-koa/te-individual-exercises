@@ -112,7 +112,8 @@ public class Testing {
 		return sortedMap;
 	}
 
-	// Prints 12-tone matrix! Use sortedMap as source. - this messes everything up as it sorts map into chromatic order!!
+	// Prints 12-tone matrix! Use sortedMap as source. - this messes everything up
+	// as it sorts map into chromatic order!!
 	public static void printNotesMatrix(Map<String, Integer> source) {
 		List<String> notes = new ArrayList<>();
 		List<Integer> values = new ArrayList<>();
@@ -192,56 +193,63 @@ public class Testing {
 			notesToShuffle.add(note);
 		}
 		Collections.shuffle(notesToShuffle);
-		
-		
+
 		Map<String, Integer> newTest = new LinkedHashMap<>();
 		for (String note : notesToShuffle) {
 			newTest.put(note, testing.get(note));
 		}
-		
-		
+
 		System.out.println("new test: " + newTest);
 		sortedMap.clear();
-		// This abomination of a call properly gets the first value for proper pivot transpose.
-		// No need to put into order since it would just arrange by increasing rather than be a tone row.
+		// This abomination of a call properly gets the first value for proper pivot
+		// transpose.
+		// No need to put into order since it would just arrange by increasing rather
+		// than be a tone row.
 		pivotTranspose(newTest, newTest.entrySet().iterator().next().getValue());
 		System.out.println(newTest);
-		
-		
+
+		List<String> notes = new ArrayList<>();
+		for (String key : newTest.keySet()) {
+			notes.add(key);
+		}
+		List<Integer> values = new ArrayList<>();
+		for (Integer value : newTest.values()) {
+			values.add(value);
+		}
+
 		Map<String, Integer> primeZeroMap = new LinkedHashMap<>();
 		for (String key : newTest.keySet()) {
 			primeZeroMap.put(key, newTest.get(key));
 		}
 
 		Map<String, Integer> inversionZeroMap = new LinkedHashMap<>();
-		for (String key : newTest.keySet()) {
-			inversionZeroMap.put(key, 12 - newTest.get(key));
-			
+		List<Integer> newList = new ArrayList<>();
+		for (int i = 0; i < 11; i++) {
+			newList.add(12 - values.get(i));
+			if (newList.get(i) == 12) {
+				newList.set(i, 0);
+			}
+
 		}
-		for (String key : inversionZeroMap.keySet()) {
-			if (inversionZeroMap.get(key).equals(12)) {
-				inversionZeroMap.put(key, 0);
+		for (int i = 0; i < 11; i++) {
+			for (String note : primeZeroMap.keySet()) {
+				if (primeZeroMap.containsKey(note)) {
+					inversionZeroMap.put(note, newList.get(i));
+				}
 			}
 		}
-		
+
 		Map<String, Integer> primeOneMap = new LinkedHashMap<>();
-		for (String key : primeZeroMap.keySet()) {
-			primeOneMap.put(key, 1 + primeZeroMap.get(key));
-			if (primeOneMap.get(key) == 12) {
-				primeOneMap.put(key, 0);
-			}
-		}
-		
-		
+
 		List<Integer> primeZero = new ArrayList<>();
 		for (int i = 0; i < notesToShuffle.size(); i++) {
 			primeZero.add(testing.get(notesToShuffle.get(i)));
 		}
 
 		List<Integer> inversionZero = new ArrayList<>();
-		//  (IT IS PRINTED IN A ROW
+		// (IT IS PRINTED IN A ROW
 		// STILL)
-		for (int i = 1; i < primeZero.size(); i++) {
+		for (int i = 1; i < 11; i++) {
 			inversionZero.add(12 - primeZero.get(i));
 		}
 		for (int i = 0; i < inversionZero.size(); i++) {
@@ -249,9 +257,7 @@ public class Testing {
 				inversionZero.set(i, 0);
 			}
 		}
-		
-		
-		
+
 //		List<Integer> allPrimes = new ArrayList<>();
 //		List<Integer> primeRow = new ArrayList<>();
 //		for (int i = 0; i < 11; i++) {
@@ -276,17 +282,14 @@ public class Testing {
 			}
 		}
 
-		
-//		System.out.println("P0 \t" + primeZero.toString());
-//		for(int val : inversionZero) {
-//			System.out.println("P" + val + " \t[" + val + "]");
-//		}
-//		System.out.println("this is a column: " + inversionZero.toString() + " size: " + inversionZero.size());
-//		System.out.println("prime one" + primeOne);
+		System.out.println("these are the notes: " + notes);
+		System.out.println("these are the values: " + values);
 		System.out.println("this is prime zero map" + primeZeroMap);
 		System.out.println("this is inversion zero map: " + inversionZeroMap);
+		System.out.println("prime 0 list: " + primeZero);
+		System.out.println("inversion 0 list: " + inversionZero);
 		System.out.println("this is prime one map: " + primeOneMap);
-		
+
 //		System.out.println(allPrimes.get(1).toString());
 
 //		System.out.println("Before asdf " + testing);
