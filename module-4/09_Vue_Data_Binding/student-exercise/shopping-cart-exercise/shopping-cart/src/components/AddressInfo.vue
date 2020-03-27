@@ -8,7 +8,7 @@
           </div>
           <div class="form-group">
             <label for="shippingAddress">Address</label>
-            <input type="text" class="form-control" id="shippingAddress" placeholder="1234 Main St" />
+            <input type="text" class="form-control" id="shippingAddress" placeholder="1234 Main St" v-model="shipping.address"/>
           </div>
           <div class="form-group">
             <label for="shippingAddress2">Address 2</label>
@@ -17,16 +17,17 @@
               class="form-control"
               id="shippingAddress2"
               placeholder="Apartment, studio, or floor"
+              v-model="shipping.address2"
             />
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="shippingCity">City</label>
-              <input type="text" class="form-control" id="shippingCity" />
+              <input type="text" class="form-control" id="shippingCity" v-model="shipping.city"/>
             </div>
             <div class="form-group col-md-4">
               <label for="shippingState">State</label>
-              <select id="shippingState" class="form-control">
+              <select id="shippingState" class="form-control" v-model="shipping.state">
                 <option value selected>Choose...</option>
                 <option value="MI">MI</option>
                 <option value="OH">OH</option>
@@ -35,7 +36,7 @@
             </div>
             <div class="form-group col-md-2">
               <label for="shippingZip">Zip</label>
-              <input type="text" class="form-control" id="shippingZip" />
+              <input type="text" class="form-control" id="shippingZip" v-model="shipping.zip"/>
             </div>
           </div>
           <div class="form-row">
@@ -48,7 +49,9 @@
                   name="deliverto"
                   id="delivertoFrontDoor"
                   value="Front Door"
+                  v-model="shipping.deliverto" 
                   checked
+                 
                 />
                 <label class="form-check-label" for="delivertoFrontDoor">Front Door</label>
               </div>
@@ -59,6 +62,7 @@
                   name="deliverto"
                   id="delivertoSideDoor"
                   value="Side Door"
+                  v-model="shipping.deliverto"
                 />
                 <label class="form-check-label" for="delivertoSideDoor">Side Door</label>
               </div>
@@ -69,8 +73,20 @@
                   name="deliverto"
                   id="delivertoBackDoor"
                   value="Back Door"
+                  v-model="shipping.deliverto"
                 />
                 <label class="form-check-label" for="delivertoBackDoor">Back Door</label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="sameAsShipping"
+                  id="sameAsShipping"
+                  value=true
+                  v-model="billing.sameAsShipping"
+                  />
+                  <label class="form-check-label" for="sameAsShipping">Same as Billing</label>
               </div>
             </div>
           </div>
@@ -86,6 +102,7 @@
                 class="form-control"
                 id="billingAddress"
                 placeholder="1234 Main St"
+                v-model="billing.address"
               />
             </div>
             <div class="form-group">
@@ -95,16 +112,17 @@
                 class="form-control"
                 id="billingAddress2"
                 placeholder="Apartment, studio, or floor"
+                v-model="billing.address2"
               />
             </div>
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="billingCity">City</label>
-                <input type="text" class="form-control" id="billingCity" />
+                <input type="text" class="form-control" id="billingCity" v-model="billing.city" />
               </div>
               <div class="form-group col-md-4">
                 <label for="billingState">State</label>
-                <select id="billingState" class="form-control">
+                <select id="billingState" class="form-control" v-model="billing.state">
                   <option value selected>Choose...</option>
                   <option value="MI">MI</option>
                   <option value="OH">OH</option>
@@ -113,7 +131,7 @@
               </div>
               <div class="form-group col-md-2">
                 <label for="billingZip">Zip</label>
-                <input type="text" class="form-control" id="billingZip" />
+                <input type="text" class="form-control" id="billingZip" v-model="billing.zip"/>
               </div>
             </div>
           </div>
@@ -125,50 +143,55 @@
         <div class="results">
           <h3>Shipping Address</h3>
           <div class="line-item">
-            Address:
-            <span class="shipping-address"></span>
+            Address: 
+            <span class="shipping-address">{{shipping.address}}</span>
           </div>
           <div class="line-item">
-            Address 2:
-            <span class="shipping-address2"></span>
+            Address 2: 
+            <span class="shipping-address2">{{shipping.address2}}</span>
           </div>
           <div class="line-item">
-            City:
-            <span class="shipping-city"></span>
+            City: 
+            <span class="shipping-city">{{shipping.city}}</span>
           </div>
           <div class="line-item">
-            State:
-            <span class="shipping-state"></span>
+            State: 
+            <span class="shipping-state">{{shipping.state}}</span>
           </div>
           <div class="line-item">
-            Zip:
-            <span class="shipping-zip"></span>
+            Zip: 
+            <span class="shipping-zip">{{shipping.zip}}</span>
           </div>
           <div class="line-item">
-            Deliver to:
-            <span class="shipping-deliverto"></span>
+            Deliver to: 
+            <span class="shipping-deliverto">{{shipping.deliverto}}</span>
           </div>
 
           <h3>Billing Address</h3>
           <div class="line-item">
-            Address:
-            <span class="billing-address"></span>
+            Address: 
+            <span class="billing-address" v-if="billing.sameAsShipping === true">{{shipping.address}}</span>
+            <span class="billing-address" v-else>{{billing.address}}</span>
           </div>
           <div class="line-item">
-            Address 2:
-            <span class="billing-address2"></span>
+            Address 2: 
+            <span class="billing-address2" v-if="billing.sameAsShipping === true">{{shipping.address2}}</span>
+            <span class="billing-address2" v-else>{{billing.address2}}</span>
           </div>
           <div class="line-item">
-            City:
-            <span class="billing-city"></span>
+            City: 
+            <span class="billing-city" v-if="billing.sameAsShipping === true">{{shipping.city}}</span>
+            <span class="billing-city" v-else>{{billing.city}}</span>
           </div>
           <div class="line-item">
-            State:
-            <span class="billing-state"></span>
+            State: 
+            <span class="billing-state" v-if="billing.sameAsShipping === true">{{shipping.state}}</span>
+            <span class="billing-state" v-else>{{billing.state}}</span>
           </div>
           <div class="line-item">
-            Zip:
-            <span class="billing-zip"></span>
+            Zip: 
+            <span class="billing-zip" v-if="billing.sameAsShipping === true">{{shipping.zip}}</span>
+            <span class="billing-zip" v-else>{{billing.zip}}</span>
           </div>
         </div>
       </div>
@@ -180,7 +203,25 @@
 export default {
   name: "address-info",
   data() {
-    return {};
+    return {
+      shipping: {
+        address: "",
+        address2: "",
+        city: "",
+        state: "",
+        zip: "",
+        deliverto: ""
+      }, 
+      billing: {
+        address: "",
+        address2: "",
+        city: "",
+        state: "",
+        zip: "",
+        sameAsShipping: false
+      }
+
+    };
   }
 };
 </script>
