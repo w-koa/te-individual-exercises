@@ -223,14 +223,17 @@ public class Testing {
 		}
 
 		Map<String, Integer> inversionZeroMap = new LinkedHashMap<>();
+		
+		
 		List<Integer> newList = new ArrayList<>();
 		for (int i = 0; i < 11; i++) {
 			newList.add(12 - values.get(i));
 			if (newList.get(i) == 12) {
 				newList.set(i, 0);
 			}
-
 		}
+		
+		System.out.println("this is newlist" + newList);
 		for (int i = 0; i < 11; i++) {
 			for (String note : primeZeroMap.keySet()) {
 				if (primeZeroMap.containsKey(note)) {
