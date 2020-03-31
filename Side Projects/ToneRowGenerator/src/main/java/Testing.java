@@ -222,25 +222,21 @@ public class Testing {
 			primeZeroMap.put(key, newTest.get(key));
 		}
 
-		Map<String, Integer> inversionZeroMap = new LinkedHashMap<>();
+//		Map<String, Integer> inversionZeroMap = new LinkedHashMap<>();
+//		for (int i = 1; i < 11; i++) {
+//			int temp = values.get(i);
+//			newVal = temp + 
+//		}
 		
+		List<Integer> newValueList = new ArrayList<>();
 		
-		List<Integer> newList = new ArrayList<>();
 		for (int i = 0; i < 11; i++) {
-			newList.add(12 - values.get(i));
-			if (newList.get(i) == 12) {
-				newList.set(i, 0);
+			newValueList.add(12 - values.get(i));
+			if (newValueList.get(i) == 12) {
+				newValueList.set(i, 0);
 			}
 		}
 		
-		System.out.println("this is newlist" + newList);
-		for (int i = 0; i < 11; i++) {
-			for (String note : primeZeroMap.keySet()) {
-				if (primeZeroMap.containsKey(note)) {
-					inversionZeroMap.put(note, newList.get(i));
-				}
-			}
-		}
 
 		Map<String, Integer> primeOneMap = new LinkedHashMap<>();
 
@@ -288,7 +284,7 @@ public class Testing {
 		System.out.println("these are the notes: " + notes);
 		System.out.println("these are the values: " + values);
 		System.out.println("this is prime zero map" + primeZeroMap);
-		System.out.println("this is inversion zero map: " + inversionZeroMap);
+//		System.out.println("this is inversion zero map: " + inversionZeroMap);
 		System.out.println("prime 0 list: " + primeZero);
 		System.out.println("inversion 0 list: " + inversionZero);
 		System.out.println("this is prime one map: " + primeOneMap);
