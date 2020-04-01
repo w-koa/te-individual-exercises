@@ -1,16 +1,26 @@
 <template>
     <div class="search">
-        <input type="text" id="search" name="search" v-on:keyup="filterTasks" placeholder="Search Todo's..."/>
+        <input type="text" 
+        id="search" 
+        name="search" 
+        v-on:keyup="filterItems"
+        placeholder="Search Shopping List..."
+        />
     </div>
 </template>
 
 <script>
 export default {
     methods: {
-        filterTasks() {
+        filterItems() {
             const query = document.getElementById('search').value;
-            this.$emit('filter-tasks', query);
+            this.$emit('filter-items', query);
         }
+    },
+    data() {
+        return {
+            
+        };
     }
 }
 </script>
@@ -20,7 +30,6 @@ export default {
     width:100%;
     font-size:24px;
     font-family: 'Roboto Condensed', sans-serif;
-    margin-top:50px;
     padding:10px;
 }
 </style>

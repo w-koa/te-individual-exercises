@@ -1,8 +1,8 @@
 <template>
   <div class="main">
-    <h2>Product Reviews for </h2>
+    <h2>Product Reviews for {{name}}</h2>
 
-    <p class="description"></p>
+    <p class="description">{{description}}</p>
 
     <div class="well-display">
       <div class="well">
@@ -91,6 +91,11 @@
 <script>
 export default {
   name: "product-review",
+  props: {
+    name: String,
+    description: String,
+    filterText: String
+  },
   data() {
     return {
       showForm: false,

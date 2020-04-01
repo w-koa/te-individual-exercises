@@ -1,7 +1,11 @@
 <template>
   <div id="app">
-    <search-bar/>
-    <product-review/>
+    <search-bar v-on:filter="handleFilter"/>
+    <product-review name="Cigar Party for Dummies: Squirrel Edition" 
+    description="Host and plan cigar parties for all your squirrel friends!"
+    v-bind:filterText="filter"/>
+    <product-review name="Chopping up your grey sofa" description="And how to cook it!" v-bind:filterText="filter"/>
+
   </div>
 </template>
 
@@ -19,6 +23,12 @@ export default {
     return {
       filter: ''
     };
+  },
+  methods: {
+    handleFilter(searchText) {
+      this.filter = searchText;
+      console.log(this.filter)
+    }
   }
 }
 </script>

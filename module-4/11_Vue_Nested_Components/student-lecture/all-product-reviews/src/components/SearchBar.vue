@@ -1,12 +1,17 @@
 <template>
     <form v-on:submit.prevent="handleFilter">
-        <input type="text" placeholder="Filter on..."><button>Filter</button>
+        <input type="text" placeholder="Filter on..." v-model="searchText"><button>Filter</button>
     </form>
 </template>
 
 <script>
 export default {
     name: 'search-bar',
+    methods: {
+        handleFilter() {
+            this.$emit('filter', this.searchText);
+        }
+    },
     data() {
         return {
             searchText: ''
