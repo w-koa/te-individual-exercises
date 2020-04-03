@@ -38,7 +38,7 @@
 export default {
   data() {
     return {
-      apiURL: "",
+      apiURL: "http://5e867fb6781e48001676b14b.mockapi.io/api/todos",
       todos: [],
       showTodoForm: false,
       newTodo: ""
@@ -51,20 +51,43 @@ export default {
     },
     toggleForm() {
       // show hide form
+      this.showTodoForm = !this.showTodoForm;
     },
     addTodo() {
       // tutorial code goes here
+      let maxid = 0;
+      this.todos.forEach( (todo) => {
+        if (todo.id > maxid) {
+          maxid = parseInt(todo.id);
+        }
+       });
+       const todo = { id: maxid + 1, task: this.newTodo, completed: false}
     }
   },
   created() {
-    fetch(this.apiURL)
+     fetch(this.apiURL)
+    .then(response => {
+      return response.json();
+    })
+    .then(todos => {
+      this.todos = todos;
+    })
+    .catch(err => console.log(err));
+
+    fetch(this.apiURL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8"
+      },
+      body: JSON.stringify(todo)
+    })
       .then(response => {
-        return response.json();
-      })
-      .then(todos => {
-        this.todos = todos;
+       if (response.ok) {
+         this.todoes.push(todo);
+       }
       })
       .catch(err => console.log(err));
+      this.newTodo = "";
   }
 };
 </script>

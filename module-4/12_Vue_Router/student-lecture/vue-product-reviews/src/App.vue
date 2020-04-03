@@ -2,7 +2,9 @@
   <div id="app">
     <header>
       <ul class="nav">
-
+        <router-link :to="{ name: 'home'}" tag='li'>Home</router-link>
+        <router-link :to="{name: 'about'}" tag="li">About</router-link>
+        <router-link :to="{name: 'books'}" tag="li">Books</router-link>
       </ul>
     </header>
     <router-view class="content"/>

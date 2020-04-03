@@ -1,7 +1,7 @@
 <template>
   <div class="products-list">
     <h1>Shop by Department: {{ $route.params.department }}</h1>
-    <products-list v-bind:items="items"/>
+    <products-list v-bind:items="items" />
   </div>
 </template>
 
@@ -26,7 +26,7 @@ export default {
     }
   },
   created() {
-
+    this.getProducts();
   }
 }
 </script>

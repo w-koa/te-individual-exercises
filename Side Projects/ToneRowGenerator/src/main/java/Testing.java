@@ -188,12 +188,42 @@ public class Testing {
 		testing.put("A#", 10);
 		testing.put("B", 11);
 
+		Map<Integer, String> newStandardMapTest = new LinkedHashMap<Integer, String>();
+		newStandardMapTest.put(0, "C");
+		newStandardMapTest.put(1, "C#");
+		newStandardMapTest.put(2, "D");
+		newStandardMapTest.put(3, "D#");
+		newStandardMapTest.put(4, "E");
+		newStandardMapTest.put(5, "F");
+		newStandardMapTest.put(6, "F#");
+		newStandardMapTest.put(7, "G");
+		newStandardMapTest.put(8, "G#");
+		newStandardMapTest.put(9, "A");
+		newStandardMapTest.put(10, "A#");
+		newStandardMapTest.put(11, "B");
+		
 		List<String> notesToShuffle = new ArrayList<>();
 		for (String note : testing.keySet()) {
 			notesToShuffle.add(note);
 		}
 		Collections.shuffle(notesToShuffle);
+		
+		List<Integer> shuffleList = new ArrayList<>();
+		for (int i = 0; i < 12; i++) {
+			shuffleList.add(i);
+		}
 
+		Collections.shuffle(shuffleList);
+		System.out.println(shuffleList);
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		Map<String, Integer> newTest = new LinkedHashMap<>();
 		for (String note : notesToShuffle) {
 			newTest.put(note, testing.get(note));
@@ -206,8 +236,14 @@ public class Testing {
 		// No need to put into order since it would just arrange by increasing rather
 		// than be a tone row.
 		pivotTranspose(newTest, newTest.entrySet().iterator().next().getValue());
-		System.out.println(newTest);
-
+		
+		
+		Map<Integer, String> evenNewerTest = new LinkedHashMap<>();
+		for (String note : newTest.keySet()) {
+			evenNewerTest.put(newTest.get(note), note);
+		}
+		
+		
 		List<String> notes = new ArrayList<>();
 		for (String key : newTest.keySet()) {
 			notes.add(key);
@@ -217,10 +253,13 @@ public class Testing {
 			values.add(value);
 		}
 
-		Map<String, Integer> primeZeroMap = new LinkedHashMap<>();
-		for (String key : newTest.keySet()) {
-			primeZeroMap.put(key, newTest.get(key));
-		}
+	
+
+		System.out.println("notes: " + notes);
+		System.out.println("values: " + values);
+		System.out.println("after pivot: " + newTest);
+		System.out.println("even newer: " + evenNewerTest);
+		
 
 //		Map<String, Integer> inversionZeroMap = new LinkedHashMap<>();
 //		for (int i = 1; i < 11; i++) {
@@ -238,7 +277,15 @@ public class Testing {
 		}
 		
 
-		Map<String, Integer> primeOneMap = new LinkedHashMap<>();
+		Map<Integer, String> primeOneMapVN = new LinkedHashMap<>();
+		for (Integer val : evenNewerTest.keySet()) {
+			primeOneMapVN.put(12 - val, evenNewerTest.get(12 - val));
+			if (primeOneMapVN.containsKey(12)) {
+				primeOneMapVN.remove(12);
+				primeOneMapVN.put(0, notes.get(0));
+			}
+		}
+		System.out.println("primeoneNewestMap: " + primeOneMapVN);
 
 		List<Integer> primeZero = new ArrayList<>();
 		for (int i = 0; i < notesToShuffle.size(); i++) {
@@ -248,7 +295,7 @@ public class Testing {
 		List<Integer> inversionZero = new ArrayList<>();
 		// (IT IS PRINTED IN A ROW
 		// STILL)
-		for (int i = 1; i < 11; i++) {
+		for (int i = 1; i < 12; i++) {
 			inversionZero.add(12 - primeZero.get(i));
 		}
 		for (int i = 0; i < inversionZero.size(); i++) {
@@ -281,13 +328,12 @@ public class Testing {
 			}
 		}
 
-		System.out.println("these are the notes: " + notes);
-		System.out.println("these are the values: " + values);
-		System.out.println("this is prime zero map" + primeZeroMap);
+//		System.out.println("these are the notes: " + notes);
+//		System.out.println("these are the values: " + values);
 //		System.out.println("this is inversion zero map: " + inversionZeroMap);
-		System.out.println("prime 0 list: " + primeZero);
-		System.out.println("inversion 0 list: " + inversionZero);
-		System.out.println("this is prime one map: " + primeOneMap);
+//		System.out.println("prime 0 list: " + primeZero);
+		System.out.println("inversion 0 list: " + inversionZero + " " + inversionZero.size());
+//		System.out.println("this is prime one map: " + primeOneMap);
 
 //		System.out.println(allPrimes.get(1).toString());
 
