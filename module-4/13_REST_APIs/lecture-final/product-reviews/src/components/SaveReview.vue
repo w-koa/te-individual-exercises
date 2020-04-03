@@ -17,7 +17,7 @@
         <span class="label">Review:</span>
         <textarea name="review" id="review" cols="60" rows="10" v-model="review.review"></textarea>
       </div>
-      <button :disabled="!isValidForm" v-on:click="saveReview">Save Review</button>
+      <button v-bind:disabled="!isValidForm" v-on:click="saveReview">Save Review</button>
     </div>
   </div>
 </template>

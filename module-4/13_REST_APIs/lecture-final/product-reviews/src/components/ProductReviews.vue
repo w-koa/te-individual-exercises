@@ -1,20 +1,20 @@
 <template>
-  <div class="product-reviews">
+  <div>
     <div class="header">
       <h2>Reviews <span>({{reviews.length}})</span></h2>
-      <a href="#" class="add-review" v-on:click="$emit('addReview')">
+      <a href="#" class="add-review" v-on:click="addReview()">
         <i class="far fa-address-card"></i> Add Review
       </a>
     </div>
-    <div class="review" v-for="review in reviews" :key="review.id">
+    <div class="review" v-for="review in reviews" v-bind:key="review.id">
       <div class="review-left">
-        <img :src="review.avatar" class="avatar"/>
+        <img v-bind:src="review.avatar" class="avatar"/>
         <div class="review-actions">
           <a href="#" class="edit-review" v-on:click="editReview(parseInt(review.id))">
-            <i class="far fa-edit"></i> Edit 
+            <i class="far fa-edit"></i> Edit
           </a>
           <a href="#" class="delete-review" v-on:click="deleteReview(review.id)">
-            <i class="far fa-trash-alt"></i> Delete 
+            <i class="far fa-trash-alt"></i> Delete
           </a>
         </div>
       </div>
@@ -28,6 +28,8 @@
 </template>
 
 <script>
+import moment from 'moment';
+
 export default {
   name: "ProductReviews",
   props: {
@@ -39,6 +41,9 @@ export default {
     };
   },
   methods: {
+    addReview() {
+      this.$emit('addReview')
+    },
     editReview(id) {
       this.$emit('editReview',id)
     },
@@ -61,8 +66,7 @@ export default {
       .catch((err) => console.error(err));
     },
     formatDate(d) {
-      let current_datetime = new Date(d)
-      return (current_datetime.getMonth() + 1) + "/" + current_datetime.getDate() + "/" + current_datetime.getFullYear() + " " + current_datetime.getHours() + ":" + current_datetime.getMinutes();
+      return moment(d, 'YYYY-MM-DD h:mm:ss a').format('MMMM Do YYYY, h:mm:ss A');
     }
   },
   created() {
@@ -80,10 +84,6 @@ export default {
 </script>
 
 <style>
-.product-reviews {
-  grid-area: product-reviews;
-  margin-top: 30px;
-}
 .header {
   display: flex;
   border-bottom: 1px solid #ccc;
