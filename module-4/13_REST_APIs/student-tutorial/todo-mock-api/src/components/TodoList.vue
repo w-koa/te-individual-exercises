@@ -56,38 +56,38 @@ export default {
     addTodo() {
       // tutorial code goes here
       let maxid = 0;
-      this.todos.forEach( (todo) => {
+      this.todos.forEach(todo => {
         if (todo.id > maxid) {
           maxid = parseInt(todo.id);
         }
-       });
-       const todo = { id: maxid + 1, task: this.newTodo, completed: false}
+      });
+      const todo = { id: maxid + 1, task: this.newTodo, completed: false };
+
+      fetch(this.apiURL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        body: JSON.stringify(todo)
+      })
+        .then(response => {
+          if (response.ok) {
+            this.todos.push(todo);
+          }
+        })
+        .catch(err => console.log(err));
+      this.newTodo = "";
     }
   },
   created() {
-     fetch(this.apiURL)
-    .then(response => {
-      return response.json();
-    })
-    .then(todos => {
-      this.todos = todos;
-    })
-    .catch(err => console.log(err));
-
-    fetch(this.apiURL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json; charset=utf-8"
-      },
-      body: JSON.stringify(todo)
-    })
+    fetch(this.apiURL)
       .then(response => {
-       if (response.ok) {
-         this.todoes.push(todo);
-       }
+        return response.json();
+      })
+      .then(todos => {
+        this.todos = todos;
       })
       .catch(err => console.log(err));
-      this.newTodo = "";
   }
 };
 </script>
