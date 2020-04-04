@@ -35,11 +35,11 @@ export default {
               },
               body: JSON.stringify(this.groceries[arrIndex])
             })
-            .then(response => {
-              if (response.ok) {
+            // .then(response => {
+            //   if (response.ok) {
                 
-              }
-            })
+            //   }
+            // })
             .catch(err => console.log(err))
 
             
