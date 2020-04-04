@@ -46,10 +46,44 @@ export default {
     },
     createReview() {
       // logic to create review:
+      fetch(
+        this.apiURL, 
+        {
+          method: "POST",
+          headers: {
+            "Content-Type" : "application/json"
+          },
+          body: JSON.stringify(this.review)
+        }
+      )
+      .then(
+        (response) => {if (response.ok) {
+          this.$emit('showReviews')
+        }}
+      )
+      
+      .catch((err) => console.log(err))
 
     },
     updateReview() {
       // update review
+       fetch(
+        `${this.apiURL}/${this.reviewID}`, 
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type" : "application/json"
+          },
+          body: JSON.stringify(this.review)
+        }
+      )
+      .then(
+        (response) => {if (response.ok) {
+          this.$emit('showReviews')
+        }}
+      )
+      
+      .catch((err) => console.log(err))
     }
   },
   computed: {

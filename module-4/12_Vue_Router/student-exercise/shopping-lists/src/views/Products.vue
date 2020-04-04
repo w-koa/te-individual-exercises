@@ -4,7 +4,7 @@
     <p>Below is a list of our departments. Please click on a department to view available products by department.</p>
     <div class="departments">
       <div v-for="department in departments" :key="department" v-bind:class="department.class">
-        <router-link :to="{name: 'products-list', params: {department: department.path}}">
+        <router-link :to="{name: 'products-list', params: {department: department.name}}">
           <img v-bind:src="require('../assets/images/' + department.banner)" />
         </router-link>
       </div>
@@ -19,17 +19,24 @@ export default {
     return {
       departments: [
         {
+          name: "produce",
           path: "/produce",
           banner: "produce_banner.png",
           class: "department produce"
         },
         {
+          name: "dairy",
           path: "/dairy",
           banner: "dairy_banner.png",
           class: "department dairy"
         },
-        { path: "/meat", banner: "meat_banner.png", class: "department meat" },
         {
+          name:"meat",
+          path: "/meat", 
+          banner: "meat_banner.png", 
+          class: "department meat" },
+        {
+          name: "bakery",
           path: "/bakery",
           banner: "bakery_banner.png",
           class: "department bakery"

@@ -34,7 +34,7 @@ export default {
   },
   data() {
     return {
-      API_URL: "https://5e868fb0781e48001676b20d.mockapi.io/api/reviews",
+      API_URL: "https://5e873d12781e48001676b923.mockapi.io/api/reviews",
       showAddProductForm: false,
       reviewID: 0
     }

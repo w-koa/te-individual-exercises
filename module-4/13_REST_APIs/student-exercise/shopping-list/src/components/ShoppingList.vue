@@ -9,7 +9,7 @@
           v-on:click="changeStatus(item.id)">
         <input type="checkbox" :checked="item.completed">
         {{item.name}}
-        <i class="far fa-check-circle"></i>
+        <i class="far fa-check-circle" v-bind:class="{completed: item.completed}"></i>
       </li>
     </ul>
   </div>
@@ -19,6 +19,7 @@
 export default {
     data() {
         return {
+            apiURL: "https://5e879518781e48001676bd8f.mockapi.io/api/groceries",
             groceries: []
         }
     },
@@ -26,7 +27,30 @@ export default {
         changeStatus(id) {
             const arrIndex = this.groceries.findIndex((item) => item.id == id);
             this.groceries[arrIndex].completed = !this.groceries[arrIndex].completed;
+
+            fetch(this.apiURL + '/' + id, {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json; charset=utf-8"
+              },
+              body: JSON.stringify(this.groceries[arrIndex])
+            })
+            .then(response => {
+              if (response.ok) {
+                
+              }
+            })
+            .catch(err => console.log(err))
+
+            
         }
+    },
+    created() {
+      fetch(this.apiURL) 
+      .then( (response) => {return response.json()})
+      .then( (groceries) => {this.groceries = groceries}  )
+      .catch((err) => console.log(err))
+      
     }
 }
 </script>

@@ -57,7 +57,17 @@ export default {
   },
   created() {
     // load the reviews
+    fetch(this.apiURL)
 
+    .then(
+      (response) => {return response.json()}
+
+    )
+    .then(
+      (reviews) => {this.reviews = reviews}
+    )
+      
+    .catch((err) => console.log(err));
   }
 };
 </script>
