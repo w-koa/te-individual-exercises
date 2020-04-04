@@ -1,8 +1,13 @@
 <template>
 <div id='main'>
 
-    <div v-for='dog in allTheDogs' :key='dog.id'>
-        {{dog.id}} <br> {{dog.name}} <br> {{dog.weight}} <br> <router-link :to="{name: 'display-detail', params: {id: dog.id}}"> Details! </router-link><br><br>
+    <div class='puppyInfo' v-for='dog in allTheDogs' :key='dog.id'>
+
+        Puppy Name: {{dog.name}} <br>
+        Puppy Weight: {{dog.weight}} <br>
+        Paper Trained? {{dog.paperTrained}}<br>
+        <router-link :to="{name: 'display-detail', params: {id: dog.id}}"> Change Puppy's Data! </router-link><br><br>
+    
     </div>
 
 </div>
@@ -31,7 +36,12 @@ export default {
 }
 
 </script>
-
 <style>
+
+  .puppyInfo {
+    margin: 20px;
+    width: 20%;
+    background-color: cornflowerblue;
+  }
 
 </style>`

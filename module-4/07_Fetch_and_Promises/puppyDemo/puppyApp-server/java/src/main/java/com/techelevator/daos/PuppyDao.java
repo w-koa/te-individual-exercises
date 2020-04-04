@@ -17,5 +17,8 @@ public interface PuppyDao {
 
     void savePuppy(Puppy puppyToSave);
 
+    void editPuppy(Puppy puppyToSave);
+    
 	void removePuppy(int id);
+	
 }

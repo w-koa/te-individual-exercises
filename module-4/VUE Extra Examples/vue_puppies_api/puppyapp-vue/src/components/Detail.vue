@@ -1,15 +1,22 @@
 <template>
-<div id='main'>
-This is the puppy you selected. <br>
 
-Name: {{puppy.name}} <br>
-Gender: {{puppy.gender}}<br>
+    <div id='main'>
+    This is the puppy you selected. <br>
 
-Weight:<input type='text' v-model='puppy.weight'/> <br>
-PaperTrained:<input type='text' v-model='puppy.paperTrained'/> <br><br>
+    Name: {{puppy.name}} <br>
+    Gender: {{puppy.gender}}<br>
 
-<button id='update-btn' v-on:click='updatePuppy'>Update Data?</button>
-</div>
+    Weight:
+    <input type='text' v-model='puppy.weight'/> <br>
+    Paper Trained?:  
+    <select id='dog-paper-trained' v-model='puppy.paperTrained'>
+        <option value='true' selected>True</option>    
+        <option value='false'>False</option>     
+    </select> <br><br>
+
+    <button id='update-btn' v-on:click='updatePuppy'>Update Data?</button>
+    </div>
+
 </template>
 
 
@@ -37,7 +44,17 @@ export default {
         },
 
         updatePuppy() {
-   
+             fetch('http://localhost:8080/01-Puppies-API-Final/api/editPuppy',
+                {
+                method: 'PUT',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(this.puppy)
+            })
+            .catch(
+                (err) => {console.error(err + ' problem editing doggo!'); }
+            )
         }
 
     },

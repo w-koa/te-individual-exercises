@@ -1,20 +1,20 @@
 <template>
   <div id='main'>
-     
-      <form>
-        Name: <input id='dog-name' v-model='puppy.name' /> <br>
-        Weight: <input id='dog-weight' v-model='puppy.weight' /><br>
-        Gender: <select id='dog-gender' v-model='puppy.gender'>   
-            <option value='Male' selected>Male</option>    
-            <option value='Female'>Female</option>              
-        </select><br>
-        Paper Trained? <select id='dog-paper-trained' v-model='puppy.paperTrained'>
-            <option value='true' selected>True</option>    
-            <option value='false'>False</option>     
-        </select><br>    
-        <button id='dog-add-btn' v-on:click='saveReview'>Add Doggo!</button>
-      </form>
-
+     <div id='input-section'> 
+        <form>
+            Name: <input id='dog-name' v-model='puppy.name' /> <br><br>
+            Weight:  <input id='dog-weight' v-model='puppy.weight' /> <br><br>
+            Gender:  <select id='dog-gender' v-model='puppy.gender'>   
+                <option value='Male' selected>Male</option>    
+                <option value='Female'>Female</option>              
+            </select> <br> <br>
+            Paper Trained? <select id='dog-paper-trained' v-model='puppy.paperTrained'>
+                <option value='true' selected>True</option>    
+                <option value='false'>False</option>     
+            </select><br><br>    
+            <button id='dog-add-btn' v-on:click='saveReview'>Add Doggo!</button>
+        </form>
+      </div>
   </div>
 </template>
 
@@ -51,5 +51,10 @@ export default {
 </script>
 
 <style>
-
+    #input-section {
+        background-color: cornflowerblue;
+        margin: 20px;
+        padding: 20px;
+        width: 20%;
+    }
 </style>

@@ -59,6 +59,20 @@ public class PuppyJdbcDao implements PuppyDao {
 
     }
 
+	@Override
+	public void editPuppy(Puppy puppyToSave) {
+		
+		System.out.println("trained? " + puppyToSave.isPaperTrained());
+		
+        String sqlUpdPuppy = "UPDATE puppies " +
+                "SET weight = ? , paper_trained = ? WHERE id=?";
+            template.update(sqlUpdPuppy,
+                puppyToSave.getWeight(),
+                puppyToSave.isPaperTrained(),
+                puppyToSave.getId());	
+	}
+    
+    
     private Puppy mapResultToPuppy(SqlRowSet result) {
         Puppy retrievedPuppy = new Puppy(
             result.getInt("id"),
@@ -79,6 +93,8 @@ public class PuppyJdbcDao implements PuppyDao {
 
         return retrievedPuppies;
     }
+
+
 
 
 
