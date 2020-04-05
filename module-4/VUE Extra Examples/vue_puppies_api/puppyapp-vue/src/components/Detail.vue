@@ -36,7 +36,7 @@ export default {
                 (response) => {return response.json();}
             )
             .then ( 
-                (dogData) => {this.puppy = dogData; console.log(this.puppy);}
+                (dogData) => {this.puppy = dogData;}
             )
             .catch(
                 (err) => {console.error(err + ' uh oh missing doggos!'); }
@@ -52,6 +52,9 @@ export default {
                 },
                 body: JSON.stringify(this.puppy)
             })
+            .then(
+                () => {window.alert('puppy data updated!');}
+            )
             .catch(
                 (err) => {console.error(err + ' problem editing doggo!'); }
             )

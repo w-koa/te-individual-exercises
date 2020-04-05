@@ -41,6 +41,9 @@ export default {
                 },
                 body: JSON.stringify(this.puppy)
             })
+            .then (
+                () => {window.alert('puppy added!');}
+            )
             .catch(
                 (err) => {console.error(err + ' problem adding doggo!'); }
             )

@@ -6,6 +6,7 @@
         Puppy Name: {{dog.name}} <br>
         Puppy Weight: {{dog.weight}} <br>
         Paper Trained? {{dog.paperTrained}}<br>
+        <!--Remember that dynamic route we defined? It's being called here: -->
         <router-link :to="{name: 'display-detail', params: {id: dog.id}}"> Change Puppy's Data! </router-link><br><br>
     
     </div>
@@ -27,7 +28,7 @@ export default {
       (response) => {return response.json();}
     )
     .then ( 
-        (dogData) => {this.allTheDogs = dogData; console.log(this.allTheDogs);}
+        (dogData) => {this.allTheDogs = dogData;}
     )
     .catch(
         (err) => {console.error(err + ' uh oh missing doggos!'); }
