@@ -2,7 +2,7 @@
 
 ## **Introduction**
 
-We have here a full stack application. 
+We have here an application with a Java back end and a VUE front end.
 
 The Java back end application is located in the `puppyApp-server` folder. The back end server app is a Spring application with several REST controller endpoints. It is designed to handle GET, GET/n, POST, PUT, and DELETE requests. This back end app relies on a 
 database called `puppies`. The instructions to setup the database are contained within the
