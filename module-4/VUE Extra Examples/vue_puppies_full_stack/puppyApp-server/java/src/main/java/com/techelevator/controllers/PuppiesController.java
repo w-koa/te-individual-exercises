@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -72,6 +73,14 @@ public class PuppiesController {
 		logTimestamp();               // log time of request					
 		thePuppies.savePuppy(aPuppy); // add the puppy passed in to the database
 	}
+	
+	@PutMapping("/editPuppy")   // indicates this method with handle HTTP POST requests for the /newPuppy
+	@ResponseStatus(HttpStatus.OK)
+	public void editPuppy(@RequestBody Puppy aPuppy) {
+		logTimestamp();               // log time of request					
+		thePuppies.editPuppy(aPuppy); // add the puppy passed in to the database
+	}
+	
 	
 	static void logTimestamp() {    // log timestamp of request to Console
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());	
