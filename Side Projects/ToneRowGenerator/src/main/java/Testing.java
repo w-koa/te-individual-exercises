@@ -277,16 +277,33 @@ public class Testing {
 		}
 		
 
-		Map<Integer, String> primeOneMapVN = new LinkedHashMap<>();
+		Map<Integer, String> inversionZeroMapVN = new LinkedHashMap<>();
 		for (Integer val : evenNewerTest.keySet()) {
-			primeOneMapVN.put(12 - val, evenNewerTest.get(12 - val));
-			if (primeOneMapVN.containsKey(12)) {
-				primeOneMapVN.remove(12);
-				primeOneMapVN.put(0, notes.get(0));
+			inversionZeroMapVN.put(12 - val, evenNewerTest.get(12 - val));
+			if (inversionZeroMapVN.containsKey(12)) {
+				inversionZeroMapVN.remove(12);
+				inversionZeroMapVN.put(0, notes.get(0));
 			}
 		}
-		System.out.println("primeoneNewestMap: " + primeOneMapVN);
-
+		
+		System.out.println("invertZeroNewMap: " + inversionZeroMapVN + " size: " + inversionZeroMapVN.size());
+		
+		List<Integer> inversionZeroVals = new ArrayList<>();
+		for (Integer val : inversionZeroMapVN.keySet()) {
+			inversionZeroVals.add(val);
+		}
+		List<String> inversionZeroNotes = new ArrayList<>();
+		for (String note : inversionZeroMapVN.values()) {
+			inversionZeroNotes.add(note);
+		}
+		
+		
+		Map<Integer, String> primeOneMapVN = new LinkedHashMap<>();
+		primeOneMapVN.put(inversionZeroVals.get(1), evenNewerTest.get(1));
+		
+		
+		
+		System.out.println("prime one map with even newer: " + primeOneMapVN + " size: " + primeOneMapVN.size());
 		List<Integer> primeZero = new ArrayList<>();
 		for (int i = 0; i < notesToShuffle.size(); i++) {
 			primeZero.add(testing.get(notesToShuffle.get(i)));
