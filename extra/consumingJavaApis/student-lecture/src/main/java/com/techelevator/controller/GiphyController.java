@@ -26,7 +26,7 @@ public class GiphyController {
 		
 		// 1. Construct the request
 		String apiURL = "https://api.giphy.com/v1/gifs/search?";
-		String keyValue = "aaa";
+		String keyValue = "A2fssNCd2LJEFf9bI75v3YpdA19VBS1Z";
 		String exchange = apiURL + "api_key=" + keyValue + "&q=" + searchParam + "&limit=" + limits.toString();
 		
 		
@@ -37,20 +37,27 @@ public class GiphyController {
 		
 		
 		// 3. The .exchange method makes the call, send the request from step 1.
-		
-
+		ResponseEntity<String> response = restTemplate.exchange(exchange, HttpMethod.GET, httpEntity, String.class);
+		System.out.println("The Response: " + response.getStatusCodeValue());
 		// 4. Read the response into a format I can understand.
-		
+		JsonNode jsonNode = objectMapper.readTree(response.getBody());
 		
 		// 5. Parse the data to get what you want.
 		// The path method applied to a JsonNode gets you to a node on a tree, you can chain them too!
 		// In this case want to loop up to the limit.	
-
+		
+		// then go to data
+		// then go to images
+		// then get fixed_width for URL
+		
+		System.out.println(jsonNode.path("data").path(0).path("images").path("fixed_width").path("url").toString());
+		String gif = jsonNode.path("data").path(0).path("images").path("fixed_width").path("url").toString();
+		
 				
 		// 6. Let's try something more complicated, let's loop through all the nodes and pick up the
 		// gifs associated with each node. The total number of nodes depends on the "limits" parameter.
 		List <String> gifResults = new ArrayList<>();
-		
+		gifResults.add(gif);
 
 		request.setAttribute("listOfGifs",gifResults);
 		
